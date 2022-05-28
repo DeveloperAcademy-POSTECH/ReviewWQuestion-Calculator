@@ -19,8 +19,12 @@ struct ButtonView: View {
                         .foregroundColor(color)
                 }
                 Text(text)
-                    .font(.system(size: g.size.width * 0.6))
+                    .font(.system(size: g.size.width < g.size.height ? g.size.width * 0.6 : g.size.height * 0.6))
                     .foregroundColor(color != Color.funcButton ? .white : .black)
+            }
+//            .padding(g.size.width < g.size.height ? g.size.width * 0.01 : g.size.height * 0.01)
+            .onAppear {
+                print(g.size)
             }
         }
     }

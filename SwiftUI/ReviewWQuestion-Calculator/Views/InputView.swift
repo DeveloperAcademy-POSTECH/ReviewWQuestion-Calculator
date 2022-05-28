@@ -35,8 +35,8 @@ struct InputView: View {
                 ButtonView(color: Color.operatorButton, text: "+")
             }
             HStack {
+                ButtonView(color: Color.digitButton, text: "")
                 ButtonView(color: Color.digitButton, text: "0")
-                Circle().foregroundColor(.black)
                 ButtonView(color: Color.digitButton, text: ".")
                 ButtonView(color: Color.operatorButton, text: "=")
             }
