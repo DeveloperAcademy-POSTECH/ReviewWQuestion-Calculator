@@ -281,6 +281,9 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="35"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="onTapDotButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rqT-kQ-NLg"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9a-M1-N6n">
                                 <rect key="frame" x="309.5" y="730.5" width="88" height="88"/>
@@ -331,8 +334,8 @@
                     </view>
                     <connections>
                         <outlet property="ACButton" destination="8Xh-BV-bAm" id="6Nl-V3-84N"/>
-                        <outlet property="commaButton" destination="4cX-xH-2qw" id="EUO-09-zWt"/>
                         <outlet property="divideButton" destination="hbI-YA-P2s" id="a8t-QJ-yvc"/>
+                        <outlet property="dotButton" destination="4cX-xH-2qw" id="EUO-09-zWt"/>
                         <outlet property="equalButton" destination="U9a-M1-N6n" id="xOy-98-oWZ"/>
                         <outlet property="minusButton" destination="IgU-x0-COp" id="9aq-tJ-v6l"/>
                         <outlet property="multiplyButton" destination="7bB-Ph-L60" id="7av-M2-fqm"/>

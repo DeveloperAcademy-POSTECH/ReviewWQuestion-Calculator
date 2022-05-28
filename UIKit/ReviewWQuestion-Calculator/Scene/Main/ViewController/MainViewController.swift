@@ -14,7 +14,7 @@ class MainViewController: UIViewController {
     @IBOutlet var minusButton: UIButton!
     @IBOutlet var plusButton: UIButton!
     @IBOutlet var equalButton: UIButton!
-    @IBOutlet var commaButton: UIButton!
+    @IBOutlet var dotButton: UIButton!
     @IBOutlet var num0Button: UIButton!
     @IBOutlet var num1Button: UIButton!
     @IBOutlet var num2Button: UIButton!
@@ -50,7 +50,7 @@ class MainViewController: UIViewController {
             minusButton.cornerRadius = minusButton.layer.frame.width * 0.5
             plusButton.cornerRadius = plusButton.layer.frame.width * 0.5
             equalButton.cornerRadius = equalButton.layer.frame.width * 0.5
-            commaButton.cornerRadius = commaButton.layer.frame.width * 0.5
+            dotButton.cornerRadius = dotButton.layer.frame.width * 0.5
             num0Button.cornerRadius = num0Button.layer.frame.width * 0.25
             num1Button.cornerRadius = num1Button.layer.frame.width * 0.5
             num2Button.cornerRadius = num2Button.layer.frame.width * 0.5
@@ -65,65 +65,66 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func onTapNum0Button(_ sender: Any) {
-        AO.addNumberAtTrailingOfTheResultVal(with: 0)
+        AO.newInput(with: 0)
         updateLabel()
     }
     
     @IBAction func onTapNum1Button(_ sender: Any) {
-        AO.addNumberAtTrailingOfTheResultVal(with: 1)
+        AO.newInput(with: 1)
         updateLabel()
     }
     
     @IBAction func onTapNum2Button(_ sender: Any) {
-        AO.addNumberAtTrailingOfTheResultVal(with: 2)
+        AO.newInput(with: 2)
         updateLabel()
     }
     
     @IBAction func onTapNum3Button(_ sender: Any) {
-        AO.addNumberAtTrailingOfTheResultVal(with: 3)
+        AO.newInput(with: 3)
         updateLabel()
     }
     
     @IBAction func onTapNum4Button(_ sender: Any) {
-        AO.addNumberAtTrailingOfTheResultVal(with: 4)
+        AO.newInput(with: 4)
         updateLabel()
     }
     
     @IBAction func onTapNum5Button(_ sender: Any) {
-        AO.addNumberAtTrailingOfTheResultVal(with: 5)
+        AO.newInput(with: 5)
         updateLabel()
     }
     
     @IBAction func onTapNum6Button(_ sender: Any) {
-        AO.addNumberAtTrailingOfTheResultVal(with: 6)
+        AO.newInput(with: 6)
         updateLabel()
     }
     
     @IBAction func onTapNum7Button(_ sender: Any) {
-        AO.addNumberAtTrailingOfTheResultVal(with: 7)
+        AO.newInput(with: 7)
         updateLabel()
     }
     
     @IBAction func onTapNum8Button(_ sender: Any) {
-        AO.addNumberAtTrailingOfTheResultVal(with: 8)
+        AO.newInput(with: 8)
         updateLabel()
     }
     
     @IBAction func onTapNum9Button(_ sender: Any) {
-        AO.addNumberAtTrailingOfTheResultVal(with: 9)
+        AO.newInput(with: 9)
+        updateLabel()
+    }
+    
+    @IBAction func onTapDotButton(_ sender: Any) {
+        AO.operation = .dot
+        AO.resultString += "."
+
         updateLabel()
     }
     
     
-    
     func updateLabel() {
-        let result = AO.leftPort
-        
-        if result > floor(result) {
-            resultLabel.text = result.description
-        } else {
-            resultLabel.text = Int(result).description
-        }
+        let result = AO.resultString
+        resultLabel.text = result
     }
 }
 
@@ -131,19 +132,30 @@ class ArithmeticOperation {
     var leftPort: Double = 0.0
     var rightPort: Double?
     var operation: Operation?
+    var resultString: String = "0"
     
-    func addNumberAtTrailingOfTheResultVal(with input: Int) {
-        if leftPort > floor(leftPort) {
-            let newStringVal = String(self.leftPort) + String(input)
-            guard let newVal = Double(newStringVal) else { return }
+    func newInput(with input: Int) {
+        switch operation {
+        case .dot:
+            self.operation = nil
+            break
+        case .plus: break
+        case .minus: break
+        case .multiply: break
+        case .divide: break
+        default:
+            if leftPort == 0 {
+                leftPort = Double(input)
+                resultString = String(input)
+                return
+            }
+            resultString = resultString + String(input)
+            guard let newVal = Double(resultString) else { return }
             self.leftPort = newVal
-            
-            return
         }
-        let newStringVal = String(Int(self.leftPort)) + String(input)
-        guard let newVal = Double(newStringVal) else { return }
-        self.leftPort = newVal
     }
+    
+    
 }
 
 enum Operation {
@@ -151,4 +163,5 @@ enum Operation {
     case minus
     case multiply
     case divide
+    case dot
 }
