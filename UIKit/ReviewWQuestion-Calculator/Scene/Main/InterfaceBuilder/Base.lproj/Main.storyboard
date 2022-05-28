@@ -37,7 +37,6 @@
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="AC" cornerStyle="fixed">
-                                                    <backgroundConfiguration key="background" cornerRadius="100"/>
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
                                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
@@ -91,7 +90,7 @@
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="7">
-                                                    <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="35"/>
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                             </button>
@@ -103,7 +102,7 @@
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="8">
-                                                    <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="35"/>
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                             </button>
@@ -115,7 +114,7 @@
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="9">
-                                                    <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="35"/>
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                             </button>
@@ -144,7 +143,7 @@
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="4">
-                                                    <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="35"/>
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                             </button>
@@ -156,7 +155,7 @@
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="5">
-                                                    <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="35"/>
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                             </button>
@@ -168,7 +167,7 @@
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="6">
-                                                    <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="35"/>
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                             </button>
@@ -180,7 +179,7 @@
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="-">
-                                                    <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="35"/>
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                             </button>
@@ -197,7 +196,7 @@
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="1">
-                                                    <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="35"/>
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                             </button>
@@ -209,7 +208,7 @@
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="2">
-                                                    <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="35"/>
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                             </button>
@@ -221,7 +220,7 @@
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="3">
-                                                    <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="35"/>
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                             </button>
@@ -233,7 +232,7 @@
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="+">
-                                                    <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="35"/>
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                             </button>
@@ -251,8 +250,8 @@
                                     <constraint firstAttribute="width" secondItem="4cX-xH-2qw" secondAttribute="height" id="sEb-aF-Ukm"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title=",">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                <buttonConfiguration key="configuration" style="plain" title=".">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="35"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                             </button>
@@ -264,7 +263,7 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="=">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="35"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                             </button>
@@ -273,7 +272,7 @@
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="0">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="35"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                             </button>

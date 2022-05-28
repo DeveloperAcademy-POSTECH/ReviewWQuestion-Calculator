@@ -26,8 +26,6 @@ class MainViewController: UIViewController {
     @IBOutlet var num8Button: UIButton!
     @IBOutlet var num9Button: UIButton!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
