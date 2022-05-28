@@ -25,6 +25,8 @@ class MainViewController: UIViewController {
     @IBOutlet var num7Button: UIButton!
     @IBOutlet var num8Button: UIButton!
     @IBOutlet var num9Button: UIButton!
+    @IBOutlet var resultLabel: UILabel!
+    var arithmeticOperation = ArithmeticOperation(leftPort: 0, rightPort: nil, operation: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +34,12 @@ class MainViewController: UIViewController {
     }
     
     func setUI() {
+        setResultLabel()
         setButtonCornerRadius()
+        
+        func setResultLabel() {
+            updateLabel(with: arithmeticOperation.leftPort)
+        }
         
         func setButtonCornerRadius() {
             ACButton.cornerRadius = ACButton.layer.frame.width * 0.5
@@ -56,5 +63,57 @@ class MainViewController: UIViewController {
             num9Button.cornerRadius = num9Button.layer.frame.width * 0.5
         }
     }
+    
+    @IBAction func onTapNum0Button(_ sender: Any) {
+    }
+    
+    @IBAction func onTapNum1Button(_ sender: Any) {
+    }
+    
+    @IBAction func onTapNum2Button(_ sender: Any) {
+    }
+    
+    @IBAction func onTapNum3Button(_ sender: Any) {
+    }
+    
+    @IBAction func onTapNum4Button(_ sender: Any) {
+    }
+    
+    @IBAction func onTapNum5Button(_ sender: Any) {
+    }
+    
+    @IBAction func onTapNum6Button(_ sender: Any) {
+    }
+    
+    @IBAction func onTapNum7Button(_ sender: Any) {
+    }
+    
+    @IBAction func onTapNum8Button(_ sender: Any) {
+    }
+    
+    @IBAction func onTapNum9Button(_ sender: Any) {
+    }
+    
+    
+    
+    func updateLabel(with result: Double) {
+        if result > floor(result) {
+            resultLabel.text = result.description
+        } else {
+            resultLabel.text = Int(result).description
+        }
+    }
 }
 
+struct ArithmeticOperation {
+    var leftPort: Double
+    var rightPort: Double?
+    var operation: Operation?
+}
+
+enum Operation {
+    case plus
+    case minus
+    case multiply
+    case divide
+}
