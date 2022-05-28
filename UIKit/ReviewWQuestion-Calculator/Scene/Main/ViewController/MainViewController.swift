@@ -26,7 +26,7 @@ class MainViewController: UIViewController {
     @IBOutlet var num8Button: UIButton!
     @IBOutlet var num9Button: UIButton!
     @IBOutlet var resultLabel: UILabel!
-    var arithmeticOperation = ArithmeticOperation(leftPort: 0, rightPort: nil, operation: nil)
+    var AO = ArithmeticOperation()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,7 @@ class MainViewController: UIViewController {
         setButtonCornerRadius()
         
         func setResultLabel() {
-            updateLabel(with: arithmeticOperation.leftPort)
+            updateLabel()
         }
         
         func setButtonCornerRadius() {
@@ -65,38 +65,60 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func onTapNum0Button(_ sender: Any) {
+        AO.addNumberAtTrailingOfTheResultVal(with: 0)
+        updateLabel()
     }
     
     @IBAction func onTapNum1Button(_ sender: Any) {
+        AO.addNumberAtTrailingOfTheResultVal(with: 1)
+        updateLabel()
     }
     
     @IBAction func onTapNum2Button(_ sender: Any) {
+        AO.addNumberAtTrailingOfTheResultVal(with: 2)
+        updateLabel()
     }
     
     @IBAction func onTapNum3Button(_ sender: Any) {
+        AO.addNumberAtTrailingOfTheResultVal(with: 3)
+        updateLabel()
     }
     
     @IBAction func onTapNum4Button(_ sender: Any) {
+        AO.addNumberAtTrailingOfTheResultVal(with: 4)
+        updateLabel()
     }
     
     @IBAction func onTapNum5Button(_ sender: Any) {
+        AO.addNumberAtTrailingOfTheResultVal(with: 5)
+        updateLabel()
     }
     
     @IBAction func onTapNum6Button(_ sender: Any) {
+        AO.addNumberAtTrailingOfTheResultVal(with: 6)
+        updateLabel()
     }
     
     @IBAction func onTapNum7Button(_ sender: Any) {
+        AO.addNumberAtTrailingOfTheResultVal(with: 7)
+        updateLabel()
     }
     
     @IBAction func onTapNum8Button(_ sender: Any) {
+        AO.addNumberAtTrailingOfTheResultVal(with: 8)
+        updateLabel()
     }
     
     @IBAction func onTapNum9Button(_ sender: Any) {
+        AO.addNumberAtTrailingOfTheResultVal(with: 9)
+        updateLabel()
     }
     
     
     
-    func updateLabel(with result: Double) {
+    func updateLabel() {
+        let result = AO.leftPort
+        
         if result > floor(result) {
             resultLabel.text = result.description
         } else {
@@ -105,10 +127,23 @@ class MainViewController: UIViewController {
     }
 }
 
-struct ArithmeticOperation {
-    var leftPort: Double
+class ArithmeticOperation {
+    var leftPort: Double = 0.0
     var rightPort: Double?
     var operation: Operation?
+    
+    func addNumberAtTrailingOfTheResultVal(with input: Int) {
+        if leftPort > floor(leftPort) {
+            let newStringVal = String(self.leftPort) + String(input)
+            guard let newVal = Double(newStringVal) else { return }
+            self.leftPort = newVal
+            
+            return
+        }
+        let newStringVal = String(Int(self.leftPort)) + String(input)
+        guard let newVal = Double(newStringVal) else { return }
+        self.leftPort = newVal
+    }
 }
 
 enum Operation {
