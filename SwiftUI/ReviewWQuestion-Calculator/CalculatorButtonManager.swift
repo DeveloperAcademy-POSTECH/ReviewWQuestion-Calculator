@@ -30,7 +30,65 @@ enum CalculatorButtonManager: CaseIterable {
     case plus
     // 5th line
     case zero
-    case doubleZero
+    case zero2
     case dot
     case equal
+    
+    var label: String {
+        switch self {
+        case .allClear : return "AC"
+        case .reverse : return "+/-"
+        case .percent : return "%"
+        case .division : return "/"
+        case .seven : return "7"
+        case .eight : return "8"
+        case .nine : return "0"
+        case .multiplication : return "x"
+        case .four : return "4"
+        case .five : return "5"
+        case .six : return "6"
+        case .minus : return "-"
+        case .one : return "1"
+        case .two : return "2"
+        case .three : return "3"
+        case .plus : return "+"
+        case .zero : return "0"
+        case .zero2 : return "0"
+        case .dot : return "."
+        case .equal : return "="
+        }
+    }
+    
+    
+    var background: String {
+        switch self {
+        case .allClear, .reverse, .percent : return "Gray"
+        case .division, .multiplication, .minus, .plus, .equal : return "Orange"
+        default : return "DarkGray"
+        }
+    }
+    
+    /*
+        case .allClear : return "AC"
+        case .reverse : return "+/-"
+        case .percent
+        case .division
+        case .seven
+        case .eight
+        case .nine
+        case .multiplication
+        case .four
+        case .five
+        case .six
+        case .minus
+        case .one
+        case .two
+        case .three
+        case .plus
+        case .zero
+        case .zero2
+        case .dot
+        case .equal
+            */
+        
 }

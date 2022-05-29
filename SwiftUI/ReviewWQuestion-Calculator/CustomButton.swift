@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CustomButton: View {
+    let buttonInfo: CalculatorButtonManager
     var body: some View {
         
         let size = UIScreen.main.bounds
@@ -16,12 +17,13 @@ struct CustomButton: View {
             Button(action: {
             } , label: {
                 Circle()
+                    .foregroundColor(Color(buttonInfo.background))
                     .frame(width: size.width / 5, height: size.width / 5, alignment: .center)
                     .overlay(content: {
-                        Text("1")
+                        Text(buttonInfo.label)
                             .bold()
                             .font(.system(size: size.width / 10))
-                            .accentColor(.primary)
+                            .accentColor(.black)
                     })
                 
             })
@@ -31,7 +33,7 @@ struct CustomButton: View {
 
 struct CustomButton_Previews: PreviewProvider {
     static var previews: some View {
-        CustomButton()
+        CustomButton(buttonInfo: CalculatorButtonManager.allClear)
             .previewInterfaceOrientation(.portrait)
     }
 }

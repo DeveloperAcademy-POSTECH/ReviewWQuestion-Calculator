@@ -13,8 +13,8 @@ struct CalculatorButtonView: View {
     
     var body: some View {
         LazyVGrid(columns: columns, spacing: 15) {
-            ForEach(CalculatorButtonManager.allCases, id: \.self) { _ in
-                CustomButton()
+            ForEach(CalculatorButtonManager.allCases, id: \.self) { item in
+                CustomButton(buttonInfo: item)
             }
         }
         .padding()
