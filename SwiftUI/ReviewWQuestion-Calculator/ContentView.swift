@@ -7,6 +7,8 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @State var number: Double = 0
+    
     private let keypads: [[String]] = [
         ["AC", "+/-", "%", "÷"],
         ["7", "8", "9", "×"],
@@ -19,7 +21,14 @@ struct ContentView: View {
         ZStack(alignment: .bottom) {
             Color.black.edgesIgnoringSafeArea(.all)
             
-            VStack(spacing: 0) {
+            VStack(alignment: .trailing, spacing: 0) {
+                
+                Text(String(Int(number)))
+                    .foregroundColor(.white)
+                    .font(.system(size: 90, weight: .light))
+                    .padding(.horizontal, 30)
+                    .padding(.bottom, 13)
+                
                 ForEach(keypads, id: \.self) { keypads in
                     HStack(spacing: 0) {
                         ForEach(keypads, id: \.self) { keypad in
