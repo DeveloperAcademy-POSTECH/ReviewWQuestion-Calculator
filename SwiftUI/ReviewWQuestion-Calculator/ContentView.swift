@@ -8,9 +8,9 @@ import SwiftUI
 struct ContentView: View {
     
     private let keypads: [[String]] = [
-        ["AC", "P&M", "%", "/"],
-        ["7", "8", "9", "*"],
-        ["4", "5", "6", "-"],
+        ["AC", "+/-", "%", "÷"],
+        ["7", "8", "9", "×"],
+        ["4", "5", "6", "−"],
         ["1", "2", "3", "+"],
         ["0", ".", "="]
     ]
@@ -26,25 +26,44 @@ struct ContentView: View {
                             Button(action: {
                                 
                             }, label: {
-                                if keypad == "0" {
+                                switch keypad {
+                                case "0":
                                     ZStack(alignment: .leading) {
                                         RoundedRectangle(cornerRadius: 40)
-                                            .fill(.gray)
+                                            .fill(Color("DarkGray"))
                                             .frame(width: 174,height: 80)
                                         Text(keypad)
                                             .foregroundColor(.white)
-                                            .font(.title)
+                                            .font(.largeTitle)
                                             .padding(.leading, 32)
                                     }
-                                }
-                                else {
+                                case "AC", "+/-", "%":
                                     ZStack {
                                         Circle()
                                             .fill(.gray)
                                             .frame(width: 80, height: 80)
                                         Text(keypad)
-                                            .foregroundColor(.white)
+                                            .foregroundColor(.black)
                                             .font(.title)
+                                    }
+                                case "÷", "×", "−", "+", "=":
+                                    ZStack(alignment: .top) {
+                                        Circle()
+                                            .fill(.orange)
+                                            .frame(width: 80, height: 80)
+                                        Text(keypad)
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 42))
+                                            .frame(height:75)
+                                    }
+                                default:
+                                    ZStack {
+                                        Circle()
+                                            .fill(Color("DarkGray"))
+                                            .frame(width: 80, height: 80)
+                                        Text(keypad)
+                                            .foregroundColor(.white)
+                                            .font(.largeTitle)
                                     }
                                 }
                             })
@@ -54,6 +73,7 @@ struct ContentView: View {
                 }
             }
             .padding(.horizontal, 17)
+            .preferredColorScheme(.dark)
         }
     }
 }
