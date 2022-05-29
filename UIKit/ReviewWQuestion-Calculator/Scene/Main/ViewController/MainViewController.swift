@@ -26,8 +26,8 @@ class MainViewController: UIViewController {
     @IBOutlet var num8Button: UIButton!
     @IBOutlet var num9Button: UIButton!
     @IBOutlet var resultLabel: UILabel!
-    var AO = ArithmeticOperation()
-    
+    var arithmeticOperation = ArithmeticOperation()
+    var outputNumber = OutputNumber()
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
@@ -38,7 +38,6 @@ class MainViewController: UIViewController {
         setButtonCornerRadius()
         
         func setResultLabel() {
-            updateLabel()
         }
         
         func setButtonCornerRadius() {
@@ -63,68 +62,105 @@ class MainViewController: UIViewController {
             num9Button.cornerRadius = num9Button.layer.frame.width * 0.5
         }
     }
+    @IBAction func onTapClearButton(_ sender: Any) {
+        self.outputNumber = OutputNumber()
+        resultLabel.text = "0"
+    }
     
     @IBAction func onTapNum0Button(_ sender: Any) {
-        AO.newInput(with: 0)
-        updateLabel()
+        outputNumber.textInput("0")
+        resultLabel.text = outputNumber.getOutputText()
     }
     
     @IBAction func onTapNum1Button(_ sender: Any) {
-        AO.newInput(with: 1)
-        updateLabel()
+        outputNumber.textInput("1")
+        resultLabel.text = outputNumber.getOutputText()
     }
     
     @IBAction func onTapNum2Button(_ sender: Any) {
-        AO.newInput(with: 2)
-        updateLabel()
+        outputNumber.textInput("2")
+        resultLabel.text = outputNumber.getOutputText()
+
     }
     
     @IBAction func onTapNum3Button(_ sender: Any) {
-        AO.newInput(with: 3)
-        updateLabel()
+        outputNumber.textInput("3")
+        resultLabel.text = outputNumber.getOutputText()
+
     }
     
     @IBAction func onTapNum4Button(_ sender: Any) {
-        AO.newInput(with: 4)
-        updateLabel()
+        outputNumber.textInput("4")
+        resultLabel.text = outputNumber.getOutputText()
+
     }
     
     @IBAction func onTapNum5Button(_ sender: Any) {
-        AO.newInput(with: 5)
-        updateLabel()
+        outputNumber.textInput("5")
+        resultLabel.text = outputNumber.getOutputText()
+
     }
     
     @IBAction func onTapNum6Button(_ sender: Any) {
-        AO.newInput(with: 6)
-        updateLabel()
+        outputNumber.textInput("6")
+        resultLabel.text = outputNumber.getOutputText()
+
     }
     
     @IBAction func onTapNum7Button(_ sender: Any) {
-        AO.newInput(with: 7)
-        updateLabel()
+        outputNumber.textInput("7")
+        resultLabel.text = outputNumber.getOutputText()
+
     }
     
     @IBAction func onTapNum8Button(_ sender: Any) {
-        AO.newInput(with: 8)
-        updateLabel()
+        outputNumber.textInput("8")
+        resultLabel.text = outputNumber.getOutputText()
+
     }
     
     @IBAction func onTapNum9Button(_ sender: Any) {
-        AO.newInput(with: 9)
-        updateLabel()
+        outputNumber.textInput("9")
+        resultLabel.text = outputNumber.getOutputText()
+
     }
     
     @IBAction func onTapDotButton(_ sender: Any) {
-        AO.operation = .dot
-        AO.resultString += "."
-
-        updateLabel()
+        outputNumber.dot = true
+        resultLabel.text = outputNumber.getOutputText()
     }
     
+}
+
+struct OutputNumber {
+    var integerPart: String = ""
+    var decimalPart: String?
+    var dot: Bool = false
     
-    func updateLabel() {
-        let result = AO.resultString
-        resultLabel.text = result
+    mutating func getOutputText() -> String {
+        if dot == true {
+            if self.integerPart == "" {
+                self.integerPart = "0"
+            }
+            var outputText = integerPart + "."
+            guard let decimalPart = self.decimalPart else { return outputText }
+            outputText += decimalPart
+            return outputText
+        } else {
+            return integerPart
+        }
+    }
+    
+    mutating func textInput(_ input: String) {
+        if dot == true {
+            guard var _ = self.decimalPart else {
+                self.decimalPart = input
+                return
+            }
+            self.decimalPart! += input
+        } else {
+            integerPart += input
+        }
     }
 }
 
@@ -132,30 +168,17 @@ class ArithmeticOperation {
     var leftPort: Double = 0.0
     var rightPort: Double?
     var operation: Operation?
-    var resultString: String = "0"
     
     func newInput(with input: Int) {
         switch operation {
-        case .dot:
-            self.operation = nil
-            break
+        case .dot: break
         case .plus: break
         case .minus: break
         case .multiply: break
         case .divide: break
-        default:
-            if leftPort == 0 {
-                leftPort = Double(input)
-                resultString = String(input)
-                return
-            }
-            resultString = resultString + String(input)
-            guard let newVal = Double(resultString) else { return }
-            self.leftPort = newVal
+        default: break
         }
     }
-    
-    
 }
 
 enum Operation {
