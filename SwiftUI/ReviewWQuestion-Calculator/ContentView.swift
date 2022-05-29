@@ -9,8 +9,9 @@ struct ContentView: View {
     var body: some View {
         VStack{
             VStack {
+                Spacer()
                 NumberTextView()
-            
+                CalculatorButtonView()
             }
             
             .preferredColorScheme(.dark)

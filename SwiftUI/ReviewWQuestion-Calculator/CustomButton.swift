@@ -12,20 +12,20 @@ struct CustomButton: View {
         
         let size = UIScreen.main.bounds
         
-        VStack {
+        //GeometryReader { proxy in
             Button(action: {
             } , label: {
                 Circle()
-                    .frame(width: size.width / 6, alignment: .center)
+                    .frame(width: size.width / 5, height: size.width / 5, alignment: .center)
                     .overlay(content: {
                         Text("1")
                             .bold()
-                            .font(.system(size: size.width / 12))
+                            .font(.system(size: size.width / 10))
                             .accentColor(.primary)
                     })
                 
             })
-        }
+        //}
     }
 }
 
