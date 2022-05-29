@@ -37,25 +37,40 @@ enum CalculatorButtonManager: CaseIterable {
     var label: String {
         switch self {
         case .allClear : return "AC"
-        case .reverse : return "+/-"
-        case .percent : return "%"
-        case .division : return "/"
+        case .reverse : return "plus.forwardslash.minus"
+        case .percent : return "percent"
+        case .division : return "divide"
         case .seven : return "7"
         case .eight : return "8"
         case .nine : return "0"
-        case .multiplication : return "x"
+        case .multiplication : return "multiply"
         case .four : return "4"
         case .five : return "5"
         case .six : return "6"
-        case .minus : return "-"
+        case .minus : return "minus"
         case .one : return "1"
         case .two : return "2"
         case .three : return "3"
-        case .plus : return "+"
+        case .plus : return "plus"
         case .zero : return "0"
         case .zero2 : return "0"
         case .dot : return "."
-        case .equal : return "="
+        case .equal : return "equal"
+        }
+    }
+    
+    var labelType: String {
+        switch self {
+        case .reverse, .division, .equal, .minus,
+                .multiplication, .percent, .plus : return "systemImage"
+        default : return "text"
+        }
+    }
+    
+    var labelColor: String {
+        switch self {
+        case .allClear, .reverse, .percent : return "Black"
+        default : return "White"
         }
     }
     
@@ -67,6 +82,7 @@ enum CalculatorButtonManager: CaseIterable {
         default : return "DarkGray"
         }
     }
+    
     
     /*
         case .allClear : return "AC"

@@ -13,9 +13,7 @@ struct ContentView: View {
                 NumberTextView()
                 CalculatorButtonView()
             }
-            
             .preferredColorScheme(.dark)
-            .accentColor(.primary)
         }
     }
 }
