@@ -68,8 +68,10 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func onTapNum0Button(_ sender: Any) {
+        if resultLabel.text == "0" { return }
         outputNumber.textInput("0")
         resultLabel.text = outputNumber.getOutputText()
+    
     }
     
     @IBAction func onTapNum1Button(_ sender: Any) {
@@ -142,12 +144,14 @@ struct OutputNumber {
             if self.integerPart == "" {
                 self.integerPart = "0"
             }
-            var outputText = integerPart + "."
+            let resultIntegerPart = integerPart.comma()
+            var outputText = resultIntegerPart + "."
             guard let decimalPart = self.decimalPart else { return outputText }
             outputText += decimalPart
             return outputText
         } else {
-            return integerPart
+            let resultIntegerPart = integerPart.comma()
+            return resultIntegerPart
         }
     }
     
@@ -187,4 +191,16 @@ enum Operation {
     case multiply
     case divide
     case dot
+}
+
+extension String {
+    // <,> 기호 찍는 함수
+    mutating func comma() -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        guard let resultInteger = numberFormatter.string(from: NSNumber(value: Int(self) ?? 0)) else {
+            return ""
+        }
+        return resultInteger
+    }
 }
