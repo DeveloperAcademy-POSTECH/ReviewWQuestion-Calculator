@@ -28,6 +28,7 @@ class MainViewController: UIViewController {
     @IBOutlet var resultLabel: UILabel!
     var arithmeticOperation = ArithmeticOperation()
     var outputNumber = OutputNumber()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
@@ -67,11 +68,36 @@ class MainViewController: UIViewController {
         resultLabel.text = "0"
     }
     
+    @IBAction func onTapEqualButton(_ sender: Any) {
+        let num = outputNumber.getOutputNum()
+        arithmeticOperation.inputNum(num)
+        
+        let resultNum = arithmeticOperation.operate()
+        outputNumber.updateWithNum(resultNum)
+        resultLabel.text = outputNumber.getOutputText()
+        
+    }
+    
+    @IBAction func onTapPlusButton(_ sender: Any) {
+        let num = outputNumber.getOutputNum()
+        arithmeticOperation.inputNum(num)
+        arithmeticOperation.operation = .plus
+        
+        self.outputNumber = OutputNumber()
+    }
+    
+    @IBAction func onTapMinusButton(_ sender: Any) {
+        let num = outputNumber.getOutputNum()
+        arithmeticOperation.inputNum(num)
+        arithmeticOperation.operation = .minus
+        
+        self.outputNumber = OutputNumber()
+    }
+    
     @IBAction func onTapNum0Button(_ sender: Any) {
         if resultLabel.text == "0" { return }
         outputNumber.textInput("0")
         resultLabel.text = outputNumber.getOutputText()
-    
     }
     
     @IBAction func onTapNum1Button(_ sender: Any) {
@@ -134,28 +160,68 @@ class MainViewController: UIViewController {
     
 }
 
-struct OutputNumber {
+class OutputNumber {
     var integerPart: String = ""
     var decimalPart: String?
     var dot: Bool = false
     
-    mutating func getOutputText() -> String {
+    // 프로퍼티 값 변경
+    func updateWithNum(_ num: Double) {
+        
+        if num > floor(num) {
+            let integerNum = floor(num)
+            let integerText = Int(integerNum).description
+            let decimalNum = num - integerNum
+            let decimalText = decimalNum.description
+            
+            self.integerPart = integerText
+            dot = true
+            let startIndex: String.Index = decimalText.index(decimalText.startIndex, offsetBy: 2)
+            self.decimalPart = String(decimalText[startIndex...])
+            
+        } else {
+            self.integerPart = Int(num).description
+        }
+    }
+    
+    // 숫자 -> Text
+    func getOutputNum() -> Double {
         if dot == true {
+            // 아무것도 입력안된 상태에 "." 누를경우 소수로 전환
             if self.integerPart == "" {
                 self.integerPart = "0"
             }
+            guard let decimalPart = self.decimalPart else { return Double(integerPart) ?? 0}
+            let outputText = integerPart + "." + decimalPart
+            return Double(outputText) ?? 0
+            
+        } else {
+            return Double(integerPart) ?? 0
+        }
+    }
+    
+    // Text -> 숫자
+    func getOutputText() -> String {
+        if dot == true {
+            // 아무것도 입력안된 상태에 "." 누를경우 소수로 전환
+            if self.integerPart == "" {
+                self.integerPart = "0"
+            }
+            
             let resultIntegerPart = integerPart.comma()
             var outputText = resultIntegerPart + "."
             guard let decimalPart = self.decimalPart else { return outputText }
             outputText += decimalPart
             return outputText
+            
         } else {
             let resultIntegerPart = integerPart.comma()
             return resultIntegerPart
         }
     }
     
-    mutating func textInput(_ input: String) {
+    // Text 입력
+    func textInput(_ input: String) {
         if dot == true {
             guard var _ = self.decimalPart else {
                 self.decimalPart = input
@@ -168,19 +234,31 @@ struct OutputNumber {
     }
 }
 
-class ArithmeticOperation {
-    var leftPort: Double = 0.0
-    var rightPort: Double?
+struct ArithmeticOperation {
+    var leftPort: Double = 0
+    var rightPort: Double = 0
     var operation: Operation?
+
+    mutating func inputNum(_ num: Double) {
+        if operation == nil {
+            self.leftPort = num
+        } else {
+            self.rightPort = num
+        }
+    }
     
-    func newInput(with input: Int) {
+    func operate() -> Double {
         switch operation {
-        case .dot: break
-        case .plus: break
-        case .minus: break
-        case .multiply: break
-        case .divide: break
-        default: break
+        case .plus:
+            return leftPort + rightPort
+        case .minus:
+            return leftPort - rightPort
+        case .multiply:
+            return leftPort * rightPort
+        case .divide:
+            return leftPort / rightPort
+        default:
+            return 0.0
         }
     }
 }
@@ -190,12 +268,11 @@ enum Operation {
     case minus
     case multiply
     case divide
-    case dot
 }
 
 extension String {
     // <,> 기호 찍는 함수
-    mutating func comma() -> String {
+    func comma() -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         guard let resultInteger = numberFormatter.string(from: NSNumber(value: Int(self) ?? 0)) else {
