@@ -10,13 +10,14 @@ let columns:[GridItem] = [GridItem(), GridItem(), GridItem(), GridItem()]
 struct ContentView: View {
     var body: some View {
         ZStack{
-             Color(.black)
+            Color(.black)
             VStack {
+                Spacer()
                 HStack{
                     Spacer()
                     Text("0")
                         .foregroundColor(.white)
-                        .font(.system(size: 80))
+                        .font(.system(size: 90))
                         .padding()
                 }
                 LazyVGrid(columns: columns){
@@ -24,6 +25,8 @@ struct ContentView: View {
                          ButtonUIView(buttonModel:item)
                      }
                 }
+                Rectangle()
+                    .frame(height:50)
             }
          }
          .ignoresSafeArea()
