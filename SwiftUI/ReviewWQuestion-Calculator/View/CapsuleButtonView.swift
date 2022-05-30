@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CapsuleButton: View {
+struct CapsuleButtonView: View {
     var body: some View {
         Capsule()
             .fill(Color.black)
@@ -16,8 +16,8 @@ struct CapsuleButton: View {
     }
 }
 
-struct CapsuleButton_Previews: PreviewProvider {
+struct CapsuleButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        CapsuleButton()
+        CapsuleButtonView()
     }
 }

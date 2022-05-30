@@ -7,21 +7,24 @@
 
 import SwiftUI
 
-struct CircleButton: View {
-    @State var color: Color
+struct CircleButtonView: View {
+    @State var backgroundColor: Color
     @State var text: String
+    @State var textColor: Color
     var body: some View {
         Circle()
-            .fill(color)
+            .fill(backgroundColor)
+            .frame(width: UIScreen.main.bounds.width*0.22, height: UIScreen.main.bounds.width*0.22)
             .overlay{
                 Text(text)
                     .font(.system(size: 40))
+                    .foregroundColor(textColor)
             }
     }
 }
 
-struct CircleButton_Previews: PreviewProvider {
+struct CircleButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        CircleButton(color: Color.red, text: "1")
+        CircleButtonView(backgroundColor: Color.red, text: "1", textColor: Color.textWhite)
     }
 }
