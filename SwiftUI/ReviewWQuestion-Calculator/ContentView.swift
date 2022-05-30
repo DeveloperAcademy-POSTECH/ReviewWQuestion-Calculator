@@ -29,6 +29,7 @@ struct ContentView: View {
                     .foregroundColor(.black)
                     .frame(height:50)
             }
+            .padding()
          }
          .ignoresSafeArea()
     }

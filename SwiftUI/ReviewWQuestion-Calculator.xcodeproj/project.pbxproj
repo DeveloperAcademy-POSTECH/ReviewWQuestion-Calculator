@@ -59,8 +59,7 @@
 			children = (
 				44A5258F283E540B00F39B89 /* ReviewWQuestion_CalculatorApp.swift */,
 				44A52591283E540B00F39B89 /* ContentView.swift */,
-				DF46D1BE28449CD3008978E0 /* AllButtonsArray.swift */,
-				DF46D1BF28449CD3008978E0 /* ButtonModel.swift */,
+				DF46D1C52844EC0B008978E0 /* Models */,
 				DF46D1C028449CD3008978E0 /* Views */,
 				44A52593283E540C00F39B89 /* Assets.xcassets */,
 				44A52595283E540C00F39B89 /* Preview Content */,
@@ -82,6 +81,15 @@
 				DF46D1C128449CD3008978E0 /* ButtonUIView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		DF46D1C52844EC0B008978E0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DF46D1BE28449CD3008978E0 /* AllButtonsArray.swift */,
+				DF46D1BF28449CD3008978E0 /* ButtonModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
