@@ -15,6 +15,7 @@
 		A06296BA28429DE50006C110 /* CalculatorButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06296B928429DE50006C110 /* CalculatorButtonManager.swift */; };
 		A06296BC2842A0BD0006C110 /* CalculatorButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06296BB2842A0BD0006C110 /* CalculatorButtonView.swift */; };
 		A07D7A2828421AC6003831BE /* NumberTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07D7A2728421AC6003831BE /* NumberTextView.swift */; };
+		A0DC715028451BB000D31508 /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DC714F28451BB000D31508 /* CalculatorViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		A06296B928429DE50006C110 /* CalculatorButtonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtonManager.swift; sourceTree = "<group>"; };
 		A06296BB2842A0BD0006C110 /* CalculatorButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtonView.swift; sourceTree = "<group>"; };
 		A07D7A2728421AC6003831BE /* NumberTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextView.swift; sourceTree = "<group>"; };
+		A0DC714F28451BB000D31508 /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,11 +64,12 @@
 				44A5258F283E540B00F39B89 /* ReviewWQuestion_CalculatorApp.swift */,
 				44A52591283E540B00F39B89 /* ContentView.swift */,
 				A07D7A2728421AC6003831BE /* NumberTextView.swift */,
+				A06296BB2842A0BD0006C110 /* CalculatorButtonView.swift */,
 				A06296B5284292320006C110 /* CustomButton.swift */,
+				A06296B928429DE50006C110 /* CalculatorButtonManager.swift */,
 				44A52593283E540C00F39B89 /* Assets.xcassets */,
 				44A52595283E540C00F39B89 /* Preview Content */,
-				A06296B928429DE50006C110 /* CalculatorButtonManager.swift */,
-				A06296BB2842A0BD0006C110 /* CalculatorButtonView.swift */,
+				A0DC714F28451BB000D31508 /* CalculatorViewModel.swift */,
 			);
 			path = "ReviewWQuestion-Calculator";
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0DC715028451BB000D31508 /* CalculatorViewModel.swift in Sources */,
 				A06296B6284292320006C110 /* CustomButton.swift in Sources */,
 				44A52592283E540B00F39B89 /* ContentView.swift in Sources */,
 				A06296BA28429DE50006C110 /* CalculatorButtonManager.swift in Sources */,

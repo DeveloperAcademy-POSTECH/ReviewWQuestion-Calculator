@@ -42,7 +42,7 @@ enum CalculatorButtonManager: CaseIterable {
         case .division : return "divide"
         case .seven : return "7"
         case .eight : return "8"
-        case .nine : return "0"
+        case .nine : return "9"
         case .multiplication : return "multiply"
         case .four : return "4"
         case .five : return "5"
@@ -73,7 +73,6 @@ enum CalculatorButtonManager: CaseIterable {
         default : return "White"
         }
     }
-    
     
     var background: String {
         switch self {

@@ -8,12 +8,21 @@
 import SwiftUI
 
 struct CustomButton: View {
+    
     let buttonInfo: CalculatorButtonManager
+    @ObservedObject var vm: CalculatorViewModel
+    
     var body: some View {
         
         let size = UIScreen.main.bounds
         
         Button(action: {
+            // enum case에 따라
+                // 사칙연산파트
+                // 숫자파트
+            vm.inputNumber(number: buttonInfo)
+                // 클리어파트
+                // 결과파트
         } , label: {
             Circle()
                 .foregroundColor(Color(buttonInfo.background))
@@ -31,13 +40,5 @@ struct CustomButton: View {
                     }
                 })
         })
-    }
-}
-
-struct CustomButton_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomButton(buttonInfo: CalculatorButtonManager.allClear)
-            .preferredColorScheme(.dark)
-            .previewInterfaceOrientation(.portrait)
     }
 }
