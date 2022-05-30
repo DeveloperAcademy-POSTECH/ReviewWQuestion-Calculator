@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct MainView: View {
+    @State var number: Double = 100000000/7
+    
     var body: some View {
         GeometryReader { g in
             VStack(alignment: .trailing) {
                 Spacer(minLength: g.size.height * 0.28)
-                OutputView()
-                InputView()
+                OutputView(number: $number)
+                InputView(number: $number)
             }
         }
     }

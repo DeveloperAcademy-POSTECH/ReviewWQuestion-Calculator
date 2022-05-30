@@ -8,13 +8,23 @@
 import SwiftUI
 
 struct ButtonView: View {
+    @Binding var number: Double
     var color: Color
     var text: String
     
     var body: some View {
         GeometryReader { g in
             ZStack {
-                Button(action: {}) {
+                Button(action: {
+                    if let num = Int(text) {
+                        if num <= 11 {
+                            number = number * 10 + Double(num)
+                        }
+                    }
+                    else if text == "C" {
+                        number = 0
+                    }
+                }) {
                     Circle()
                         .foregroundColor(color)
                 }
@@ -23,16 +33,13 @@ struct ButtonView: View {
                     .foregroundColor(color != Color.funcButton ? .white : .black)
             }
 //            .padding(g.size.width < g.size.height ? g.size.width * 0.01 : g.size.height * 0.01)
-            .onAppear {
-                print(g.size)
-            }
         }
     }
 }
 
-struct ButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        ButtonView(color: Color.operatorButton, text: "1")
-            
-    }
-}
+//struct ButtonView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ButtonView(color: Color.operatorButton, text: "1")
+//
+//    }
+//}

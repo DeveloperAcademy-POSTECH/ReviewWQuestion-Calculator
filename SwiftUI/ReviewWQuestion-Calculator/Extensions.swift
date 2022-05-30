@@ -15,3 +15,14 @@ extension Color {
     static let funcButton = Color(red: 165/255, green: 165/255, blue: 165/255)
     static let pressedOperatorButton = Color(red: 255/255, green: 255/255, blue: 255/255)
 }
+
+extension Int {
+//    static func length() {
+//        var len: Int = 0
+//
+//        while self > 0 {
+//            self = self / 10
+//            len += 1
+//        }
+//    }
+}

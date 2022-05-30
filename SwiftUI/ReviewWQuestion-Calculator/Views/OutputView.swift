@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct OutputView: View {
+    @Binding var number: Double
     let width = UIScreen.main.bounds.width
     
     var body: some View {
-        Text("123,456,789")
+        Text(number != Double(Int(number)) ? "\(number)" : "\(Int(number))")
             .font(.system(size:width * 0.15))
             .multilineTextAlignment(.trailing)
             .lineLimit(1)
@@ -20,8 +21,8 @@ struct OutputView: View {
     }
 }
 
-struct OutputView_Previews: PreviewProvider {
-    static var previews: some View {
-        OutputView().background(.black)
-    }
-}
+//struct OutputView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        OutputView().background(.black)
+//    }
+//}
