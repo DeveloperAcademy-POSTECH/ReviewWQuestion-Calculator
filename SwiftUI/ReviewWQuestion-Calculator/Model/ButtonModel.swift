@@ -80,7 +80,6 @@ extension CalcButton {
 }
 
 
-
 extension CalcButton {
     mutating func clear(){
         while !stack.isEmpty() {
