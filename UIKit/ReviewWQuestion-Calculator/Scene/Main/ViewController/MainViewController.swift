@@ -27,7 +27,7 @@ class MainViewController: UIViewController {
     @IBOutlet var num9Button: UIButton!
     @IBOutlet var resultLabel: UILabel!
     var arithmeticOperation = ArithmeticOperation()
-    var outputNumber = OutputNumber()
+    var output = Output()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,114 +63,130 @@ class MainViewController: UIViewController {
             num9Button.cornerRadius = num9Button.layer.frame.width * 0.5
         }
     }
+    
     @IBAction func onTapClearButton(_ sender: Any) {
-        self.outputNumber = OutputNumber()
+        self.arithmeticOperation = ArithmeticOperation()
+        self.output = Output()
         resultLabel.text = "0"
     }
     
     @IBAction func onTapEqualButton(_ sender: Any) {
-        let num = outputNumber.getOutputNum()
+        //  if arithmeticOperation.operation == nil { return }
+        let num = output.getOutputNum()
         arithmeticOperation.inputNum(num)
-        
-        let resultNum = arithmeticOperation.operate()
-        outputNumber.updateWithNum(resultNum)
-        resultLabel.text = outputNumber.getOutputText()
-        
+
+        // 결과값 출력
+        let resultNum = arithmeticOperation.leftPort // arithmeticOperation.operate()
+        output.updateWithNum(resultNum)
+        resultLabel.text = output.getOutputText()
+
+        self.output = Output()
+        self.arithmeticOperation = ArithmeticOperation(leftPort: resultNum, operation: .progress)
     }
     
     @IBAction func onTapPlusButton(_ sender: Any) {
-        let num = outputNumber.getOutputNum()
+        let num = output.getOutputNum()
         arithmeticOperation.inputNum(num)
         arithmeticOperation.operation = .plus
+                
+        // 결과값 출력
+        let resultNum = arithmeticOperation.leftPort
+        output.updateWithNum(resultNum)
+        resultLabel.text = output.getOutputText()
         
-        self.outputNumber = OutputNumber()
+        self.output = Output()
     }
     
     @IBAction func onTapMinusButton(_ sender: Any) {
-        let num = outputNumber.getOutputNum()
+        let num = output.getOutputNum()
         arithmeticOperation.inputNum(num)
         arithmeticOperation.operation = .minus
         
-        self.outputNumber = OutputNumber()
+        // 결과값 출력
+        let resultNum = arithmeticOperation.leftPort
+        output.updateWithNum(resultNum)
+        resultLabel.text = output.getOutputText()
+        
+        self.output = Output()
     }
     
     @IBAction func onTapNum0Button(_ sender: Any) {
         if resultLabel.text == "0" { return }
-        outputNumber.textInput("0")
-        resultLabel.text = outputNumber.getOutputText()
+        output.textInput("0")
+        resultLabel.text = output.getOutputText()
     }
     
     @IBAction func onTapNum1Button(_ sender: Any) {
-        outputNumber.textInput("1")
-        resultLabel.text = outputNumber.getOutputText()
+        output.textInput("1")
+        resultLabel.text = output.getOutputText()
     }
     
     @IBAction func onTapNum2Button(_ sender: Any) {
-        outputNumber.textInput("2")
-        resultLabel.text = outputNumber.getOutputText()
+        output.textInput("2")
+        resultLabel.text = output.getOutputText()
 
     }
     
     @IBAction func onTapNum3Button(_ sender: Any) {
-        outputNumber.textInput("3")
-        resultLabel.text = outputNumber.getOutputText()
+        output.textInput("3")
+        resultLabel.text = output.getOutputText()
 
     }
     
     @IBAction func onTapNum4Button(_ sender: Any) {
-        outputNumber.textInput("4")
-        resultLabel.text = outputNumber.getOutputText()
+        output.textInput("4")
+        resultLabel.text = output.getOutputText()
 
     }
     
     @IBAction func onTapNum5Button(_ sender: Any) {
-        outputNumber.textInput("5")
-        resultLabel.text = outputNumber.getOutputText()
+        output.textInput("5")
+        resultLabel.text = output.getOutputText()
 
     }
     
     @IBAction func onTapNum6Button(_ sender: Any) {
-        outputNumber.textInput("6")
-        resultLabel.text = outputNumber.getOutputText()
+        output.textInput("6")
+        resultLabel.text = output.getOutputText()
 
     }
     
     @IBAction func onTapNum7Button(_ sender: Any) {
-        outputNumber.textInput("7")
-        resultLabel.text = outputNumber.getOutputText()
+        output.textInput("7")
+        resultLabel.text = output.getOutputText()
 
     }
     
     @IBAction func onTapNum8Button(_ sender: Any) {
-        outputNumber.textInput("8")
-        resultLabel.text = outputNumber.getOutputText()
+        output.textInput("8")
+        resultLabel.text = output.getOutputText()
 
     }
     
     @IBAction func onTapNum9Button(_ sender: Any) {
-        outputNumber.textInput("9")
-        resultLabel.text = outputNumber.getOutputText()
+        output.textInput("9")
+        resultLabel.text = output.getOutputText()
 
     }
     
     @IBAction func onTapDotButton(_ sender: Any) {
-        outputNumber.dot = true
-        resultLabel.text = outputNumber.getOutputText()
+        output.dot = true
+        resultLabel.text = output.getOutputText()
     }
     
 }
 
-class OutputNumber {
+class Output {
     var integerPart: String = ""
     var decimalPart: String?
     var dot: Bool = false
     
-    // 프로퍼티 값 변경
+    // class를 특정 숫자로 초기화
     func updateWithNum(_ num: Double) {
         if num > floor(num) {
             let integerNum = floor(num)
             let integerText = Int(integerNum).description
-            let decimalNum = round((num - integerNum)*100)/100 // 반올림 + 소수점 아래 2자리
+            let decimalNum = round( (num - integerNum) * 100) / 100 // 반올림 + 소수점 아래 2자리
             let decimalText = decimalNum.description
             
             self.integerPart = integerText
@@ -198,7 +214,7 @@ class OutputNumber {
             return Double(integerPart) ?? 0
         }
     }
-    
+
     // Text -> 숫자
     func getOutputText() -> String {
         if dot == true {
@@ -235,27 +251,34 @@ class OutputNumber {
 
 struct ArithmeticOperation {
     var leftPort: Double = 0
-    var rightPort: Double = 0
+    var rightPort: Double?
     var operation: Operation?
 
+    // 좌항,우항 입력
     mutating func inputNum(_ num: Double) {
-        if operation == nil {
-            self.leftPort = num
-        } else {
+        if operation != nil {
             self.rightPort = num
+            self.leftPort = self.operate()
+            self.operation = nil
+            self.rightPort = nil
+        } else {
+            self.leftPort = num
         }
     }
-    
+
+    // 연산기능 수행
     func operate() -> Double {
         switch operation {
         case .plus:
-            return leftPort + rightPort
+            return leftPort + rightPort!
         case .minus:
-            return leftPort - rightPort
+            return leftPort - rightPort!
         case .multiply:
-            return leftPort * rightPort
+            return leftPort * rightPort!
         case .divide:
-            return leftPort / rightPort
+            return leftPort / rightPort!
+        case .progress:
+            return leftPort
         default:
             return 0.0
         }
@@ -267,6 +290,7 @@ enum Operation {
     case minus
     case multiply
     case divide
+    case progress
 }
 
 extension String {
