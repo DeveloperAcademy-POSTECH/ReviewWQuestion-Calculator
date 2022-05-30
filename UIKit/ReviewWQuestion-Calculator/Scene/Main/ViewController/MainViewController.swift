@@ -71,109 +71,156 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func onTapEqualButton(_ sender: Any) {
-        //  if arithmeticOperation.operation == nil { return }
         let num = output.getOutputNum()
         arithmeticOperation.inputNum(num)
 
-        // 결과값 출력
-        let resultNum = arithmeticOperation.leftPort // arithmeticOperation.operate()
-        output.updateWithNum(resultNum)
-        resultLabel.text = output.getOutputText()
+        updateLabel()
 
-        self.output = Output()
-        self.arithmeticOperation = ArithmeticOperation(leftPort: resultNum, operation: .progress)
+        self.arithmeticOperation.operation = .progress
+        self.arithmeticOperation.rightPort = nil
     }
     
     @IBAction func onTapPlusButton(_ sender: Any) {
         let num = output.getOutputNum()
         arithmeticOperation.inputNum(num)
         arithmeticOperation.operation = .plus
-                
-        // 결과값 출력
-        let resultNum = arithmeticOperation.leftPort
-        output.updateWithNum(resultNum)
-        resultLabel.text = output.getOutputText()
-        
-        self.output = Output()
+
+        updateLabel()
     }
     
     @IBAction func onTapMinusButton(_ sender: Any) {
         let num = output.getOutputNum()
         arithmeticOperation.inputNum(num)
         arithmeticOperation.operation = .minus
-        
-        // 결과값 출력
-        let resultNum = arithmeticOperation.leftPort
-        output.updateWithNum(resultNum)
-        resultLabel.text = output.getOutputText()
-        
-        self.output = Output()
+
+        updateLabel()
     }
     
     @IBAction func onTapNum0Button(_ sender: Any) {
         if resultLabel.text == "0" { return }
+        if arithmeticOperation.operation == .progress {
+            arithmeticOperation.operation = nil
+            arithmeticOperation.rightPort = nil
+            self.output = Output()
+        }
         output.textInput("0")
         resultLabel.text = output.getOutputText()
     }
     
     @IBAction func onTapNum1Button(_ sender: Any) {
+        if arithmeticOperation.operation == .progress {
+            arithmeticOperation.operation = nil
+            arithmeticOperation.rightPort = nil
+            self.output = Output()
+        }
         output.textInput("1")
         resultLabel.text = output.getOutputText()
     }
     
     @IBAction func onTapNum2Button(_ sender: Any) {
+        if arithmeticOperation.operation == .progress {
+            arithmeticOperation.operation = nil
+            arithmeticOperation.rightPort = nil
+            self.output = Output()
+        }
         output.textInput("2")
         resultLabel.text = output.getOutputText()
 
     }
     
     @IBAction func onTapNum3Button(_ sender: Any) {
+        if arithmeticOperation.operation == .progress {
+            arithmeticOperation.operation = nil
+            arithmeticOperation.rightPort = nil
+            self.output = Output()
+        }
         output.textInput("3")
         resultLabel.text = output.getOutputText()
 
     }
     
     @IBAction func onTapNum4Button(_ sender: Any) {
+        if arithmeticOperation.operation == .progress {
+            arithmeticOperation.operation = nil
+            arithmeticOperation.rightPort = nil
+            self.output = Output()
+        }
         output.textInput("4")
         resultLabel.text = output.getOutputText()
 
     }
     
     @IBAction func onTapNum5Button(_ sender: Any) {
+        if arithmeticOperation.operation == .progress {
+            arithmeticOperation.operation = nil
+            arithmeticOperation.rightPort = nil
+            self.output = Output()
+        }
         output.textInput("5")
         resultLabel.text = output.getOutputText()
 
     }
     
     @IBAction func onTapNum6Button(_ sender: Any) {
+        if arithmeticOperation.operation == .progress {
+            arithmeticOperation.operation = nil
+            arithmeticOperation.rightPort = nil
+            self.output = Output()
+        }
         output.textInput("6")
         resultLabel.text = output.getOutputText()
 
     }
     
     @IBAction func onTapNum7Button(_ sender: Any) {
+        if arithmeticOperation.operation == .progress {
+            arithmeticOperation.operation = nil
+            arithmeticOperation.rightPort = nil
+            self.output = Output()
+        }
         output.textInput("7")
         resultLabel.text = output.getOutputText()
 
     }
     
     @IBAction func onTapNum8Button(_ sender: Any) {
+        if arithmeticOperation.operation == .progress {
+            arithmeticOperation.operation = nil
+            arithmeticOperation.rightPort = nil
+            self.output = Output()
+        }
         output.textInput("8")
         resultLabel.text = output.getOutputText()
 
     }
     
     @IBAction func onTapNum9Button(_ sender: Any) {
+        if arithmeticOperation.operation == .progress {
+            arithmeticOperation.operation = nil
+            arithmeticOperation.rightPort = nil
+            self.output = Output()
+        }
         output.textInput("9")
         resultLabel.text = output.getOutputText()
 
     }
     
     @IBAction func onTapDotButton(_ sender: Any) {
+        if arithmeticOperation.operation == .progress {
+            return
+        }
         output.dot = true
         resultLabel.text = output.getOutputText()
     }
     
+    // 결과값 출력
+    func updateLabel() {
+        let resultNum = arithmeticOperation.leftPort
+        output.updateWithNum(resultNum)
+        resultLabel.text = output.getOutputText()
+
+        self.output = Output()
+    }
 }
 
 class Output {
@@ -259,7 +306,6 @@ struct ArithmeticOperation {
         if operation != nil {
             self.rightPort = num
             self.leftPort = self.operate()
-            self.operation = nil
             self.rightPort = nil
         } else {
             self.leftPort = num
