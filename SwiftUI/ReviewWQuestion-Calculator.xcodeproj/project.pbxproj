@@ -84,14 +84,14 @@
 		4A8E074A2844FC1B008EEEAC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				44A5258F283E540B00F39B89 /* ReviewWQuestion_CalculatorApp.swift */,
 				4AA4C2572844F130007EB140 /* firstRow.swift */,
 				4A8E07422844F82C008EEEAC /* secondRow.swift */,
 				4A8E07442844F962008EEEAC /* thirdRow.swift */,
 				4A8E07462844F9FB008EEEAC /* fourthRow.swift */,
 				4A8E07482844FA94008EEEAC /* fifthRow.swift */,
-				44A52591283E540B00F39B89 /* ContentView.swift */,
 				4A8E074C2844FC94008EEEAC /* resultView.swift */,
+				44A52591283E540B00F39B89 /* ContentView.swift */,
+				44A5258F283E540B00F39B89 /* ReviewWQuestion_CalculatorApp.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

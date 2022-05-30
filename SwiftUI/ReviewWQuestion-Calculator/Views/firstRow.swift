@@ -9,10 +9,13 @@ import SwiftUI
 
 
 struct firstRow: View {
+    
+    @Binding var result: Int
+    
     var body: some View {
         HStack(spacing:14) {
             Button(action: {
-                
+                result = 0
             }) {
                 Text("AC")
                     .font(.system(size: 35))
@@ -58,6 +61,6 @@ struct firstRow: View {
 
 struct firstRow_Previews: PreviewProvider {
     static var previews: some View {
-        firstRow()
+        firstRow(result: .constant(0))
     }
 }

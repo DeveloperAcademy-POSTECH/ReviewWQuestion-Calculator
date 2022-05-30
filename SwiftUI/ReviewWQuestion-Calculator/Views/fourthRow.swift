@@ -8,10 +8,21 @@
 import SwiftUI
 
 struct fourthRow: View {
+    
+    @Binding var result: Int
+    
     var body: some View {
         HStack(spacing:14){
             ForEach(1..<4){ i in
                 Button(action: {
+                    
+                    var resultString: String = "\(result)"
+                    if resultString == "0" {
+                        resultString = "\(i)"
+                    } else {
+                        resultString += "\(i)"
+                    }
+                    result = Int(resultString) ?? 0
                     
                 }) {
                     Text("\(i)")
@@ -38,6 +49,6 @@ struct fourthRow: View {
 
 struct fourthRow_Previews: PreviewProvider {
     static var previews: some View {
-        fourthRow()
+        fourthRow(result: .constant(0))
     }
 }

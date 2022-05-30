@@ -8,9 +8,20 @@
 import SwiftUI
 
 struct fifthRow: View {
+    
+    @Binding var result: Int
+    
     var body: some View {
         HStack(spacing:14) {
             Button(action: {
+                
+                var resultString: String = "\(result)"
+                if resultString == "0" {
+                    
+                } else {
+                    resultString += "0"
+                }
+                result = Int(resultString) ?? 0
                 
             }) {
                 Text("0")
@@ -46,6 +57,6 @@ struct fifthRow: View {
 
 struct fifthRow_Previews: PreviewProvider {
     static var previews: some View {
-        fifthRow()
+        fifthRow(result: .constant(0))
     }
 }

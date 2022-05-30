@@ -17,11 +17,11 @@ struct ContentView: View {
             VStack(spacing:14) {
                 Spacer()
                 resultView(result: $result)
-                firstRow()
-                secondRow()
-                thirdRow()
-                fourthRow()
-                fifthRow()
+                firstRow(result: $result)
+                secondRow(result: $result)
+                thirdRow(result: $result)
+                fourthRow(result: $result)
+                fifthRow(result: $result)
             }
         }
     }
