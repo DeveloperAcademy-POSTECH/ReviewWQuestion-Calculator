@@ -167,11 +167,10 @@ class OutputNumber {
     
     // 프로퍼티 값 변경
     func updateWithNum(_ num: Double) {
-        
         if num > floor(num) {
             let integerNum = floor(num)
             let integerText = Int(integerNum).description
-            let decimalNum = num - integerNum
+            let decimalNum = round((num - integerNum)*100)/100 // 반올림 + 소수점 아래 2자리
             let decimalText = decimalNum.description
             
             self.integerPart = integerText
