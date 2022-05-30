@@ -26,6 +26,7 @@ struct ContentView: View {
                      }
                 }
                 Rectangle()
+                    .foregroundColor(.black)
                     .frame(height:50)
             }
          }
@@ -36,5 +37,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .previewInterfaceOrientation(.portrait)
     }
 }
