@@ -23,31 +23,6 @@ struct CalcButton: Identifiable {
     }
 }
 
-extension CalcButton {
-    public struct Stack<T> {
-        private var elements = [T]()
-        
-        public mutating func pop() -> T? {
-            return self.elements.popLast()
-        }
-        
-        public mutating func push(_ element: T) {
-            self.elements.append(element)
-        }
-        
-        public func top() -> T? {
-            return self.elements.last
-        }
-        
-        public func isEmpty() -> Bool {
-            return self.elements.isEmpty
-        }
-        
-        public var size: Int {
-            return self.elements.count
-        }
-    }
-}
 
 extension CalcButton {
     static let calcButtonData: [CalcButton] =
@@ -79,71 +54,3 @@ extension CalcButton {
     ]
 }
 
-
-extension CalcButton {
-    mutating func clear(){
-        while !stack.isEmpty() {
-            stack.pop()
-        }
-    }
-    
-    mutating func equal(){
-        
-    }
-    
-    mutating func divide(){
-        stack.push("÷")
-    }
-    
-    mutating func time(){
-        stack.push("×")
-    }
-    
-    mutating func plus(){
-        stack.push("÷")
-    }
-    
-    mutating func minus(){
-        stack.push("−")
-    }
-    
-    mutating func zero(){
-        stack.push("0")
-    }
-
-    mutating func one(){
-        stack.push("1")
-    }
-    
-    mutating func two(){
-        stack.push("2")
-    }
-    
-    mutating func three(){
-        stack.push("3")
-    }
-    
-    mutating func four(){
-        stack.push("4")
-    }
-    
-    mutating func five(){
-        stack.push("5")
-    }
-    
-    mutating func six(){
-        stack.push("6")
-    }
-    
-    mutating func seven(){
-        stack.push("7")
-    }
-    
-    mutating func eight(){
-        stack.push("8")
-    }
-    
-    mutating func nine(){
-        stack.push("9")
-    }
-}

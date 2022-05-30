@@ -16,8 +16,8 @@ struct ContentView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("0")
-                    .font(.system(size: 70))
+//                Text(CalcButton.stack.top()!)
+//                    .font(.system(size: 70))
             }
             .frame(width: UIScreen.main.bounds.width,height: UIScreen.main.bounds.height*0.3, alignment: .bottomTrailing)
             
