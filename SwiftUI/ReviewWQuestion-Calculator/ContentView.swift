@@ -28,9 +28,8 @@ struct ContentView: View {
                 
                 Text(String(Int(number)))
                     .foregroundColor(.white)
-                    .font(.system(size: 90, weight: .light))
-                    .padding(.horizontal, 30)
-                    .padding(.bottom, 13)
+                    .font(.system(size: 93, weight: .light))
+                    .padding(.horizontal, 17)
                 
                 ForEach(keypads, id: \.self) { keypads in
                     HStack(spacing: 0) {
