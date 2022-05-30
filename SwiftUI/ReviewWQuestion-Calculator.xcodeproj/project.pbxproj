@@ -14,6 +14,7 @@
 		DF46D1C228449CD3008978E0 /* AllButtonsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF46D1BE28449CD3008978E0 /* AllButtonsArray.swift */; };
 		DF46D1C328449CD3008978E0 /* ButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF46D1BF28449CD3008978E0 /* ButtonModel.swift */; };
 		DF46D1C428449CD3008978E0 /* ButtonUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF46D1C128449CD3008978E0 /* ButtonUIView.swift */; };
+		DF46D1C7284526BD008978E0 /* ResultNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF46D1C6284526BD008978E0 /* ResultNumber.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		DF46D1BE28449CD3008978E0 /* AllButtonsArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllButtonsArray.swift; sourceTree = "<group>"; };
 		DF46D1BF28449CD3008978E0 /* ButtonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonModel.swift; sourceTree = "<group>"; };
 		DF46D1C128449CD3008978E0 /* ButtonUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonUIView.swift; sourceTree = "<group>"; };
+		DF46D1C6284526BD008978E0 /* ResultNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultNumber.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			children = (
 				DF46D1BE28449CD3008978E0 /* AllButtonsArray.swift */,
 				DF46D1BF28449CD3008978E0 /* ButtonModel.swift */,
+				DF46D1C6284526BD008978E0 /* ResultNumber.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 				DF46D1C228449CD3008978E0 /* AllButtonsArray.swift in Sources */,
 				DF46D1C428449CD3008978E0 /* ButtonUIView.swift in Sources */,
 				DF46D1C328449CD3008978E0 /* ButtonModel.swift in Sources */,
+				DF46D1C7284526BD008978E0 /* ResultNumber.swift in Sources */,
 				44A52592283E540B00F39B89 /* ContentView.swift in Sources */,
 				44A52590283E540B00F39B89 /* ReviewWQuestion_CalculatorApp.swift in Sources */,
 			);
