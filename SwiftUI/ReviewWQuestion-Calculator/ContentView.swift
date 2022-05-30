@@ -10,7 +10,7 @@ struct ContentView: View {
     let screenWidth = UIScreen.main.bounds.width
     let screenHeight = UIScreen.main.bounds.height
     
-    @State var number: Double = 0
+    @State var number: Int = 0
     
     private let keypads: [[String]] = [
         ["AC", "+/-", "%", "÷"],
@@ -26,16 +26,27 @@ struct ContentView: View {
             
             VStack(alignment: .trailing, spacing: 0) {
                 
-                Text(String(Int(number)))
+                Text(String(number))
                     .foregroundColor(.white)
                     .font(.system(size: 93, weight: .light))
                     .padding(.horizontal, 17)
+                    .lineLimit(1)
+                    .truncationMode(.tail)
                 
                 ForEach(keypads, id: \.self) { keypads in
                     HStack(spacing: 0) {
                         ForEach(keypads, id: \.self) { keypad in
                             Button(action: {
-                                
+                                switch keypad {
+                                case "0":
+                                    if number != 0 {
+                                        number = Int(String(number) + keypad)!
+                                    }
+                                case "AC", "+/-", "%", "÷", "×", "−", "+", "=", ".":
+                                    print(number)
+                                default:
+                                    number = Int(String(number) + keypad)!
+                                }
                             }, label: {
                                 switch keypad {
                                 case "0":
@@ -45,7 +56,7 @@ struct ContentView: View {
                                             .frame(width: (screenWidth / 5) * 2 + 15, height: screenWidth / 5)
                                         Text(keypad)
                                             .foregroundColor(.white)
-                                            .font(.largeTitle)
+                                            .font(.system(size: 40))
                                             .padding(.leading, screenWidth / 13)
                                     }
                                 case "AC", "+/-", "%":
