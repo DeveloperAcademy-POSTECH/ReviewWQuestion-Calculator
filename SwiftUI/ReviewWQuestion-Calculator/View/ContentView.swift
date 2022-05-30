@@ -2,7 +2,6 @@
 //  ContentView.swift
 //  ReviewWQuestion-Calculator
 //
-
 import SwiftUI
 
 struct ContentView: View {
