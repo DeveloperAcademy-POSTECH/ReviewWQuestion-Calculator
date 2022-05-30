@@ -7,6 +7,9 @@ import SwiftUI
 
 struct ContentView: View {
     
+    let screenWidth = UIScreen.main.bounds.width
+    let screenHeight = UIScreen.main.bounds.height
+    
     @State var number: Double = 0
     
     private let keypads: [[String]] = [
@@ -40,43 +43,43 @@ struct ContentView: View {
                                     ZStack(alignment: .leading) {
                                         RoundedRectangle(cornerRadius: 40)
                                             .fill(Color("DarkGray"))
-                                            .frame(width: 174,height: 80)
+                                            .frame(width: (screenWidth / 5) * 2 + 15, height: screenWidth / 5)
                                         Text(keypad)
                                             .foregroundColor(.white)
                                             .font(.largeTitle)
-                                            .padding(.leading, 32)
+                                            .padding(.leading, screenWidth / 13)
                                     }
                                 case "AC", "+/-", "%":
                                     ZStack {
                                         Circle()
                                             .fill(.gray)
-                                            .frame(width: 80, height: 80)
+                                            .frame(width: screenWidth / 5, height: screenWidth / 5)
                                         Text(keypad)
                                             .foregroundColor(.black)
-                                            .font(.title)
+                                            .font(.largeTitle)
                                     }
                                 case "÷", "×", "−", "+", "=":
                                     ZStack(alignment: .top) {
                                         Circle()
                                             .fill(.orange)
-                                            .frame(width: 80, height: 80)
+                                            .frame(width: screenWidth / 5, height: screenWidth / 5)
                                         Text(keypad)
                                             .foregroundColor(.white)
-                                            .font(.system(size: 42))
-                                            .frame(height:75)
+                                            .font(.system(size: 46))
+                                            .padding(.top, screenWidth / 45)
                                     }
                                 default:
                                     ZStack {
                                         Circle()
                                             .fill(Color("DarkGray"))
-                                            .frame(width: 80, height: 80)
+                                            .frame(width: screenWidth / 5, height: screenWidth / 5)
                                         Text(keypad)
                                             .foregroundColor(.white)
-                                            .font(.largeTitle)
+                                            .font(.system(size: 40))
                                     }
                                 }
                             })
-                            .padding(7)
+                            .padding(15/2)
                         }
                     }
                 }
