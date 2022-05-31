@@ -12,6 +12,7 @@ struct ContentView: View {
     
     @State var currentNumber: Int = 0
     @State var previousNumber: Int = 0
+    @State var selectedOperator: String = ""
     
     private let keypads: [[String]] = [
         ["AC", "+/-", "%", "÷"],
@@ -48,10 +49,24 @@ struct ContentView: View {
                                 case "+/-":
                                     currentNumber = -currentNumber
                                 case "AC":
-                                    currentNumber = 0
-                                case "÷", "×", "−", "+", "=":
+                                    if currentNumber != 0 {
+                                        currentNumber = 0
+                                    }
+                                    else {
+                                        previousNumber = 0
+                                    }
+                                case "÷", "×", "−" :
                                     print(currentNumber)
+                                case "+":
+                                    previousNumber = currentNumber
+                                    selectedOperator = "+"
+                                case "=":
+                                    currentNumber += previousNumber
                                 default:
+                                    if selectedOperator != "" {
+                                        currentNumber = 0
+                                        selectedOperator = ""
+                                    }
                                     currentNumber = Int(String(currentNumber) + keypad)!
                                 }
                             }, label: {
@@ -66,7 +81,16 @@ struct ContentView: View {
                                             .font(.system(size: 40))
                                             .padding(.leading, screenWidth / 13)
                                     }
-                                case "AC", "+/-", "%":
+                                case "AC":
+                                    ZStack {
+                                        Circle()
+                                            .fill(.gray)
+                                            .frame(width: screenWidth / 5, height: screenWidth / 5)
+                                        Text(currentNumber == 0 ? keypad : "C")
+                                            .foregroundColor(.black)
+                                            .font(.largeTitle)
+                                    }
+                                case "+/-", "%":
                                     ZStack {
                                         Circle()
                                             .fill(.gray)
@@ -75,13 +99,23 @@ struct ContentView: View {
                                             .foregroundColor(.black)
                                             .font(.largeTitle)
                                     }
-                                case "÷", "×", "−", "+", "=":
+                                case "÷", "×", "−", "=":
                                     ZStack(alignment: .top) {
                                         Circle()
                                             .fill(.orange)
                                             .frame(width: screenWidth / 5, height: screenWidth / 5)
                                         Text(keypad)
                                             .foregroundColor(.white)
+                                            .font(.system(size: 46))
+                                            .padding(.top, screenWidth / 45)
+                                    }
+                                case "+":
+                                    ZStack(alignment: .top) {
+                                        Circle()
+                                            .fill(selectedOperator == "+" ? .white : .orange)
+                                            .frame(width: screenWidth / 5, height: screenWidth / 5)
+                                        Text(keypad)
+                                            .foregroundColor(selectedOperator == "+" ? .black : .white)
                                             .font(.system(size: 46))
                                             .padding(.top, screenWidth / 45)
                                     }
