@@ -6,20 +6,23 @@
 //
 
 import SwiftUI
+
 var buttonWidth:CGFloat = 85
 var buttonHeight:CGFloat = 85
 
 struct ButtonUIView: View {
+    @EnvironmentObject var resultNumberClass:ResultNumber
     var buttonModel:ButtonModel
     
     var body: some View {
         ZStack {
             Button(action: {
-                
+                resultNumberClass.checkDisplayResultNumber(buttonModel:buttonModel)
             }, label: {
                 Circle().foregroundColor(buttonModel.color)
             })
             .frame(width:buttonWidth, height: buttonHeight)
+            
             Text(buttonModel.name)
                 .foregroundColor(buttonModel.function == "function" ? .black : .white)
                 .font(.system(size: 40))
@@ -33,6 +36,7 @@ struct ButtonUIView_Previews: PreviewProvider {
             ButtonUIView(buttonModel: ButtonModel(name: "AC", function: "function", color: Color(.lightGray)))
             ButtonUIView(buttonModel: ButtonModel(name: "+", function: "operator", color: Color(.systemOrange)))
         }
+        .environmentObject(ResultNumber())
         .previewLayout(.sizeThatFits)
     }
 }
