@@ -21,7 +21,9 @@ struct ContentView: View {
         VStack {
             HStack {
                 Text(result(stack: stack))
-                    .font(.system(size: 70))
+                    .font(.system(size: 90))
+                    .minimumScaleFactor(0.5) // 폰트 크기가 절반까지 자동으로 줄어듬
+                    .lineLimit(1) // 한줄로 출력
             }
             .padding(.init(top: 0, leading: 0, bottom: 0, trailing: 20 ))
             .frame(width: UIScreen.main.bounds.width,height: UIScreen.main.bounds.height*0.3, alignment: .bottomTrailing)
