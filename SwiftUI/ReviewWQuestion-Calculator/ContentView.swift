@@ -36,24 +36,7 @@ struct ContentView: View {
                 ForEach(keypads, id: \.self) { keypads in
                     HStack(spacing: 0) {
                         ForEach(keypads, id: \.self) { keypad in
-                            Button(action: {
-                                switch keypad {
-                                case "0":
-                                    if number != 0 {
-                                        number = Int(String(number) + keypad)!
-                                    }
-                                case "AC":
-                                    number = 0
-                                case "+/-":
-                                    number = -number
-                                case "%":
-                                    number /= 100
-                                case "÷", "×", "−", "+", "=", ".":
-                                    print(number)
-                                default:
-                                    number = Int(String(number) + keypad)!
-                                }
-                            }, label: {
+                            Button(action: {}, label: {
                                 switch keypad {
                                 case "0":
                                     ZStack(alignment: .leading) {
