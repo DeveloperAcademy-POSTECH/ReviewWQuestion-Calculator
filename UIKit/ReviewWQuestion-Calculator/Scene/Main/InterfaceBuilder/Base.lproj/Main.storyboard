@@ -79,6 +79,9 @@
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="onTapDivideButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Uy-zS-olE"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -141,6 +144,9 @@
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="onTapMultiplyButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="V6f-kk-Q3m"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>

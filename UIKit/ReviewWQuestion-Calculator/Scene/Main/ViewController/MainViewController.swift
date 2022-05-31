@@ -96,8 +96,33 @@ class MainViewController: UIViewController {
         updateLabel()
     }
     
+    @IBAction func onTapMultiplyButton(_ sender: Any) {
+        let num = output.getOutputNum()
+        arithmeticOperation.inputNum(num)
+        arithmeticOperation.operation = .multiply
+
+        updateLabel()
+    }
+    
+    @IBAction func onTapDivideButton(_ sender: Any) {
+        let num = output.getOutputNum()
+        arithmeticOperation.inputNum(num)
+        arithmeticOperation.operation = .divide
+
+        updateLabel()
+    }
+    
     @IBAction func onTapNum0Button(_ sender: Any) {
         if resultLabel.text == "0" { return }
+        
+        // 0/0
+        if arithmeticOperation.operation == .divide {
+            resultLabel.text = "오류"
+            arithmeticOperation = ArithmeticOperation()
+            output = Output()
+            return
+        }
+        
         if arithmeticOperation.operation == .progress {
             arithmeticOperation.operation = nil
             arithmeticOperation.rightPort = nil
