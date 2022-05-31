@@ -46,7 +46,12 @@ struct ContentView: View {
 
 
 func result(stack: Stack<String>) -> String {
-    return stack.elements.map{$0}.joined(separator: "") ?? "0"
+    let numberFormatter = NumberFormatter()
+    numberFormatter.maximumFractionDigits = 2 // 소수점 2번째 자리까지 출력
+    numberFormatter.numberStyle = .decimal // 3자리 마다 콤마
+    
+    return stack.elements.map{$0}.joined(separator: "").isEmpty ? "0" : numberFormatter.string(for: Double(stack.elements.map{String($0)}.joined(separator: ""))!) ?? "0"
+    
 }
 
 
