@@ -10,7 +10,8 @@ struct ContentView: View {
     let screenWidth = UIScreen.main.bounds.width
     let screenHeight = UIScreen.main.bounds.height
     
-    @State var number: Int = 0
+    @State var currentNumber: Int = 0
+    @State var previousNumber: Int = 0
     
     private let keypads: [[String]] = [
         ["AC", "+/-", "%", "÷"],
@@ -26,7 +27,7 @@ struct ContentView: View {
             
             VStack(alignment: .trailing, spacing: 0) {
                 
-                Text(String(number))
+                Text(String(currentNumber))
                     .foregroundColor(.white)
                     .font(.system(size: 93, weight: .light))
                     .padding(.horizontal, 17)
@@ -39,19 +40,19 @@ struct ContentView: View {
                             Button(action: {
                                 switch keypad {
                                 case "0":
-                                    if number != 0 {
-                                        number = Int(String(number) + keypad)!
+                                    if currentNumber != 0 {
+                                        currentNumber = Int(String(currentNumber) + keypad)!
                                     }
                                 case "%":
-                                    number /= 100
+                                    currentNumber /= 100
                                 case "+/-":
-                                    number = -number
+                                    currentNumber = -currentNumber
                                 case "AC":
-                                    number = 0
+                                    currentNumber = 0
                                 case "÷", "×", "−", "+", "=":
-                                    print(number)
+                                    print(currentNumber)
                                 default:
-                                    number = Int(String(number) + keypad)!
+                                    currentNumber = Int(String(currentNumber) + keypad)!
                                 }
                             }, label: {
                                 switch keypad {
@@ -101,6 +102,7 @@ struct ContentView: View {
                 }
             }
             .padding(.horizontal, 17)
+            .padding(.bottom, 40)
             .preferredColorScheme(.dark)
         }
     }
