@@ -25,7 +25,7 @@ struct ContentView: View {
 //                    .font(.system(size: 90))
 //                    .minimumScaleFactor(0.5) // 폰트 크기가 절반까지 자동으로 줄어듬
 //                    .lineLimit(1) // 한줄로 출력
-                Text(calcResult)
+                Text(result(value: calcResult))
                     .font(.system(size: 90))
                     .minimumScaleFactor(0.5) // 폰트 크기가 절반까지 자동으로 줄어듬
                     .lineLimit(1) // 한줄로 출력
@@ -57,12 +57,13 @@ struct ContentView: View {
 
 
 
-func result(stack: Stack<String>) -> String {
+func result(value: String) -> String {
     let numberFormatter = NumberFormatter()
     numberFormatter.maximumFractionDigits = 2 // 소수점 2번째 자리까지 출력
     numberFormatter.numberStyle = .decimal // 3자리 마다 콤마
     
-    return stack.elements.map{$0}.joined(separator: "").isEmpty ? "0" : numberFormatter.string(for: Double(stack.elements.map{String($0)}.joined(separator: ""))!) ?? "0"
+    return numberFormatter.string(for: Double(value)) ?? "00"
+//    return stack.elements.map{$0}.joined(separator: "").isEmpty ? "0" : numberFormatter.string(for: Double(stack.elements.map{String($0)}.joined(separator: ""))!) ?? "0"
 }
 
 func calculate(arr: [String]) -> String{
@@ -97,23 +98,23 @@ func calculate(arr: [String]) -> String{
                         print(first)
                         switch opStack.pop() {
                         case "+":
-                            numStack.push(String(Int(first)! + Int(second)!))
+                            numStack.push(String(Double(first)! + Double(second)!))
                         case "-":
-                            numStack.push(String(Int(first)! - Int(second)!))
+                            numStack.push(String(Double(first)! - Double(second)!))
                         case "×":
-                            numStack.push(String(Int(first)! * Int(second)!))
+                            numStack.push(String(Double(first)! * Double(second)!))
                         case "÷":
-                            numStack.push(String(Int(first)! / Int(second)!))
+                            numStack.push(String(Double(first)! / Double(second)!))
                         default:
                             print("default")
                         }
+                        print("!!!! \(opStack)")
                         if !opStack.isEmpty() {
                             pre = priority(element: opStack.top()!)
-                        } else {
-                            opStack.push(arr[i])
-                            print("push \(arr[i])")
-                            break
-                        }
+                        } 
+                        opStack.push(arr[i])
+                        print("push \(arr[i])")
+                        break
                     }
                 }
             }
@@ -130,13 +131,13 @@ func calculate(arr: [String]) -> String{
         var first = numStack.pop()!
         switch opStack.pop() {
         case "+":
-            numStack.push(String(Int(first)! + Int(second)!))
+            numStack.push(String(Double(first)! + Double(second)!))
         case "-":
-            numStack.push(String(Int(first)! - Int(second)!))
+            numStack.push(String(Double(first)! - Double(second)!))
         case "×":
-            numStack.push(String(Int(first)! * Int(second)!))
+            numStack.push(String(Double(first)! * Double(second)!))
         case "÷":
-            numStack.push(String(Int(first)! / Int(second)!))
+            numStack.push(String(Double(first)! / Double(second)!))
         default:
             print("default")
         }
@@ -144,6 +145,7 @@ func calculate(arr: [String]) -> String{
     }
     return numStack.pop()!
 }
+
 
 func priority(element: String) -> Int{
     switch element {
