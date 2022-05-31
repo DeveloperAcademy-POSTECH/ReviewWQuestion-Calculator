@@ -11,6 +11,7 @@
 		44A52592283E540B00F39B89 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A52591283E540B00F39B89 /* ContentView.swift */; };
 		44A52594283E540C00F39B89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44A52593283E540C00F39B89 /* Assets.xcassets */; };
 		44A52597283E540C00F39B89 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44A52596283E540C00F39B89 /* Preview Assets.xcassets */; };
+		4A146DF92845FC6100808ABA /* calculateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A146DF82845FC6100808ABA /* calculateData.swift */; };
 		4A8E07432844F82C008EEEAC /* secondRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E07422844F82C008EEEAC /* secondRow.swift */; };
 		4A8E07452844F962008EEEAC /* thirdRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E07442844F962008EEEAC /* thirdRow.swift */; };
 		4A8E07472844F9FB008EEEAC /* fourthRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E07462844F9FB008EEEAC /* fourthRow.swift */; };
@@ -26,6 +27,7 @@
 		44A52591283E540B00F39B89 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		44A52593283E540C00F39B89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44A52596283E540C00F39B89 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4A146DF82845FC6100808ABA /* calculateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calculateData.swift; sourceTree = "<group>"; };
 		4A8E07422844F82C008EEEAC /* secondRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secondRow.swift; sourceTree = "<group>"; };
 		4A8E07442844F962008EEEAC /* thirdRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = thirdRow.swift; sourceTree = "<group>"; };
 		4A8E07462844F9FB008EEEAC /* fourthRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fourthRow.swift; sourceTree = "<group>"; };
@@ -84,13 +86,13 @@
 		4A8E074A2844FC1B008EEEAC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				44A52591283E540B00F39B89 /* ContentView.swift */,
 				4AA4C2572844F130007EB140 /* firstRow.swift */,
 				4A8E07422844F82C008EEEAC /* secondRow.swift */,
 				4A8E07442844F962008EEEAC /* thirdRow.swift */,
 				4A8E07462844F9FB008EEEAC /* fourthRow.swift */,
 				4A8E07482844FA94008EEEAC /* fifthRow.swift */,
 				4A8E074C2844FC94008EEEAC /* resultView.swift */,
-				44A52591283E540B00F39B89 /* ContentView.swift */,
 				44A5258F283E540B00F39B89 /* ReviewWQuestion_CalculatorApp.swift */,
 			);
 			path = Views;
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				4AA4C2592844F45F007EB140 /* Color.swift */,
+				4A146DF82845FC6100808ABA /* calculateData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				4A8E07452844F962008EEEAC /* thirdRow.swift in Sources */,
 				4AA4C2582844F130007EB140 /* firstRow.swift in Sources */,
 				4A8E07432844F82C008EEEAC /* secondRow.swift in Sources */,
+				4A146DF92845FC6100808ABA /* calculateData.swift in Sources */,
 				4A8E074D2844FC94008EEEAC /* resultView.swift in Sources */,
 				4A8E07472844F9FB008EEEAC /* fourthRow.swift in Sources */,
 				44A52590283E540B00F39B89 /* ReviewWQuestion_CalculatorApp.swift in Sources */,
@@ -311,6 +315,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ReviewWQuestion-Calculator/Preview Content\"";
+				DEVELOPMENT_TEAM = JP5BCXZWJP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -340,6 +345,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ReviewWQuestion-Calculator/Preview Content\"";
+				DEVELOPMENT_TEAM = JP5BCXZWJP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

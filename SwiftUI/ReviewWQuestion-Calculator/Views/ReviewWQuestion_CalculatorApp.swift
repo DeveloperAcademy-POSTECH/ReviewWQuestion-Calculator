@@ -7,9 +7,10 @@ import SwiftUI
 
 @main
 struct ReviewWQuestion_CalculatorApp: App {
+        
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(calculateData: calculateData(),operationData: operationData())
         }
     }
 }

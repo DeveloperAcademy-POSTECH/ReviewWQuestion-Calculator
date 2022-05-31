@@ -8,15 +8,23 @@
 import SwiftUI
 
 struct resultView: View {
+    
     @Binding var result: Int
+    @EnvironmentObject var calculateData: calculateData
+    
     var body: some View {
         HStack {
             Spacer()
-            Text("\(result)")
+            Text("\(calculateData.result)")
+                .lineLimit(1)
                 .foregroundColor(.white)
                 .font(.system(size: 80))
                 .padding([.horizontal])
         }
+    }
+    
+    func resultCondition() {
+        
     }
 }
 

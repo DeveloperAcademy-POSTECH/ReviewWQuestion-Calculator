@@ -12,10 +12,15 @@ struct firstRow: View {
     
     @Binding var result: Int
     
+    @EnvironmentObject var calculateData: calculateData
+    @EnvironmentObject var operationData: operationData
+    
     var body: some View {
         HStack(spacing:14) {
             Button(action: {
-                result = 0
+                calculateData.result = 0
+                calculateData.calculSequence = []
+                calculateData.resultSequence = []
             }) {
                 Text("AC")
                     .font(.system(size: 35))
@@ -45,13 +50,28 @@ struct firstRow: View {
                     .clipShape(Circle())
             }
             Button(action: {
+                operationData.operationReset()
+                operationData.operationIsActive[0].toggle()
+            
+                calculateData.resultSequence.append(calculateData.result)
+                
+                if calculateData.calculSequence.isEmpty {
+                    calculateData.calculSequence.append("÷")
+                } else {
+                    
+                    calculateData.result = calculateData.calculate(calculateData.resultSequence[0], calculateData.resultSequence[1])
+                    calculateData.resultSequence = [calculateData.result]
+                    calculateData.calculSequence = ["÷"]
+                }
+                
+                calculateData.iscalculated = true
                 
             }) {
                 Text("÷")
                     .font(.system(size: 50))
                     .frame(width:85, height: 85)
-                    .foregroundColor(.white)
-                    .background(Color.customOrange)
+                    .foregroundColor(operationData.operationIsActive[0] ? Color.customOrange : .white)
+                    .background(operationData.operationIsActive[0] ? .white : Color.customOrange)
                     .clipShape(Circle())
             }
             

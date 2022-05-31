@@ -10,18 +10,22 @@ import SwiftUI
 struct secondRow: View {
     
     @Binding var result: Int
+    @EnvironmentObject var calculateData: calculateData
+    @EnvironmentObject var operationData: operationData
+    
     
     var body: some View {
         HStack(spacing:14) {
             ForEach(7..<10){ i in
                 Button(action: {
-                    var resultString: String = "\(result)"
+                    operationData.operationReset()
+                    var resultString: String = "\(calculateData.result)"
                     if resultString == "0" {
                         resultString = "\(i)"
                     } else {
                         resultString += "\(i)"
                     }
-                    result = Int(resultString) ?? 0
+                    calculateData.result = Double(resultString) ?? 0
                     
                 }) {
                     Text("\(i)")
@@ -33,13 +37,27 @@ struct secondRow: View {
                 }
             }
             Button(action: {
+                operationData.operationReset()
+                operationData.operationIsActive[1].toggle()
                 
+                calculateData.resultSequence.append(calculateData.result)
+                
+                if calculateData.calculSequence.isEmpty {
+                    calculateData.calculSequence.append("×")
+                } else {
+                    
+                    calculateData.result = calculateData.calculate(calculateData.resultSequence[0], calculateData.resultSequence[1])
+                    calculateData.resultSequence = [calculateData.result]
+                    calculateData.calculSequence = ["×"]
+                }
+                
+                calculateData.iscalculated = true
             }) {
                 Text("×")
                     .font(.system(size: 50))
                     .frame(width:85, height: 85)
-                    .foregroundColor(.white)
-                    .background(Color.customOrange)
+                    .foregroundColor(operationData.operationIsActive[1] ? Color.customOrange : .white)
+                    .background(operationData.operationIsActive[1] ? .white : Color.customOrange)
                     .clipShape(Circle())
             }
         }

@@ -6,10 +6,13 @@
 import SwiftUI
 
 struct ContentView: View {
-//    private static let columnCount: Int = 4
-//    @State private var gridColumns = Array(repeating: GridItem(.flexible()), count: columnCount)
     
     @State private var result: Int = 0
+    
+    @StateObject var calculateData: calculateData
+    @StateObject var operationData: operationData
+    
+    
     var body: some View {
         ZStack{
             Color.black.ignoresSafeArea()
@@ -23,6 +26,8 @@ struct ContentView: View {
                 fourthRow(result: $result)
                 fifthRow(result: $result)
             }
+            .environmentObject(calculateData)
+            .environmentObject(operationData)
         }
     }
 }
@@ -30,6 +35,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(calculateData: calculateData(), operationData: operationData())
     }
 }

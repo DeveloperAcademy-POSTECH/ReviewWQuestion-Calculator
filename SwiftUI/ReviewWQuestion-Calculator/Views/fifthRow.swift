@@ -10,18 +10,23 @@ import SwiftUI
 struct fifthRow: View {
     
     @Binding var result: Int
+    @EnvironmentObject var calculateData: calculateData
+    @EnvironmentObject var operationData: operationData
     
     var body: some View {
         HStack(spacing:14) {
             Button(action: {
-                
-                var resultString: String = "\(result)"
-                if resultString == "0" {
-                    
+                operationData.operationReset()
+                var resultString: String = "\(calculateData.result)"
+                //
+                if calculateData.iscalculated {
+                    resultString = "0"
+                    calculateData.iscalculated = false
                 } else {
                     resultString += "0"
                 }
-                result = Int(resultString) ?? 0
+                
+                calculateData.result = Double(resultString) ?? 0
                 
             }) {
                 Text("0")
@@ -42,6 +47,13 @@ struct fifthRow: View {
                     .clipShape(Circle())
             }
             Button(action: {
+                operationData.operationReset()
+                calculateData.resultSequence.append(calculateData.result)
+                
+                calculateData.result = calculateData.calculate(calculateData.resultSequence[0], calculateData.resultSequence[1])
+                calculateData.calculSequence = []
+                calculateData.resultSequence = []
+                calculateData.iscalculated = true
                 
             }) {
                 Text("=")
