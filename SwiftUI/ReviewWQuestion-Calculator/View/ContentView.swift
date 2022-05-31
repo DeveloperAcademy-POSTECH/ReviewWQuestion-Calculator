@@ -37,7 +37,10 @@ struct ContentView: View {
             LazyVGrid(columns: columns, spacing: 10){
                 ForEach(0..<20) { i in
                     Button(action: {
-                        if i == 19 {
+                        if i == 0 {
+                            stack.choiceOperator(value: data[i].text)
+                            calcResult = "0"
+                        } else if i == 19 {
                             calcResult = calculate(arr: stack.elements)
                         } else {
                             stack.choiceOperator(value: data[i].text)
@@ -157,6 +160,8 @@ func priority(element: String) -> Int{
         return 999
     }
 }
+
+
 
 
 
