@@ -44,7 +44,9 @@ struct ContentView: View {
                                     }
                                 case "%":
                                     number /= 100
-                                case "AC", "+/-", "÷", "×", "−", "+", "=":
+                                case "+/-":
+                                    number = -number
+                                case "AC", "÷", "×", "−", "+", "=":
                                     print(number)
                                 default:
                                     number = Int(String(number) + keypad)!
