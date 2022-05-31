@@ -8,6 +8,7 @@ import SwiftUI
 struct ContentView: View {
     var data = CalcButton.calcButtonData
     @State var stack = Stack<String>()  // 여기에 @State 붙여주면 bad access 발생함 이유가 뭐지? 갑자기 잘됨.....
+    @State var calcResult = "0"
 
 
     let columns = [
@@ -20,10 +21,15 @@ struct ContentView: View {
     var body: some View {
         VStack {
             HStack {
-                Text(result(stack: stack))
+//                Text(result(stack: stack))
+//                    .font(.system(size: 90))
+//                    .minimumScaleFactor(0.5) // 폰트 크기가 절반까지 자동으로 줄어듬
+//                    .lineLimit(1) // 한줄로 출력
+                Text(calcResult)
                     .font(.system(size: 90))
                     .minimumScaleFactor(0.5) // 폰트 크기가 절반까지 자동으로 줄어듬
                     .lineLimit(1) // 한줄로 출력
+
             }
             .padding(.init(top: 0, leading: 20, bottom: 0, trailing: 20 ))
             .frame(width: UIScreen.main.bounds.width,height: UIScreen.main.bounds.height*0.3, alignment: .bottomTrailing)
@@ -31,7 +37,11 @@ struct ContentView: View {
             LazyVGrid(columns: columns, spacing: 10){
                 ForEach(0..<20) { i in
                     Button(action: {
-                        stack.choiceOperator(value: data[i].text)
+                        if i == 19 {
+                            calcResult = calculate(arr: stack.elements)
+                        } else {
+                            stack.choiceOperator(value: data[i].text)
+                        }
                     }, label: {
                         CircleButtonView(backgroundColor: data[i].backgroundColor, text: data[i].text, textColor: data[i].textColor)
                     })
@@ -53,6 +63,97 @@ func result(stack: Stack<String>) -> String {
     numberFormatter.numberStyle = .decimal // 3자리 마다 콤마
     
     return stack.elements.map{$0}.joined(separator: "").isEmpty ? "0" : numberFormatter.string(for: Double(stack.elements.map{String($0)}.joined(separator: ""))!) ?? "0"
+}
+
+func calculate(arr: [String]) -> String{
+    var numStack = Stack<String>()
+    var opStack = Stack<String>()
+    print("arr :  \(arr)")
+    for i in 0..<arr.count {
+        switch arr[i] {
+        case "+","÷","×","−":
+            if opStack.isEmpty() {
+                print("push \(arr[i])")
+                opStack.push(arr[i])
+            } else {
+                // 1. opStack의 top에 있는 연산자보다 우선순위가 높으면 그냥 push
+                // 2. opStack의 top에 있는 연산자보다 우선순위가 낮으면 push하기 전에
+                //    numStack에서 값 꺼내서 계산해야함
+                // 2-1. 이때 넣으려면 연산자랑 opStack에 있는 연산자랑 같은 우선순위면 좌측
+                //      좌측결합이므로 남아있는 연산자도 계산후 결과값을 numStack에 넣음
+                // 2-2. 마지막으로 넣으려면 연산자와 숫자를 각 stack 넣어줌
+                // 3. 마지막으로 남아있는 연산자를 꺼내서 계산해주고 numStack에 남아있는 1개를 리턴
+                var pre = priority(element: opStack.top()!)
+                var cur = priority(element: arr[i])
+                if pre > cur {
+                    opStack.push(arr[i])
+                    print("push \(arr[i])")
+                } else {
+                    while( pre <= cur){
+                        //print("while \(opStack.top()!) >= \(arr[i])")
+                        let second = numStack.pop()!
+                        print(second)
+                        let first = numStack.pop()!
+                        print(first)
+                        switch opStack.pop() {
+                        case "+":
+                            numStack.push(String(Int(first)! + Int(second)!))
+                        case "-":
+                            numStack.push(String(Int(first)! - Int(second)!))
+                        case "×":
+                            numStack.push(String(Int(first)! * Int(second)!))
+                        case "÷":
+                            numStack.push(String(Int(first)! / Int(second)!))
+                        default:
+                            print("default")
+                        }
+                        if !opStack.isEmpty() {
+                            pre = priority(element: opStack.top()!)
+                        } else {
+                            opStack.push(arr[i])
+                            print("push \(arr[i])")
+                            break
+                        }
+                    }
+                }
+            }
+        case "1","2","3","4","5","6","7","8","9","0":
+            numStack.push(arr[i])
+            print("push : \(arr[i])")
+        default:
+            print("default")
+        }
+    }
+    while(!opStack.isEmpty()){
+        print("남은거 \(numStack) , \(opStack)")
+        var second = numStack.pop()!
+        var first = numStack.pop()!
+        switch opStack.pop() {
+        case "+":
+            numStack.push(String(Int(first)! + Int(second)!))
+        case "-":
+            numStack.push(String(Int(first)! - Int(second)!))
+        case "×":
+            numStack.push(String(Int(first)! * Int(second)!))
+        case "÷":
+            numStack.push(String(Int(first)! / Int(second)!))
+        default:
+            print("default")
+        }
+        print("while end \(numStack) , \(opStack)")
+    }
+    return numStack.pop()!
+}
+
+func priority(element: String) -> Int{
+    switch element {
+    case "÷","×":
+        return 0
+    case "+","−":
+        return 1
+    default:
+        return 999
+    }
 }
 
 

@@ -7,8 +7,10 @@
 
 import Foundation
 
+// 더이상 스택이 아니게 되어버린것..
 public struct Stack<String> {
     public var elements = [String]()
+    
     
     public mutating func pop() -> String? {
         return self.elements.popLast()
@@ -30,6 +32,10 @@ public struct Stack<String> {
         return self.elements.count
     }
     
+    public mutating func popFirst() -> String {
+        return self.elements.removeFirst()
+    }
+    
     mutating func clear(){
         while !self.isEmpty() {
             self.pop()
@@ -49,7 +55,7 @@ public struct Stack<String> {
     }
     
     mutating func plus(){
-        self.push("÷" as! String)
+        self.push("+" as! String)
     }
     
     mutating func minus(){
