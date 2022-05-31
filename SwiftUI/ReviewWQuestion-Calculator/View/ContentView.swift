@@ -16,12 +16,14 @@ struct ContentView: View {
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
+    
     var body: some View {
         VStack {
             HStack {
                 Text(result(elements: stack))
                     .font(.system(size: 70))
             }
+            .padding(.init(top: 0, leading: 0, bottom: 0, trailing: 20 ))
             .frame(width: UIScreen.main.bounds.width,height: UIScreen.main.bounds.height*0.3, alignment: .bottomTrailing)
             
             LazyVGrid(columns: columns, spacing: 10){
