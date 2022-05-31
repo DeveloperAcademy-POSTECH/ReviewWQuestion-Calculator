@@ -8,7 +8,7 @@ import SwiftUI
 struct ContentView: View {
     var data = CalcButton.calcButtonData
     @State var stack = Stack<String>()  // 여기에 @State 붙여주면 bad access 발생함 이유가 뭐지? 갑자기 잘됨.....
-//    @State var result = "0"
+
 
     let columns = [
         GridItem(.flexible()),
@@ -20,7 +20,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             HStack {
-                Text(result(elements: stack))
+                Text(result(stack: stack))
                     .font(.system(size: 70))
             }
             .padding(.init(top: 0, leading: 0, bottom: 0, trailing: 20 ))
@@ -45,8 +45,8 @@ struct ContentView: View {
 
 
 
-func result(elements: Stack<String>) -> String {
-    return elements.top() ?? "0"
+func result(stack: Stack<String>) -> String {
+    return stack.elements.map{$0}.joined(separator: "") ?? "0"
 }
 
 
