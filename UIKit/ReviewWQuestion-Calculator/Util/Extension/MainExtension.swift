@@ -38,3 +38,16 @@ import UIKit
         }
     }
 }
+
+
+extension String {
+    // <,> 기호 찍는 함수
+    func comma() -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        guard let resultInteger = numberFormatter.string(from: NSNumber(value: Int(self) ?? 0)) else {
+            return ""
+        }
+        return resultInteger
+    }
+}
