@@ -7,6 +7,9 @@ import SwiftUI
 
 struct ContentView: View {
     var data = CalcButton.calcButtonData
+    @State var stack = Stack<String>()  // 여기에 @State 붙여주면 bad access 발생함 이유가 뭐지? 갑자기 잘됨.....
+//    @State var result = "0"
+
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -16,17 +19,17 @@ struct ContentView: View {
     var body: some View {
         VStack {
             HStack {
-//                Text(CalcButton.stack.top()!)
-//                    .font(.system(size: 70))
+                Text(result(elements: stack))
+                    .font(.system(size: 70))
             }
             .frame(width: UIScreen.main.bounds.width,height: UIScreen.main.bounds.height*0.3, alignment: .bottomTrailing)
             
             LazyVGrid(columns: columns, spacing: 10){
-                ForEach(data, id: \.id) { i in
+                ForEach(0..<20) { i in
                     Button(action: {
-                        
+                        stack.choiceOperator(value: data[i].text)
                     }, label: {
-                        CircleButtonView(backgroundColor: i.backgroundColor, text: i.text, textColor: i.textColor)
+                        CircleButtonView(backgroundColor: data[i].backgroundColor, text: data[i].text, textColor: data[i].textColor)
                     })
                 }
             }
@@ -40,13 +43,9 @@ struct ContentView: View {
 
 
 
-
-
-
-
-
-
-
+func result(elements: Stack<String>) -> String {
+    return elements.top() ?? "0"
+}
 
 
 

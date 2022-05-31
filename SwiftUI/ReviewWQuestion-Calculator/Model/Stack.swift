@@ -95,4 +95,49 @@ public struct Stack<String> {
     mutating func nine(){
         self.push("9" as! String)
     }
+    
+    mutating func choiceOperator(value: Swift.String){
+        switch value {
+        case "AC":
+            clear()
+        case "+/-":
+            print("+/-")
+        case "%":
+            print("%")
+        case "÷":
+            divide()
+        case "7":
+            seven()
+        case "8":
+            eight()
+        case "9":
+            nine()
+        case "×":
+            time()
+        case "4":
+            four()
+        case "5":
+            five()
+        case "6":
+            six()
+        case "−":
+            minus()
+        case "1":
+            one()
+        case "2":
+            two()
+        case "3":
+            three()
+        case "+":
+            plus()
+        case "0":
+            zero()
+        case ".":
+            print(".")
+        case "=":
+            equal()
+        default:
+            print("default")
+        }
+    }
 }
