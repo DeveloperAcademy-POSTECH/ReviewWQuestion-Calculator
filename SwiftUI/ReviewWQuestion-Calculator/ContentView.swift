@@ -14,6 +14,7 @@ struct ContentView: View {
     @State var previousNumber: Int = 0
     @State var selectedCurrentOperator: String = ""
     @State var selectedPreviousOperator: String = ""
+    @State var divideBy0: Bool = false
     
     private let keypads: [[String]] = [
         ["AC", "+/-", "%", "÷"],
@@ -29,7 +30,7 @@ struct ContentView: View {
             
             VStack(alignment: .trailing, spacing: 0) {
                 
-                Text(String(currentNumber))
+                Text(divideBy0 ? "오류" : String(currentNumber))
                     .foregroundColor(.white)
                     .font(.system(size: 93, weight: .light))
                     .padding(.horizontal, 17)
@@ -43,6 +44,15 @@ struct ContentView: View {
                                 switch keypad {
                                 case "0":
                                     if currentNumber != 0 {
+                                        if selectedCurrentOperator != "" {
+                                            currentNumber = 0
+                                            selectedPreviousOperator = selectedCurrentOperator
+                                            selectedCurrentOperator = ""
+                                        }
+                                        if divideBy0 {
+                                            currentNumber = 0
+                                            divideBy0 = false
+                                        }
                                         currentNumber = Int(String(currentNumber) + keypad)!
                                     }
                                 case "%":
@@ -54,6 +64,7 @@ struct ContentView: View {
                                         currentNumber = 0
                                     }
                                     else {
+                                        divideBy0 = false
                                         previousNumber = 0
                                     }
                                 case "÷", "×", "−", "+":
@@ -64,19 +75,30 @@ struct ContentView: View {
                                         currentNumber += previousNumber
                                     }
                                     else if selectedPreviousOperator == "-" {
-                                        currentNumber -= previousNumber
+                                        currentNumber = previousNumber - currentNumber
                                     }
                                     else if selectedPreviousOperator == "×" {
                                         currentNumber *= previousNumber
                                     }
                                     else if selectedPreviousOperator == "÷" {
-                                        currentNumber /= previousNumber
+                                        if currentNumber == 0 {
+                                            divideBy0 = true
+                                        }
+                                        else {
+                                            currentNumber = previousNumber / currentNumber
+                                        }
                                     }
+                                case ".":
+                                    print(currentNumber)
                                 default:
                                     if selectedCurrentOperator != "" {
                                         currentNumber = 0
                                         selectedPreviousOperator = selectedCurrentOperator
                                         selectedCurrentOperator = ""
+                                    }
+                                    if divideBy0 {
+                                        currentNumber = 0
+                                        divideBy0 = false
                                     }
                                     currentNumber = Int(String(currentNumber) + keypad)!
                                 }
