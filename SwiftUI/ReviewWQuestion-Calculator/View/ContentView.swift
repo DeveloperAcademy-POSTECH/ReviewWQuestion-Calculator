@@ -25,7 +25,7 @@ struct ContentView: View {
                     .minimumScaleFactor(0.5) // 폰트 크기가 절반까지 자동으로 줄어듬
                     .lineLimit(1) // 한줄로 출력
             }
-            .padding(.init(top: 0, leading: 0, bottom: 0, trailing: 20 ))
+            .padding(.init(top: 0, leading: 20, bottom: 0, trailing: 20 ))
             .frame(width: UIScreen.main.bounds.width,height: UIScreen.main.bounds.height*0.3, alignment: .bottomTrailing)
             
             LazyVGrid(columns: columns, spacing: 10){
@@ -53,7 +53,6 @@ func result(stack: Stack<String>) -> String {
     numberFormatter.numberStyle = .decimal // 3자리 마다 콤마
     
     return stack.elements.map{$0}.joined(separator: "").isEmpty ? "0" : numberFormatter.string(for: Double(stack.elements.map{String($0)}.joined(separator: ""))!) ?? "0"
-    
 }
 
 
