@@ -12,7 +12,8 @@ struct ContentView: View {
     
     @State var currentNumber: Int = 0
     @State var previousNumber: Int = 0
-    @State var selectedOperator: String = ""
+    @State var selectedCurrentOperator: String = ""
+    @State var selectedPreviousOperator: String = ""
     
     private let keypads: [[String]] = [
         ["AC", "+/-", "%", "÷"],
@@ -55,17 +56,27 @@ struct ContentView: View {
                                     else {
                                         previousNumber = 0
                                     }
-                                case "÷", "×", "−" :
-                                    print(currentNumber)
-                                case "+":
+                                case "÷", "×", "−", "+":
                                     previousNumber = currentNumber
-                                    selectedOperator = "+"
+                                    selectedCurrentOperator = keypad
                                 case "=":
-                                    currentNumber += previousNumber
+                                    if selectedPreviousOperator == "+" {
+                                        currentNumber += previousNumber
+                                    }
+                                    else if selectedPreviousOperator == "-" {
+                                        currentNumber -= previousNumber
+                                    }
+                                    else if selectedPreviousOperator == "×" {
+                                        currentNumber *= previousNumber
+                                    }
+                                    else if selectedPreviousOperator == "÷" {
+                                        currentNumber /= previousNumber
+                                    }
                                 default:
-                                    if selectedOperator != "" {
+                                    if selectedCurrentOperator != "" {
                                         currentNumber = 0
-                                        selectedOperator = ""
+                                        selectedPreviousOperator = selectedCurrentOperator
+                                        selectedCurrentOperator = ""
                                     }
                                     currentNumber = Int(String(currentNumber) + keypad)!
                                 }
@@ -99,23 +110,13 @@ struct ContentView: View {
                                             .foregroundColor(.black)
                                             .font(.largeTitle)
                                     }
-                                case "÷", "×", "−", "=":
+                                case "÷", "×", "−", "+", "=":
                                     ZStack(alignment: .top) {
                                         Circle()
-                                            .fill(.orange)
+                                            .fill(selectedCurrentOperator == keypad ? .white : .orange)
                                             .frame(width: screenWidth / 5, height: screenWidth / 5)
                                         Text(keypad)
-                                            .foregroundColor(.white)
-                                            .font(.system(size: 46))
-                                            .padding(.top, screenWidth / 45)
-                                    }
-                                case "+":
-                                    ZStack(alignment: .top) {
-                                        Circle()
-                                            .fill(selectedOperator == "+" ? .white : .orange)
-                                            .frame(width: screenWidth / 5, height: screenWidth / 5)
-                                        Text(keypad)
-                                            .foregroundColor(selectedOperator == "+" ? .black : .white)
+                                            .foregroundColor(selectedCurrentOperator == keypad ? .black : .white)
                                             .font(.system(size: 46))
                                             .padding(.top, screenWidth / 45)
                                     }
