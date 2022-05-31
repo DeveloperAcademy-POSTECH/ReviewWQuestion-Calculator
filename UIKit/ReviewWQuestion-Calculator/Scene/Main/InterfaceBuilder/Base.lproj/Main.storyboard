@@ -203,6 +203,9 @@
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="35"/>
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="onTapMinusButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="m3b-iO-nFx"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -265,6 +268,9 @@
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="35"/>
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="onTapPlusButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EkO-Ww-6pt"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -299,6 +305,9 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="35"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="onTapEqualButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PS1-wH-mNc"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tlf-Oe-HK5">
                                 <rect key="frame" x="16.5" y="730.5" width="185.5" height="88"/>
@@ -360,7 +369,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18.840579710144929" y="94.419642857142847"/>
+            <point key="canvasLocation" x="293" y="193"/>
         </scene>
     </scenes>
     <resources>
