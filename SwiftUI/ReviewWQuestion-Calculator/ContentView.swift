@@ -35,6 +35,7 @@ struct ContentView: View {
                 Text(divideBy0 ? "오류" : String(numberFormatter.string(from: currentNumber as NSNumber)!))
                     .foregroundColor(.white)
                     .font(.system(size: 93, weight: .light))
+                    .minimumScaleFactor(0.5)
                     .padding(.horizontal, 17)
                     .lineLimit(1)
                     .truncationMode(.tail)
@@ -45,17 +46,19 @@ struct ContentView: View {
                             Button(action: {
                                 switch keypad {
                                 case "0":
-                                    if currentNumber != 0 {
-                                        if selectedCurrentOperator != "" {
-                                            currentNumber = 0
-                                            selectedPreviousOperator = selectedCurrentOperator
-                                            selectedCurrentOperator = ""
+                                    if String(numberFormatter.string(from: currentNumber as NSNumber)!).count <= 10 {
+                                        if currentNumber != 0 {
+                                            if selectedCurrentOperator != "" {
+                                                currentNumber = 0
+                                                selectedPreviousOperator = selectedCurrentOperator
+                                                selectedCurrentOperator = ""
+                                            }
+                                            if divideBy0 {
+                                                currentNumber = 0
+                                                divideBy0 = false
+                                            }
+                                            currentNumber = Double(String(format: "%.0f", currentNumber) + keypad)!
                                         }
-                                        if divideBy0 {
-                                            currentNumber = 0
-                                            divideBy0 = false
-                                        }
-                                        currentNumber = Double(String(format: "%.0f", currentNumber) + keypad)!
                                     }
                                 case "%":
                                     currentNumber /= 100
@@ -117,22 +120,25 @@ struct ContentView: View {
                                         }
                                     }
                                     previousNumber = tmp
+                                    selectedPreviousOperator = ""
                                 case ".":
                                     print(currentNumber)
                                     print(previousNumber)
                                     print(selectedCurrentOperator)
                                     print(selectedPreviousOperator)
                                 default:
-                                    if selectedCurrentOperator != "" {
-                                        currentNumber = 0
-                                        selectedPreviousOperator = selectedCurrentOperator
-                                        selectedCurrentOperator = ""
+                                    if String(numberFormatter.string(from: currentNumber as NSNumber)!).count <= 10 {
+                                        if selectedCurrentOperator != "" {
+                                            currentNumber = 0
+                                            selectedPreviousOperator = selectedCurrentOperator
+                                            selectedCurrentOperator = ""
+                                        }
+                                        if divideBy0 {
+                                            currentNumber = 0
+                                            divideBy0 = false
+                                        }
+                                        currentNumber = Double(String(format: "%.0f", currentNumber) + keypad)!
                                     }
-                                    if divideBy0 {
-                                        currentNumber = 0
-                                        divideBy0 = false
-                                    }
-                                    currentNumber = Double(String(format: "%.0f", currentNumber) + keypad)!
                                 }
                             }, label: {
                                 switch keypad {
