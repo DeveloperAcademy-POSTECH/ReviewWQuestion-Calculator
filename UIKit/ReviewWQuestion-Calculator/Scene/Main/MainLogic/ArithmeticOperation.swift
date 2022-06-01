@@ -14,7 +14,7 @@ class ArithmeticOperation {
     var oldOperation: Operation?
 
     // 좌항,우항 입력
-    func inputNum(_ num: Double) {
+    func inputAndOperateNum(_ num: Double) {
         if operation != nil {
             self.rightPort = num
             self.leftPort = self.operate()

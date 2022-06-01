@@ -7,13 +7,13 @@
 
 import Foundation
 
-class Output {
+struct Output {
     var integerPart: String = ""
     var decimalPart: String?
     var dot: Bool = false
     
     // class를 특정 숫자로 초기화
-    func updateWithNum(_ num: Double) {
+    mutating func updateWithNum(_ num: Double) {
         if num > floor(num) {
             let integerNum = floor(num)
             let integerText = Int(integerNum).description
@@ -30,7 +30,7 @@ class Output {
         }
     }
     
-    func getOutputAsNum() -> Double {
+    mutating func getOutputAsNum() -> Double {
         if dot == true {
             // 아무것도 입력안된 상태에 "." 누를경우 소수로 전환
             if self.integerPart == "" {
@@ -45,7 +45,7 @@ class Output {
         }
     }
 
-    func getOutputAsText() -> String {
+    mutating func getOutputAsText() -> String {
         if dot == true {
             // 아무것도 입력안된 상태에 "." 누를경우 소수로 전환
             if self.integerPart == "" {
@@ -65,7 +65,7 @@ class Output {
     }
     
     // Text 입력
-    func textInput(_ input: String) {
+    mutating func textInput(_ input: String) {
         if dot == true {
             guard var _ = self.decimalPart else {
                 self.decimalPart = input
