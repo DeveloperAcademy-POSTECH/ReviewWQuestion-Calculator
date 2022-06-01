@@ -55,6 +55,7 @@ struct ContentView: View {
                             stack.temp = ""
                         } else {
                             stack.choiceOperator(value: data[i].text)
+                            calcResult = stack.temp
                         }
                     }, label: {
                         CircleButtonView(backgroundColor: data[i].backgroundColor, text: data[i].text, textColor: data[i].textColor)
