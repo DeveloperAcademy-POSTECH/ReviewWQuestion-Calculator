@@ -44,20 +44,21 @@ class ViewController: UIViewController {
         
         displayNumber += number
         
-        calculatorResultLabel.text = numberFormatter(Double(displayNumber)!)
+        calculatorResultLabel.text = numberFormatter(displayNumber)
     }
     
     // 이해가 필요한 코드
-    func numberFormatter(_ number: Double) -> String {
+    func numberFormatter(_ number: String) -> String? {
+        guard let newNumber = Double(number) else {return nil}
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         
-        return numberFormatter.string(from: NSNumber(value: number)) ?? displayNumber
+        return numberFormatter.string(from: NSNumber(value: newNumber))
     }
     
-    func roundDouble(_ number : Double) -> Double {
-        let roundedDouble = String(format: "%.3f", number)
-        return Double(roundedDouble) ?? 0
+    func roundDouble(_ number : String) -> String {
+        return String(format: "%.3f", number)
+        
     }
     
     // 계산할 메서드 (파라미터로 enum의 연산 종류를 받는다)
@@ -101,7 +102,7 @@ class ViewController: UIViewController {
                 }
                 
                 self.firstNumber = self.result
-                calculatorResultLabel.text = numberFormatter(Double(self.result)!)
+                calculatorResultLabel.text = numberFormatter(self.result)
             }
             currentOperation = operation
             
@@ -143,23 +144,20 @@ class ViewController: UIViewController {
     
     @IBAction func pressEqual(_ sender: UIButton) {
         if !secondNumber.isEmpty {
+            operatorStack.append(currentOperation)
+            operation(currentOperation)
+            
             displayNumber = result
-            let commaResult = numberFormatter(Double(displayNumber)!)
+            guard let commaResult = numberFormatter(displayNumber) else {return}
             if commaResult.contains(".") {
-                calculatorResultLabel.text = String(roundDouble(Double(commaResult)!))
+                //guard let roundedDouble = roundDouble(commaResult) else {return}
+                calculatorResultLabel.text = roundDouble(commaResult)
             } else {
                 calculatorResultLabel.text = commaResult
             }
+            
         } else {
-            let lastOperation = operatorStack.last ?? .unknown
-            operation(lastOperation)
-            displayNumber = result
-            let commaResult = numberFormatter(Double(displayNumber)!)
-            if commaResult.contains(".") {
-                calculatorResultLabel.text = String(roundDouble(Double(commaResult)!))
-            } else {
-                calculatorResultLabel.text = commaResult
-            }
+            operation(currentOperation)
         }
     }
     
