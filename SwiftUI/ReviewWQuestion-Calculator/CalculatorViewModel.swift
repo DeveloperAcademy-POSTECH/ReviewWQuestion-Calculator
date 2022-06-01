@@ -66,11 +66,14 @@ class CalculatorViewModel: ObservableObject {
     }
     
     private func operate(operation: String) {
-        //
-        //이전 연산에 대한 처리(처리할 것이 있는가)
-        //  있다면(operands에 숫자가 있고 operations에 연산기호가 있다)
-        //      현재 text를 temp operand에 넣고 operands 팝한거랑 오퍼레이션 팝한거 연산
-        //  없다면 temp operand에 현재 text만 넣기
+        
+        /*************** 나중에 업데이트할 내용
+            연산 버튼 눌렀을 때 이전에 대한 처리(처리할 것이 있는가)
+          --> 있다면(operands에 숫자가 있고 operations에 연산기호가 있다)
+               현재 text를 temp operand에 넣고 operands 팝한거랑 오퍼레이션 팝한거 연산
+          --> 없다면 temp operand에 현재 text만 넣기
+         */
+        
         isOperation = true
         switch operation {
         case "plus", "minus" :
