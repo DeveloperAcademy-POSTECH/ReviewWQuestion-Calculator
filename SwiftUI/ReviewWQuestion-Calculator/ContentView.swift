@@ -6,45 +6,61 @@
 import SwiftUI
 
 
-//enum CalculatorButton: String {
-//    case zero = "0"
-//    case one = "1"
-//    case two = "2"
-//    case three = "3"
-//    case four = "4"
-//    case five = "5"
-//    case six = "6"
-//    case seven = "7"
-//    case eight = "8"
-//    case nine = "9"
-//    case AC = "AC"
-//    case C = "C"
-//    case changeSign = "-/+"
-//    case persent = "%"
-//    case plus = "+"
-//    case minus = "-"
-//    case divide = "/"
-//    case multiply = "x"
-//    case equal = "="
-//    case dot = "."
-//}
+enum CalculatorButton: String {
+    case zero = "0"
+    case one = "1"
+    case two = "2"
+    case three = "3"
+    case four = "4"
+    case five = "5"
+    case six = "6"
+    case seven = "7"
+    case eight = "8"
+    case nine = "9"
+    case AC = "AC"
+    case changeSign = "+/-"
+    case persent = "%"
+    case plus = "+"
+    case minus = "-"
+    case divide = "÷"
+    case multiply = "x"
+    case equal = "="
+    case dot = "."
+    
+    var buttonColor: Color {
+        switch self{
+        case .AC, .changeSign, .persent:
+            return .gray
+        case .divide, .multiply, .minus, .plus, .equal:
+            return .orange
+        default:
+            return .gray
+            
+        }
+    }
+}
     
 
 struct ContentView: View {
     
     var outputValue: String = "0"
     
-//    let roundButton: [CalculatorButton] = [
-//        .AC, .changeSign, .persent, .divide, .seven, .eight, .nine, .multiply, .four, .five, .six, .minus, .zero, .dot, .equal
-//    ]
     
-    let calculatorDigit = ["AC", "+/-", "%", "/", "7", "8", "9", "x", "4", "5", "6", "-", "1", "2", "3", "+", "0", ".", "="]
+    let digitButton: [[CalculatorButton]] = [
+        [.AC, .changeSign, .persent, .divide],
+        [.seven, .eight, .nine, .multiply],
+        [.four, .five, .six, .minus],
+        [.one, .two, .three, .plus],
+        [.zero, .zero, .dot, .equal]
+    ]
+    
     
     let columns = [
-        GridItem(.adaptive(minimum: 80))]
+        GridItem(.adaptive(minimum: 80))
+    ]
 
     var body: some View {
-        //배경을 어떤 방식으로 할 건지도 고민. overlay와 Zstack을 고민해볼것
+        //배경을 어떤 방식으로 할 건지도 고민. overlay와 Zstack 고민해보고 정리
 //        Color.black
 //            .ignoresSafeArea()
         ZStack{
@@ -59,17 +75,32 @@ struct ContentView: View {
                     .font(.system(size: 90))
                 LazyVGrid(columns: columns, spacing: 15) {
                     //rawvalue 공부할 것
-                    ForEach(calculatorDigit, id: \.self) { i in
-                        Text(i)
-                            .foregroundColor(.white)
+                    ForEach(digitButton, id: \.self) { row in
+                        ForEach(row, id: \.self) { row2 in
+                            Button(action: {
+                                
+                            }, label: {
+                                ZStack{
+                                    if row2.rawValue == "0" {
+                                        RoundedRectangle(cornerRadius: 90)
+                                            .foregroundColor(row2.buttonColor)
+                                            .frame(width: 180, alignment: .trailing)
+                                            .padding(.leading, 100)
+                                    } else {
+                                        Circle()
+                                            .foregroundColor(row2.buttonColor)
+                                    }
+                                    Text(row2.rawValue)
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 35))
+                                        .frame(width: 80, height: 80, alignment: .center)
+                                }
+                            })
+                        }
                     }
                 }
             }
-
-            
-            
         }
-       
     }
 }
 
