@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct OutputView: View {
-    @EnvironmentObject var calculatorValue: CalculatorValue
+    @EnvironmentObject var expression: Expression
     let width = UIScreen.main.bounds.width
     
     var body: some View {
-        Text(calculatorValue.outputNumber != Double(Int(calculatorValue.outputNumber))
-             ? "\(calculatorValue.outputNumber)"
-             : "\(Int(calculatorValue.outputNumber))")
+        Text(expression.left ?? "0")
+//        Text(expression.output ?? "0")
             .font(.system(size:width * 0.15))
             .multilineTextAlignment(.trailing)
             .lineLimit(1)

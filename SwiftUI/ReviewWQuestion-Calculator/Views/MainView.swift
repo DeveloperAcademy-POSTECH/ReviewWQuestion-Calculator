@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject var calculatorValue = CalculatorValue()
+    @StateObject var expression = Expression()
     
     var body: some View {
         GeometryReader { g in
@@ -16,7 +16,7 @@ struct MainView: View {
                 Spacer(minLength: g.size.height * 0.28)
                 OutputView()
                 InputView()
-            }.environmentObject(calculatorValue)
+            }.environmentObject(expression)
         }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct ButtonView: View {
-    @EnvironmentObject var calculatorValue: CalculatorValue
+    @EnvironmentObject var expression: Expression
     var color: Color
     var button: String
     
@@ -30,21 +30,26 @@ struct ButtonView: View {
     func execute() -> Void {
         switch button {
         case "0"..."9":
-            print(calculatorValue.isDotEntered)
-            if calculatorValue.isDotEntered {
-                calculatorValue.outputNumber = Double(String(calculatorValue.outputNumber) + String(button))!
-                calculatorValue.isDotEntered = false
+            if expression.output?.isEmpty == false {
+                expression.left = button
+            }
+            else if expression.oper?.isEmpty == false {
+                expression.append_right(button)
             }
             else {
-                calculatorValue.outputNumber = calculatorValue.outputNumber * 10 + Double(button)!
+                expression.append_left(button)
+                print(expression.left ?? "Nothing")
             }
-        case "÷", "×", "−", "+", "=":
-            doOperate()
-        case ".":
-            calculatorValue.isDotEntered = true
-            print("pressed")
-        case "C":
-            calculatorValue.outputNumber = 0
+//        case "÷", "×", "−", "+", "=":
+//            if expression.right?.isEmpty == false {
+//                expression.update_left()
+//            }
+//            expression.oper = button
+//        case ".":
+//            calculatorValue.isDotEntered = true
+//            print("pressed")
+//        case "C":
+//            calculatorValue.outputNumber = 0
         default:
             ()
         }
