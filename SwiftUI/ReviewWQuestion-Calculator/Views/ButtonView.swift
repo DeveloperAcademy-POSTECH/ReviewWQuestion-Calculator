@@ -28,6 +28,7 @@ struct ButtonView: View {
     }
     
     func execute() -> Void {
+        print(expression.left, expression.oper, expression.right, expression.output)
         switch button {
         case "0"..."9":
             if expression.output != nil {
@@ -40,11 +41,11 @@ struct ButtonView: View {
                 expression.append_left(button)
                 print(expression.left ?? "Nothing")
             }
-//        case "÷", "×", "−", "+", "=":
-//            if expression.right?.isEmpty == false {
-//                expression.update_left()
-//            }
-//            expression.oper = button
+        case "÷", "×", "−", "+", "=":
+            if expression.right != nil {
+                expression.update_left(button)
+            }
+            expression.oper = button
 //        case ".":
 //            calculatorValue.isDotEntered = true
 //            print("pressed")

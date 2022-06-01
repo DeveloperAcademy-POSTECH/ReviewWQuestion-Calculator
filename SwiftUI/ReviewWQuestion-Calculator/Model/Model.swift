@@ -32,6 +32,10 @@ class Expression : ObservableObject {
         }
     }
     
+    func update_left(_ _oper: String) {
+        doOperate(_oper)
+    }
+    
     func clear() {
         if output != nil {
             output = nil
@@ -50,6 +54,29 @@ class Expression : ObservableObject {
         right = nil
         output = nil
         store = nil
+    }
+    
+    func doOperate(_ _oper: String) {
+        switch _oper {
+        case "+":
+            left = String(Double(left!)! + Double(right!)!)
+        case "÷":
+            left = String(Double(left!)! / Double(right!)!)
+        case "×":
+            left = String(Double(left!)! * Double(right!)!)
+        case "−":
+            left = String(Double(left!)! - Double(right!)!)
+        case "=":
+            doOperate(oper!)
+        default:
+            ()
+        }
+        right = nil
+        
+    }
+    
+    func calculate() {
+        
     }
 }
 

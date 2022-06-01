@@ -19,7 +19,7 @@ struct MainView: View {
             }.environmentObject(expression)
         }
     }
-}
+    }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
