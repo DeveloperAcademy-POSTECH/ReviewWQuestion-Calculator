@@ -7,22 +7,28 @@
 
 import Foundation
 
-struct ArithmeticOperation {
+class ArithmeticOperation {
     var leftPort: Double = 0
     var rightPort: Double?
     var operation: Operation?
+    var oldOperation: Operation?
 
     // 좌항,우항 입력
-    mutating func inputNum(_ num: Double) {
+    func inputNum(_ num: Double) {
         if operation != nil {
             self.rightPort = num
             self.leftPort = self.operate()
-            self.rightPort = nil
+            //self.rightPort = nil
         } else {
             self.leftPort = num
         }
     }
 
+    func inputOperation(_ operation: Operation) {
+        self.oldOperation = self.operation
+        self.operation = operation
+    }
+    
     // 연산기능 수행
     func operate() -> Double {
         switch operation {
@@ -38,6 +44,27 @@ struct ArithmeticOperation {
             return leftPort
         default:
             return 0.0
+        }
+    }
+    
+    func operateWithOldOperation() {
+        switch oldOperation {
+        case .plus:
+            leftPort = leftPort + rightPort!
+            break
+        case .minus:
+            leftPort = leftPort - rightPort!
+            break
+        case .multiply:
+            leftPort = leftPort * rightPort!
+            break
+        case .divide:
+            leftPort = leftPort / rightPort!
+            break
+        case .progress:
+            break
+        default:
+            break
         }
     }
 }

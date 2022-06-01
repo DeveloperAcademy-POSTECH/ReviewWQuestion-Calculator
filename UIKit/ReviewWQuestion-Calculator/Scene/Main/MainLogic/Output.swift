@@ -30,8 +30,7 @@ class Output {
         }
     }
     
-    // 숫자 -> Text
-    func getOutputNum() -> Double {
+    func getOutputAsNum() -> Double {
         if dot == true {
             // 아무것도 입력안된 상태에 "." 누를경우 소수로 전환
             if self.integerPart == "" {
@@ -46,8 +45,7 @@ class Output {
         }
     }
 
-    // Text -> 숫자
-    func getOutputText() -> String {
+    func getOutputAsText() -> String {
         if dot == true {
             // 아무것도 입력안된 상태에 "." 누를경우 소수로 전환
             if self.integerPart == "" {
