@@ -74,7 +74,7 @@ struct ContentView: View {
                                     if selectedPreviousOperator == "+" {
                                         currentNumber += previousNumber
                                     }
-                                    else if selectedPreviousOperator == "-" {
+                                    else if selectedPreviousOperator == "−" {
                                         currentNumber = previousNumber - currentNumber
                                     }
                                     else if selectedPreviousOperator == "×" {
@@ -90,6 +90,9 @@ struct ContentView: View {
                                     }
                                 case ".":
                                     print(currentNumber)
+                                    print(previousNumber)
+                                    print(selectedCurrentOperator)
+                                    print(selectedPreviousOperator)
                                 default:
                                     if selectedCurrentOperator != "" {
                                         currentNumber = 0
@@ -119,7 +122,7 @@ struct ContentView: View {
                                         Circle()
                                             .fill(.gray)
                                             .frame(width: screenWidth / 5, height: screenWidth / 5)
-                                        Text(currentNumber == 0 ? keypad : "C")
+                                        Text(previousNumber == 0 ? keypad : "C")
                                             .foregroundColor(.black)
                                             .font(.largeTitle)
                                     }
