@@ -41,7 +41,11 @@ struct ContentView: View {
                             stack.choiceOperator(value: data[i].text)
                             calcResult = "0"
                         } else if i == 19 {
+                            if !stack.temp.isEmpty {
+                                stack.push(stack.temp)
+                            }
                             calcResult = postfix(arr: stack.elements)
+                            stack.temp = ""
                         } else {
                             stack.choiceOperator(value: data[i].text)
                         }
@@ -121,7 +125,7 @@ func postfix(arr: [String]) -> String{
                     }
                 }
             }
-        case "1","2","3","4","5","6","7","8","9","0":
+        case "1"..."999999999":
             numStack.push(arr[i])
             print("push : \(arr[i])")
         default:

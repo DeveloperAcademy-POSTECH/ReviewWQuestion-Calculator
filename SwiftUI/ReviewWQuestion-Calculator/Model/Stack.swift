@@ -12,7 +12,7 @@ import Foundation
 // public struct Stack<String> { 으로 만드니깐 다음과 같은 에러가 발생함
 public struct Stack{
     public var elements = [String]()
-    public var temp: String = "0"
+    public var temp: String = ""
     
     
     public mutating func pop() -> String? {
@@ -50,60 +50,89 @@ public struct Stack{
     }
     
     mutating func divide(){
+        if !temp.isEmpty {
+            self.push(temp)
+            self.temp = ""
+        }
         self.push("÷")
     }
     
     mutating func time(){
+        if !temp.isEmpty {
+            self.push(temp)
+            self.temp = ""
+        }
         self.push("×")
     }
     
     mutating func plus(){
+        if !temp.isEmpty {
+            self.push(temp)
+            self.temp = ""
+        }
         self.push("+")
     }
     
     mutating func minus(){
+        if !temp.isEmpty {
+            self.push(temp)
+            self.temp = ""
+        }
         self.push("−")
     }
     
     mutating func zero(){
-        self.push("0")
+//        self.push("0")
+        if temp == "0" {
+            
+        } else {
+            self.temp += "0"
+        }
     }
 
     mutating func one(){
-        self.push("1")
-        self.temp
+//        self.push("1")
+        self.temp += "1"
     }
     
     mutating func two(){
-        self.push("2")
+//        self.push("2")
+        self.temp += "2"
     }
     
     mutating func three(){
-        self.push("3")
+//        self.push("3")
+        self.temp += "3"
     }
     
     mutating func four(){
-        self.push("4")
+//        self.push("4")
+        self.temp += "4"
     }
     
     mutating func five(){
-        self.push("5")
+//        self.push("5")
+        self.temp += "5"
     }
     
     mutating func six(){
-        self.push("6")
+//        self.push("6")
+        self.temp += "6"
     }
     
     mutating func seven(){
-        self.push("7")
+//        self.push("7")
+        self.temp += "7"
     }
     
     mutating func eight(){
-        self.push("8")
+//        self.push("8")
+        self.temp += "8"
     }
     
     mutating func nine(){
-        self.push("9")
+//        self.push("9")
+        self.temp += "9"
     }
     
     mutating func choiceOperator(value: Swift.String){
