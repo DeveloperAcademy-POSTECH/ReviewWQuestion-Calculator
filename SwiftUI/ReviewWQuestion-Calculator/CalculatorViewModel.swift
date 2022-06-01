@@ -33,7 +33,7 @@ class CalculatorViewModel: ObservableObject {
         case .minus, .plus, .division, .multiplication:
             operate(operation: button.label)
         case .equal:
-            inputEqual()
+            text = inputEqual()
         }
     }
     
@@ -87,8 +87,12 @@ class CalculatorViewModel: ObservableObject {
         }
     }
     
-    private func inputEqual() {
+    private func inputEqual() -> String {
+        isOperation = true
         var result = Double(text)!
+        if result == 0 && tempOperation == "divide" {
+            return "Error"
+        }
         while !operations.isEmpty {
             tempOperand = operands.popLast()!
             tempOperation = operations.popLast()!
@@ -102,11 +106,11 @@ class CalculatorViewModel: ObservableObject {
                 result = tempOperand * result
             case "divide":
                 result = tempOperand / result
-            default: return
+            default: return "Error"
             }
         }
         
-        text = String(result)
+        return result != Double(Int(result)) ? String(result) : String(Int(result))
     }
     
     private func inputAllClear() {
