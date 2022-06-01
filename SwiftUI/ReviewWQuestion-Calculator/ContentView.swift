@@ -92,7 +92,6 @@ enum Buttons : String{
 
 
 struct ContentView: View {
-    @State var outPut:Double = 0
     @State var outputString  : String = "0"
     @State var isTouched = false
     @State var isDot = false
@@ -100,6 +99,7 @@ struct ContentView: View {
     @State var numbervalue = ""
     @State var operationvalue = ""
     @State var recentvalue = ""
+    
     let buttons : [[Buttons]] = [[.clear,.opposite,.percentage,.divide],[.seven,.eight,.nine,.multiple],[.four,.five,.six,.minus],[.one,.two,.three,.plus],[.zero,.dot,.equal]]
     
     
@@ -162,32 +162,42 @@ struct ContentView: View {
         }
     }
     func formatDouble(str: String)->String{
-        if str == "ERROR"{
+        if str.hasPrefix("0.0"){
+            return str
+        }
+        else if str == "ERROR"{
+            return str
+        }
+        else if str == "-0"{
             return str
         }
         else{
             let number = Double(str)!
-            print(number)
+            
             if ((abs(number) > 999999999 || abs(number)<0.00000001) && number != 0 ){
                 let formatter = NumberFormatter()
                 formatter.numberStyle = .scientific
                 formatter.positiveFormat = "0.#####E0"
                 formatter.exponentSymbol = "e"
-                    
                 return formatter.string(from: number as NSNumber)!
             }
-            else if(number<1000){
-                let numberFormatter = NumberFormatter()
-                
+            else if(abs(number)<1000){
                 return str
             }
             else{
+                
+                print("here")
                 let numberFormatter = NumberFormatter()
                 numberFormatter.numberStyle = .decimal
                 numberFormatter.maximumSignificantDigits = 9
                 //numberFormatter.maximumFractionDigits = 9
                 numberFormatter.maximumIntegerDigits = 9
-                return numberFormatter.string(from: number as NSNumber)!
+                if str.hasSuffix("."){
+                    return numberFormatter.string(from: number as NSNumber)! + "."
+                }
+                else {
+                    return numberFormatter.string(from: number as NSNumber)!
+                }
             }
         }
     }
@@ -199,16 +209,19 @@ struct ContentView: View {
             numbervalue = outputString
             operationvalue = "/"
             outputString = "0"
+            recentvalue = ""
             isDot = false
         case .minus:
             numbervalue = outputString
             operationvalue = "-"
             outputString = "0"
+            recentvalue = ""
             isDot = false
         case .plus:
             numbervalue = outputString
             operationvalue = "+"
             outputString = "0"
+            recentvalue = ""
             isDot = false
         case .equal:
             isDot = false
@@ -217,74 +230,110 @@ struct ContentView: View {
             numbervalue = outputString
             operationvalue = "x"
             outputString = "0"
+            recentvalue = ""
             isDot = false
         case .percentage:
             break
         case .opposite:
-            break
+            if outputString.hasPrefix("-"){
+                outputString.remove(at: outputString.startIndex)
+            }
+            else{
+                outputString = "-"+outputString
+            }
         case .clear:
             outputString = "0"
             numbervalue = ""
             operationvalue = ""
+            recentvalue = ""
             isDot = false
         case .dot:
             if !isDot{
                 isDot = true
                 outputString.append(contentsOf: ".")
             }
-            
+            //숫자 입력시
         default:
             if clearToken{
                 outputString = "0"
                 clearToken.toggle()
             }
             if (outputString == "0") {
-                if(outputString == "0."){
-                    outputString.append(contentsOf: button.rawValue)
-                }
-                else{
                     outputString = button.rawValue
-                }
-                
-               
+                    
             }
             else {
-                if (((abs(Double(outputString + button.rawValue)!) > 999999999) || (abs(Double(outputString + button.rawValue)!) < 0.00000001)) && (outputString != "0")){
+                if (((abs(Double(outputString + button.rawValue)!) > 999999999)) && (outputString != "0")){
                     break
                 }
                 else{
+                    
                     outputString.append(contentsOf: button.rawValue)
-                    if numbervalue == ""{
-                        numbervalue = button.rawValue
-                        print(button.rawValue)
-                    }
+                    
                 }
-                
             }
         }
     }
     
     func equal(){
         if (operationvalue == "-"){
-            outputString = numberFormatter1.string(from:Double(numbervalue)!-Double(outputString)! as NSNumber)!
+            if outputString == "ERROR"{
+                outputString = "0"
+            }
+            else{
+            var savestring = outputString
+            outputString = numberFormatter1.string(from:Double(recentvalue == "" ? numbervalue : outputString)!-Double(recentvalue == "" ? outputString : recentvalue)! as NSNumber)!
+            numbervalue = outputString
+            if recentvalue == ""{
+                recentvalue = savestring
+            }
+            }
         }
         else if(operationvalue == "+"){
-            outputString = numberFormatter1.string(from:Double(numbervalue)!+Double(outputString)! as NSNumber)!
+            if outputString == "ERROR"{
+                outputString = "0"
+            }
+            else{
+            var savestring = outputString
+            outputString = numberFormatter1.string(from:Double(recentvalue == "" ? numbervalue : outputString)!+Double(recentvalue == "" ? outputString : recentvalue)! as NSNumber)!
+            numbervalue = outputString
+            if recentvalue == ""{
+                recentvalue = savestring
+            }
+            }
         }
         else if(operationvalue == "/"){
-            if(outputString == "0"){
+            if outputString == "ERROR"{
+                outputString = "0"
+            }
+            else if(outputString == "0"){
                 outputString = "ERROR"
             }
             else{
                 let numberFormatter2 = NumberFormatter()
                 numberFormatter2.maximumFractionDigits=2
-                outputString = numberFormatter2.string(from:Double(numbervalue)!/Double(outputString)! as NSNumber)!
+                var savestring = outputString
+                outputString = numberFormatter2.string(from:Double(recentvalue == "" ? numbervalue : outputString)!/Double(recentvalue == "" ? outputString : recentvalue)! as NSNumber)!
+                numbervalue = outputString
+                if recentvalue == ""{
+                    recentvalue = savestring
+                }
             }
         }
         else if(operationvalue == "x"){
-            outputString = numberFormatter1.string(from:Double(numbervalue)!*Double(outputString)! as NSNumber)!
-        }
+            if outputString == "ERROR"{
+                outputString = "0"
+            }
+            else{
+            var savestring = outputString
+            outputString = numberFormatter1.string(from:Double(recentvalue == "" ? numbervalue : outputString)!*Double(recentvalue == "" ? outputString : recentvalue)! as NSNumber)!
+            numbervalue = outputString
+            if recentvalue == ""{
+                recentvalue = savestring
+            }
+            }}
         clearToken = true
+    
     }
 }
 
