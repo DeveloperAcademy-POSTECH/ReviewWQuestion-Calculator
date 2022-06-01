@@ -120,6 +120,10 @@ struct ContentView: View {
                                 case .AC:
                                     currentValue = "0"
                                 case .dot, .changeSign, .persent:
+                                    if item == .changeSign{
+                                        let current = -(Int(currentValue) ?? 0)
+                                        currentValue = "\(current)"
+                                    }
                                     break
                                 default:
                                     let number = item.rawValue
