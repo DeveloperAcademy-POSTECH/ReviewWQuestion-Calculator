@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct CalcButton: Identifiable {
-    var stack = Stack<String>()
+    var stack = Stack()
     let id: UUID
     var text: String
     var backgroundColor: Color

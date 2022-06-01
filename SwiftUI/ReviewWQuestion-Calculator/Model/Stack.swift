@@ -8,8 +8,11 @@
 import Foundation
 
 // 더이상 스택이 아니게 되어버린것..
-public struct Stack<String> {
+// Cannot convert value of type 'Swift.String' to specified type 'String'
+// public struct Stack<String> { 으로 만드니깐 다음과 같은 에러가 발생함
+public struct Stack{
     public var elements = [String]()
+    public var temp: String = "0"
     
     
     public mutating func pop() -> String? {
@@ -47,59 +50,60 @@ public struct Stack<String> {
     }
     
     mutating func divide(){
-        self.push("÷" as! String)
+        self.push("÷")
     }
     
     mutating func time(){
-        self.push("×" as! String)
+        self.push("×")
     }
     
     mutating func plus(){
-        self.push("+" as! String)
+        self.push("+")
     }
     
     mutating func minus(){
-        self.push("−" as! String)
+        self.push("−")
     }
     
     mutating func zero(){
-        self.push("0" as! String)
+        self.push("0")
     }
 
     mutating func one(){
-        self.push("1" as! String)
+        self.push("1")
+        self.temp
     }
     
     mutating func two(){
-        self.push("2" as! String)
+        self.push("2")
     }
     
     mutating func three(){
-        self.push("3" as! String)
+        self.push("3")
     }
     
     mutating func four(){
-        self.push("4" as! String)
+        self.push("4")
     }
     
     mutating func five(){
-        self.push("5" as! String)
+        self.push("5")
     }
     
     mutating func six(){
-        self.push("6" as! String)
+        self.push("6")
     }
     
     mutating func seven(){
-        self.push("7" as! String)
+        self.push("7")
     }
     
     mutating func eight(){
-        self.push("8" as! String)
+        self.push("8")
     }
     
     mutating func nine(){
-        self.push("9" as! String)
+        self.push("9")
     }
     
     mutating func choiceOperator(value: Swift.String){

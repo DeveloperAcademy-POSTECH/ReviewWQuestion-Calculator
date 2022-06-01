@@ -7,7 +7,7 @@ import SwiftUI
 
 struct ContentView: View {
     var data = CalcButton.calcButtonData
-    @State var stack = Stack<String>()  // 여기에 @State 붙여주면 bad access 발생함 이유가 뭐지? 갑자기 잘됨.....
+    @State var stack = Stack()  // 여기에 @State 붙여주면 bad access 발생함 이유가 뭐지? 갑자기 잘됨.....
     @State var calcResult = "0"
 
 
@@ -41,7 +41,7 @@ struct ContentView: View {
                             stack.choiceOperator(value: data[i].text)
                             calcResult = "0"
                         } else if i == 19 {
-                            calcResult = calculate(arr: stack.elements)
+                            calcResult = postfix(arr: stack.elements)
                         } else {
                             stack.choiceOperator(value: data[i].text)
                         }
@@ -69,9 +69,9 @@ func result(value: String) -> String {
 //    return stack.elements.map{$0}.joined(separator: "").isEmpty ? "0" : numberFormatter.string(for: Double(stack.elements.map{String($0)}.joined(separator: ""))!) ?? "0"
 }
 
-func calculate(arr: [String]) -> String{
-    var numStack = Stack<String>()
-    var opStack = Stack<String>()
+func postfix(arr: [String]) -> String{
+    var numStack = Stack()
+    var opStack = Stack()
     print("arr :  \(arr)")
     for i in 0..<arr.count {
         switch arr[i] {
@@ -162,6 +162,23 @@ func priority(element: String) -> Int{
 }
 
 
+//Cannot use mutating member on immutable value: 'numStack' is a 'let' constant
+//func calculate(opStack: Stack<String>, numStack: Stack<String>){
+//    var second = numStack.pop()!
+//    var first = numStack.pop()!
+//    switch opStack.pop() {
+//    case "+":
+//        numStack.push(String(Double(first)! + Double(second)!))
+//    case "-":
+//        numStack.push(String(Double(first)! - Double(second)!))
+//    case "×":
+//        numStack.push(String(Double(first)! * Double(second)!))
+//    case "÷":
+//        numStack.push(String(Double(first)! / Double(second)!))
+//    default:
+//        print("default")
+//    }
+//}
 
 
 
