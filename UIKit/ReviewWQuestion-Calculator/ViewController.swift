@@ -45,6 +45,7 @@ class ViewController: UIViewController {
         calculatorResultLabel.text! = displayNumber
     }
     
+    // 계산할 메서드
     func operation(_ operation: Operation) {
         if self.currentOperation != .unknown {
             if !displayNumber.isEmpty {
@@ -62,7 +63,12 @@ class ViewController: UIViewController {
                 case .multiply:
                     result = "\(firstNumber * secondNumber)"
                 case .divide:
-                    result = "\(firstNumber / secondNumber)"
+                    if secondNumber == 0 {
+                        result = "오류"
+                    }
+                    else {
+                        result = "\(firstNumber / secondNumber)"
+                    }
                 default:
                     break
                 }
@@ -74,6 +80,11 @@ class ViewController: UIViewController {
                     calculatorResultLabel.text = result
                 }
             }
+        }
+        else {
+            firstNumber = displayNumber
+            currentOperation = operation
+            displayNumber = ""
         }
     }
     
