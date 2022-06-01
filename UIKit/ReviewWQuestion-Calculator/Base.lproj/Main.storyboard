@@ -40,6 +40,9 @@
                                                         </fragment>
                                                     </attributedString>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="pressClearButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="O5Z-jS-Kow"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4P-Qh-Z08">
                                                 <rect key="frame" x="97.5" y="0.0" width="81.5" height="81.5"/>
@@ -430,6 +433,9 @@
                                                         </fragment>
                                                     </attributedString>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="tapNumberButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NMo-UV-Xvc"/>
+                                                </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="b68-Wv-af2">
                                                 <rect key="frame" x="195" y="0.0" width="179" height="81.5"/>

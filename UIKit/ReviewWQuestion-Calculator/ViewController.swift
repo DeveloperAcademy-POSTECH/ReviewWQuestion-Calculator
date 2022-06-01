@@ -25,6 +25,8 @@ class ViewController: UIViewController {
     var currentOperation: Operation = .unknown
     // 아무 연산도 하지 않는 상태
     
+    var operatorStack: [Operation] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,6 +62,7 @@ class ViewController: UIViewController {
                 
                 switch currentOperation {
                 case .add:
+                    operatorStack.append(.add)
                     result = "\(firstNumber + secondNumber)"
                 case .subtract:
                     result = "\(firstNumber - secondNumber)"
@@ -118,15 +121,22 @@ class ViewController: UIViewController {
     
     
     @IBAction func pressEqual(_ sender: UIButton) {
-        operation(currentOperation)
-    }
-    
-
-    
-    @IBAction func pressDot(_ sender: UIButton) {
+        let lastOperation = operatorStack.last ?? currentOperation
+        operation(lastOperation)
+        
         
     }
     
+    @IBAction func pressDot(_ sender: UIButton) {
+        displayNumber += displayNumber.isEmpty ? "0." : "."
+        calculatorResultLabel.text = displayNumber
+    }
+    
+    @IBAction func pressClearButton(_ sender: UIButton) {
+        if !displayNumber.isEmpty {
+            sender.titleLabel?.text = "C"
+        }
+    }
     
 }
 
