@@ -26,16 +26,16 @@ enum CalculatorButton: String {
     case multiply = "x"
     case equal = "="
     case dot = "."
+    case none = ""
     
     var buttonColor: Color {
         switch self{
         case .AC, .changeSign, .persent:
-            return .gray
+            return Color("signColorGray")
         case .divide, .multiply, .minus, .plus, .equal:
             return .orange
         default:
-            return .gray
-            
+            return Color("digitColorGray")
         }
     }
 }
@@ -45,7 +45,6 @@ struct ContentView: View {
     
     var outputValue: String = "0"
     
-    
     let digitButton: [[CalculatorButton]] = [
         [.AC, .changeSign, .persent, .divide],
         [.seven, .eight, .nine, .multiply],
@@ -53,7 +52,6 @@ struct ContentView: View {
         [.one, .two, .three, .plus],
         [.zero, .zero, .dot, .equal]
     ]
-    
     
     let columns = [
         GridItem(.adaptive(minimum: 80))
@@ -70,9 +68,13 @@ struct ContentView: View {
              위 오류와 id를 적어야 하는 이유는 뭘까?
              */
             VStack{
-                Text("\(outputValue)")
-                    .foregroundColor(.white)
-                    .font(.system(size: 90))
+                HStack{
+                    Spacer()
+                    Text("\(outputValue)")
+                        .foregroundColor(.white)
+                        .font(.system(size: 90))
+                }
+                .padding(20)
                 LazyVGrid(columns: columns, spacing: 15) {
                     //rawvalue 공부할 것
                     ForEach(digitButton, id: \.self) { row in
