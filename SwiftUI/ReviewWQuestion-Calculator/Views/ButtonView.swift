@@ -7,53 +7,57 @@
 
 import SwiftUI
 
-func doOperate() {
-    
-}
 
 struct ButtonView: View {
-    @State var isDotEntered: Bool = false
-    @Binding var number: Double
+    @EnvironmentObject var calculatorValue: CalculatorValue
     var color: Color
-    var text: String
+    var button: String
     
     var body: some View {
         GeometryReader { g in
             ZStack {
-                Button(action: {
-                    switch text {
-                    case "0"..."9":
-                        if isDotEntered {
-                            number = Double(String(number) + String(text))!
-                            isDotEntered = false
-                        }
-                        else {
-                            number = number * 10 + Double(text)!
-                        }
-                    case "÷", "×", "−", "+", "=":
-                        doOperate()
-                    case ".":
-                        isDotEntered = true
-                    case "C":
-                        number = 0
-                    default:
-                        ()
-                    }
-                }) {
+                Button(action: execute) {
                     Circle()
                         .foregroundColor(color)
                 }
-                Text(text)
+                Text(button)
                     .font(.system(size: g.size.width < g.size.height ? g.size.width * 0.6 : g.size.height * 0.6))
                     .foregroundColor(color != Color.funcButton ? .white : .black)
             }
         }
     }
+    
+    func execute() -> Void {
+        switch button {
+        case "0"..."9":
+            print(calculatorValue.isDotEntered)
+            if calculatorValue.isDotEntered {
+                calculatorValue.outputNumber = Double(String(calculatorValue.outputNumber) + String(button))!
+                calculatorValue.isDotEntered = false
+            }
+            else {
+                calculatorValue.outputNumber = calculatorValue.outputNumber * 10 + Double(button)!
+            }
+        case "÷", "×", "−", "+", "=":
+            doOperate()
+        case ".":
+            calculatorValue.isDotEntered = true
+            print("pressed")
+        case "C":
+            calculatorValue.outputNumber = 0
+        default:
+            ()
+        }
+    }
+    
+    func doOperate() -> Void {
+        
+    }
 }
 
 //struct ButtonView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        ButtonView(color: Color.operatorButton, text: "1")
+//        ButtonView(color: Color.operatorButton, button: "1")
 //
 //    }
 //}

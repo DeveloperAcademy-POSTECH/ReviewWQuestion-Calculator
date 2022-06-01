@@ -7,8 +7,25 @@
 
 import SwiftUI
 
-class CalculatorModel : ObservableObject {
-    @Published var displayOutput: Double = 0
+class CalculatorValue : ObservableObject {
+    @Published var outputNumber: Double = 0
     @Published var isDotEntered: Bool = false
-    @Published var stored: (oper: String?, num: Int?) = (nil, nil)
+    @Published var stored: (oper: String?, num: Int) = (nil, 0)
+}
+
+class ButtonModel {
+    var str: String
+    
+    init(_ str: String) {
+        self.str = str
+    }
+}
+
+class OperatorButton: ButtonModel {
+}
+
+class NumberButton: ButtonModel {
+}
+
+class FuncButton: ButtonModel {
 }
