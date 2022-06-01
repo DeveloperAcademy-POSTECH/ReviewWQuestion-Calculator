@@ -17,9 +17,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var calculatorResultLabel: UILabel!
     
-    
-    
-    
+    // 프로퍼티
     var displayNumber = ""
     var firstNumber = ""
     var secondNumber = ""
@@ -32,17 +30,22 @@ class ViewController: UIViewController {
         
     }
     
-
-    
-    
     @IBAction func tapNumberButton(_ sender: UIButton) {
         //print("sender currentTitle : ", sender.currentTitle)
+        
         guard let number = sender.titleLabel?.text else { return }
         // sender.title 로 접근하면 오류가 발생했다
         // sender.titleLabel?.text로 오류 해결
-        print("number is : ", number)
+        
         displayNumber += number
-        calculatorResultLabel.text! = displayNumber
+        calculatorResultLabel.text! = numberFormatter(Int(displayNumber)!)
+    }
+    
+    func numberFormatter(_ number: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        
+        return numberFormatter.string(from: NSNumber(value: number))!
     }
     
     // 계산할 메서드
