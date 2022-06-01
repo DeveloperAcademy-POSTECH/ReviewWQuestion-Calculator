@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NumberTextView: View {
     
-    var fontSize: CGFloat = 50 // 100
+    var fontSize: CGFloat = 50
     @ObservedObject var vm: CalculatorViewModel
     
     var body: some View {

@@ -8,31 +8,12 @@
 import SwiftUI
 
 enum CalculatorButtonManager: CaseIterable {
-    // 1st line
-    case allClear
-    case reverse
-    case percent
-    case division
-    // 2nd line
-    case seven
-    case eight
-    case nine
-    case multiplication
-    // 3rd line
-    case four
-    case five
-    case six
-    case minus
-    // 4th line
-    case one
-    case two
-    case three
-    case plus
-    // 5th line
-    case zero
-    case zero2
-    case dot
-    case equal
+    
+    case allClear, reverse, percent, division
+    case seven,eight, nine, multiplication
+    case four, five, six, minus
+    case one, two, three, plus
+    case zero, zero2, dot, equal
     
     var label: String {
         switch self {
@@ -81,29 +62,4 @@ enum CalculatorButtonManager: CaseIterable {
         default : return "DarkGray"
         }
     }
-    
-    
-    /*
-        case .allClear : return "AC"
-        case .reverse : return "+/-"
-        case .percent
-        case .division
-        case .seven
-        case .eight
-        case .nine
-        case .multiplication
-        case .four
-        case .five
-        case .six
-        case .minus
-        case .one
-        case .two
-        case .three
-        case .plus
-        case .zero
-        case .zero2
-        case .dot
-        case .equal
-            */
-        
 }
