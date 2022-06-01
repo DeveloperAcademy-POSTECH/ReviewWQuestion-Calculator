@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +10,476 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ReviewWQuestion_Calculator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tm5-AQ-mAF">
+                                <rect key="frame" x="20" y="384.5" width="374" height="447.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="nAh-gV-chS">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="81.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CHK-85-jH5">
+                                                <rect key="frame" x="0.0" y="0.0" width="81.5" height="81.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="CHK-85-jH5" secondAttribute="height" id="0gR-ew-HYk"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
+                                                    <backgroundConfiguration key="background" cornerRadius="100">
+                                                        <color key="backgroundColor" red="0.64705884459999996" green="0.64705890420000001" blue="0.64705884459999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </backgroundConfiguration>
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="AC">
+                                                            <attributes>
+                                                                <font key="NSFont" size="30" name="Helvetica"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4P-Qh-Z08">
+                                                <rect key="frame" x="97.5" y="0.0" width="81.5" height="81.5"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
+                                                    <backgroundConfiguration key="background" cornerRadius="100">
+                                                        <color key="backgroundColor" red="0.64705884459999996" green="0.64705890420000001" blue="0.64705884459999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </backgroundConfiguration>
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="+/-">
+                                                            <attributes>
+                                                                <font key="NSFont" size="30" name="Helvetica"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ItZ-n0-nXS">
+                                                <rect key="frame" x="195" y="0.0" width="81.5" height="81.5"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
+                                                    <backgroundConfiguration key="background" cornerRadius="100">
+                                                        <color key="backgroundColor" red="0.64705884459999996" green="0.64705890420000001" blue="0.64705884459999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </backgroundConfiguration>
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="%">
+                                                            <attributes>
+                                                                <font key="NSFont" size="30" name="Helvetica"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJE-sm-6PN">
+                                                <rect key="frame" x="292.5" y="0.0" width="81.5" height="81.5"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
+                                                    <backgroundConfiguration key="background" cornerRadius="100">
+                                                        <color key="backgroundColor" red="0.94704324009999996" green="0.63868027930000004" blue="0.2301219404" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </backgroundConfiguration>
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="÷">
+                                                            <attributes>
+                                                                <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <font key="NSFont" size="30" name="Helvetica"/>
+                                                                <real key="NSKern" value="0.0"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                    <tabStops/>
+                                                                </paragraphStyle>
+                                                                <color key="NSStrokeColor" red="0.12548999999999999" green="0.12941" blue="0.14118" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="06L-Gm-pgv">
+                                        <rect key="frame" x="0.0" y="91.5" width="374" height="81.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1F1-2e-zRY">
+                                                <rect key="frame" x="0.0" y="0.0" width="81.5" height="81.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="1F1-2e-zRY" secondAttribute="height" id="UvH-gq-zIj"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
+                                                    <backgroundConfiguration key="background" cornerRadius="100">
+                                                        <color key="backgroundColor" red="0.1999999881" green="0.1999999881" blue="0.19999992850000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </backgroundConfiguration>
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="7">
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <font key="NSFont" size="30" name="Helvetica"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4VV-AZ-X6W">
+                                                <rect key="frame" x="97.5" y="0.0" width="81.5" height="81.5"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
+                                                    <backgroundConfiguration key="background" cornerRadius="100">
+                                                        <color key="backgroundColor" red="0.1999999881" green="0.1999999881" blue="0.19999992850000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </backgroundConfiguration>
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="8">
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <font key="NSFont" size="30" name="Helvetica"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWu-7e-Rt6">
+                                                <rect key="frame" x="195" y="0.0" width="81.5" height="81.5"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
+                                                    <backgroundConfiguration key="background" cornerRadius="100">
+                                                        <color key="backgroundColor" red="0.1999999881" green="0.1999999881" blue="0.19999992850000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </backgroundConfiguration>
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="9">
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <font key="NSFont" size="30" name="Helvetica"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YJD-kG-ees">
+                                                <rect key="frame" x="292.5" y="0.0" width="81.5" height="81.5"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
+                                                    <backgroundConfiguration key="background" cornerRadius="100">
+                                                        <color key="backgroundColor" red="0.94704324009999996" green="0.63868027930000004" blue="0.2301219404" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </backgroundConfiguration>
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="X">
+                                                            <attributes>
+                                                                <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <font key="NSFont" size="30" name="Helvetica"/>
+                                                                <real key="NSKern" value="0.0"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                    <tabStops/>
+                                                                </paragraphStyle>
+                                                                <color key="NSStrokeColor" red="0.12548999999999999" green="0.12941" blue="0.14118" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="mU3-0g-MVw">
+                                        <rect key="frame" x="0.0" y="183" width="374" height="81.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAi-aX-Upz">
+                                                <rect key="frame" x="0.0" y="0.0" width="81.5" height="81.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="cAi-aX-Upz" secondAttribute="height" id="FX9-sx-yjv"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
+                                                    <backgroundConfiguration key="background" cornerRadius="100">
+                                                        <color key="backgroundColor" red="0.1999999881" green="0.1999999881" blue="0.19999992850000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </backgroundConfiguration>
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="4">
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <font key="NSFont" size="30" name="Helvetica"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upM-Is-Pcx">
+                                                <rect key="frame" x="97.5" y="0.0" width="81.5" height="81.5"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
+                                                    <backgroundConfiguration key="background" cornerRadius="100">
+                                                        <color key="backgroundColor" red="0.1999999881" green="0.1999999881" blue="0.19999992850000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </backgroundConfiguration>
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="5">
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <font key="NSFont" size="30" name="Helvetica"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0J0-3y-cu0">
+                                                <rect key="frame" x="195" y="0.0" width="81.5" height="81.5"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
+                                                    <backgroundConfiguration key="background" cornerRadius="100">
+                                                        <color key="backgroundColor" red="0.1999999881" green="0.1999999881" blue="0.19999992850000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </backgroundConfiguration>
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="6">
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <font key="NSFont" size="30" name="Helvetica"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkw-U9-cxx">
+                                                <rect key="frame" x="292.5" y="0.0" width="81.5" height="81.5"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
+                                                    <backgroundConfiguration key="background" cornerRadius="100">
+                                                        <color key="backgroundColor" red="0.94704324009999996" green="0.63868027930000004" blue="0.2301219404" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </backgroundConfiguration>
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="-">
+                                                            <attributes>
+                                                                <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <font key="NSFont" size="30" name="Helvetica"/>
+                                                                <real key="NSKern" value="0.0"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                    <tabStops/>
+                                                                </paragraphStyle>
+                                                                <color key="NSStrokeColor" red="0.12548999999999999" green="0.12941" blue="0.14118" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="iBZ-dI-E9T">
+                                        <rect key="frame" x="0.0" y="274.5" width="374" height="81.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HX2-Ax-qsX">
+                                                <rect key="frame" x="0.0" y="0.0" width="81.5" height="81.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="HX2-Ax-qsX" secondAttribute="height" id="TtA-AH-D9E"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
+                                                    <backgroundConfiguration key="background" cornerRadius="100">
+                                                        <color key="backgroundColor" red="0.1999999881" green="0.1999999881" blue="0.19999992850000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </backgroundConfiguration>
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="1">
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <font key="NSFont" size="30" name="Helvetica"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uTz-ww-ILa">
+                                                <rect key="frame" x="97.5" y="0.0" width="81.5" height="81.5"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
+                                                    <backgroundConfiguration key="background" cornerRadius="100">
+                                                        <color key="backgroundColor" red="0.1999999881" green="0.1999999881" blue="0.19999992850000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </backgroundConfiguration>
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="2">
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <font key="NSFont" size="30" name="Helvetica"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fa5-4j-bNp">
+                                                <rect key="frame" x="195" y="0.0" width="81.5" height="81.5"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
+                                                    <backgroundConfiguration key="background" cornerRadius="100">
+                                                        <color key="backgroundColor" red="0.1999999881" green="0.1999999881" blue="0.19999992850000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </backgroundConfiguration>
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="3">
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <font key="NSFont" size="30" name="Helvetica"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r1U-l0-6pX">
+                                                <rect key="frame" x="292.5" y="0.0" width="81.5" height="81.5"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
+                                                    <backgroundConfiguration key="background" cornerRadius="100">
+                                                        <color key="backgroundColor" red="0.94704324009999996" green="0.63868027930000004" blue="0.2301219404" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </backgroundConfiguration>
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="+">
+                                                            <attributes>
+                                                                <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <font key="NSFont" size="30" name="Helvetica"/>
+                                                                <real key="NSKern" value="0.0"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                    <tabStops/>
+                                                                </paragraphStyle>
+                                                                <color key="NSStrokeColor" red="0.12548999999999999" green="0.12941" blue="0.14118" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="94E-02-Pkz">
+                                        <rect key="frame" x="0.0" y="366" width="374" height="81.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0D-68-PtF">
+                                                <rect key="frame" x="0.0" y="0.0" width="179" height="81.5"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
+                                                    <backgroundConfiguration key="background" cornerRadius="100">
+                                                        <color key="backgroundColor" red="0.1999999881" green="0.1999999881" blue="0.19999992850000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </backgroundConfiguration>
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="0">
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <font key="NSFont" size="30" name="Helvetica"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="b68-Wv-af2">
+                                                <rect key="frame" x="195" y="0.0" width="179" height="81.5"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GVH-l4-Gzc">
+                                                        <rect key="frame" x="0.0" y="0.0" width="81.5" height="81.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="GVH-l4-Gzc" secondAttribute="height" id="meb-r8-hbG"/>
+                                                        </constraints>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
+                                                            <backgroundConfiguration key="background" cornerRadius="100">
+                                                                <color key="backgroundColor" red="0.1999999881" green="0.1999999881" blue="0.19999992850000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </backgroundConfiguration>
+                                                            <attributedString key="attributedTitle">
+                                                                <fragment content=".">
+                                                                    <attributes>
+                                                                        <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                        <font key="NSFont" size="30" name="Helvetica"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
+                                                        </buttonConfiguration>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99k-wN-gE0">
+                                                        <rect key="frame" x="97.5" y="0.0" width="81.5" height="81.5"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
+                                                            <backgroundConfiguration key="background" cornerRadius="100">
+                                                                <color key="backgroundColor" red="0.94704324009999996" green="0.63868027930000004" blue="0.2301219404" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </backgroundConfiguration>
+                                                            <attributedString key="attributedTitle">
+                                                                <fragment content="=">
+                                                                    <attributes>
+                                                                        <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                        <font key="NSFont" size="30" name="Helvetica"/>
+                                                                        <real key="NSKern" value="0.0"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                            <tabStops/>
+                                                                        </paragraphStyle>
+                                                                        <color key="NSStrokeColor" red="0.12548999999999999" green="0.12941" blue="0.14118" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
+                                                        </buttonConfiguration>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="b68-Wv-af2" firstAttribute="width" secondItem="Y0D-68-PtF" secondAttribute="width" id="zLQ-vX-vYC"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="94E-02-Pkz" secondAttribute="trailing" id="7UO-oJ-dAf"/>
+                                    <constraint firstAttribute="trailing" secondItem="iBZ-dI-E9T" secondAttribute="trailing" id="9d8-Te-8QO"/>
+                                    <constraint firstAttribute="trailing" secondItem="nAh-gV-chS" secondAttribute="trailing" id="ELX-zB-URA"/>
+                                    <constraint firstAttribute="trailing" secondItem="mU3-0g-MVw" secondAttribute="trailing" id="Q5L-ev-ViH"/>
+                                    <constraint firstAttribute="trailing" secondItem="06L-Gm-pgv" secondAttribute="trailing" id="fxT-xy-UfZ"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yUT-2c-pm5">
+                                <rect key="frame" x="20" y="294" width="374" height="80.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tm5-AQ-mAF" secondAttribute="trailing" constant="20" id="KFl-A8-TKF"/>
+                            <constraint firstItem="yUT-2c-pm5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="KiG-U4-iov"/>
+                            <constraint firstItem="yUT-2c-pm5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="250" id="Yhe-6B-WzU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tm5-AQ-mAF" secondAttribute="bottom" constant="30" id="dYg-Rj-kRK"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yUT-2c-pm5" secondAttribute="trailing" constant="20" id="llu-Q1-lzK"/>
+                            <constraint firstItem="tm5-AQ-mAF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="muq-ie-Yv6"/>
+                            <constraint firstItem="tm5-AQ-mAF" firstAttribute="top" secondItem="yUT-2c-pm5" secondAttribute="bottom" constant="10" id="xLr-Cr-xH9"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="50.724637681159422" y="81.696428571428569"/>
         </scene>
     </scenes>
 </document>
