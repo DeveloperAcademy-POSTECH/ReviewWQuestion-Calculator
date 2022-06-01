@@ -38,6 +38,15 @@ enum CalculatorButton: String {
             return Color("digitColorGray")
         }
     }
+    
+    var textColor: Color {
+        switch self{
+        case .AC, .changeSign, .persent:
+            return Color(.black)
+        default:
+            return .white
+        }
+    }
 }
     
 enum Operation {
@@ -48,6 +57,7 @@ struct ContentView: View {
     
     @State var currentValue: String = "0"
     @State var nextValue: Int = 0
+//    @State var resultValue: Int = 0
     @State var currentOperation: Operation = .none
     
     let digitButton: [[CalculatorButton]] = [
@@ -59,6 +69,7 @@ struct ContentView: View {
     ]
     
     let columns = [
+        //minimum값은 레이아웃의 최소 사이즈
         GridItem(.adaptive(minimum: 80))
     ]
 
@@ -74,6 +85,7 @@ struct ContentView: View {
                         .font(.system(size: 90))
                 }
                 .padding(20)
+                
                 LazyVGrid(columns: columns, spacing: 15) {
                     //rawvalue 공부할 것
                     
@@ -107,7 +119,11 @@ struct ContentView: View {
                                         case .multiply:
                                             currentValue = "\(next * current)"
                                         case .divide:
-                                            currentValue = "\(next / current)"
+                                            if current != 0{
+                                                currentValue = "\(next / current)"
+                                            } else {
+                                                currentValue = "오류"
+                                            }
                                         case .none:
                                             break
                                         }
@@ -127,7 +143,7 @@ struct ContentView: View {
                                     break
                                 default:
                                     let number = item.rawValue
-                                    if self.currentValue == "0" {
+                                    if (self.currentValue == "0") || currentValue == "오류" {
                                         currentValue = number
                                     } else {
                                         currentValue = "\(currentValue)\(number)"
@@ -145,7 +161,7 @@ struct ContentView: View {
                                             .foregroundColor(item.buttonColor)
                                     }
                                     Text(item.rawValue)
-                                        .foregroundColor(.white)
+                                        .foregroundColor(item.textColor)
                                         .font(.system(size: 35))
                                         .frame(width: 80, height: 80, alignment: .center)
                                 }
