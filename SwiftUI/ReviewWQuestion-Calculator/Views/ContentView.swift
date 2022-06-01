@@ -29,18 +29,13 @@ struct ContentView: View {
             .environmentObject(calculateData)
             .environmentObject(operationData)
         }
-        .onAppear(perform: {
-            var test: String = String(calculateData.result)
-            // 0.0 어디서 잘라야 할까
-            if calculateData.result == Float(Int(calculateData.result)) {
-                print("same")
-                // float이 정수일 때에는 밑을 잘라버림
-            }
-            print(test.count)
-            if test.contains(".") {
-                print("true")
-            }
-        })
+        .onAppear {
+                    UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation") // Forcing the rotation to portrait
+                    AppDelegate.orientationLock = .portrait // And making sure it stays that way
+                }
+        .onDisappear {
+                    AppDelegate.orientationLock = .all // Unlocking the rotation when leaving the view
+                }
     }
 }
 

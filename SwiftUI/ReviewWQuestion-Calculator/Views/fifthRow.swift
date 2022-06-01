@@ -52,17 +52,25 @@ struct fifthRow: View {
                 calculateData.resultSequence.append(calculateData.result)
                 var lastIndex = calculateData.resultSequence.count
                 
+                // = 기본 연산 & = 연속 연산
                 if calculateData.calculSequence.last == "=" {
                     calculateData.calculSequence.append("=")
                     let seqCopy = calculateData.calculSequence.filter { cal in
                         return cal != "="
                     }
-                    
+//                    print(seqCopy)
                     calculateData.resultSequence.swapAt(lastIndex-2, lastIndex-1)
                     calculateData.result = calculateData.calculate(calculateData.resultSequence[lastIndex-2], calculateData.resultSequence[lastIndex-1], seqCopy.last ?? "")
                     calculateData.iscalculated = true
                 } else {
+                    print(calculateData.calculSequence)
+                    print(calculateData.resultSequence)
+                    print(calculateData.calculSequence.last)
+                    // 이 아래 부분 -일 때 switch에서 왜 예외로 처리되어 ""가 되는지 궁금,,optional("-") 는 왜 안됨(?) 이게 ""로 가나
+                   
                     calculateData.result = calculateData.calculate(calculateData.resultSequence[lastIndex-2], calculateData.resultSequence[lastIndex-1], calculateData.calculSequence.last ?? "")
+                    
+                    print(calculateData.result)
                     calculateData.calculSequence.append("=")
                     calculateData.iscalculated = true
                 }

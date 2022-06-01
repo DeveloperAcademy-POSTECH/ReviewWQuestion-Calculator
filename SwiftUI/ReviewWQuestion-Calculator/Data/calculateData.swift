@@ -21,48 +21,38 @@ class calculateData: ObservableObject {
         case "+":
             return a + b
         case "-":
+            print(a, b)
             return a - b
         case "×":
             return a * b
         case "÷":
             if b == 0 {
-                return 3.141592
+                return 3.1415926535
             } else {
-            return a / b
+                return a / b
             }
         default:
-            return a + b
+            return a - b
         }
     }
     
     func isProcessed() -> String {
         let resultString: String = "\(result)"
-
-        if result == Float(Int(result)) {
-            if let index = resultString.firstIndex(of: ".") {
-                resultProcessed = String(resultString[..<index])
-            }
+        
+        if result == 3.1415926535 {
+            resultProcessed = "오류"
         } else {
-           resultProcessed = String(result)
+            if result == Float(Int(result)) {
+                if let index = resultString.firstIndex(of: ".") {
+                    resultProcessed = String(resultString[..<index])
+                }
+            } else {
+                resultProcessed = String(result)
+            }
         }
         
         return resultProcessed
     }
-//    func plus(_ a: Float, _ b: Float) -> Float {
-//        return a + b
-//    }
-//
-//    func minus(_ a: Float, _ b: Float) -> Float {
-//        return a - b
-//    }
-//
-//    func multiply(_ a: Float, _ b: Float) -> Float {
-//        return a * b
-//    }
-//
-//    func divide(_ a: Float, _ b: Float) -> Float {
-//        return a / b
-//    }
 }
 
 

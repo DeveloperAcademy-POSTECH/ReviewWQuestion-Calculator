@@ -55,12 +55,13 @@ struct firstRow: View {
             
                 // 계산로직
                 calculateData.resultSequence.append(calculateData.result)
+                var lastIndex = calculateData.resultSequence.count
                 
-                if calculateData.calculSequence.isEmpty {
+                if calculateData.calculSequence.isEmpty || calculateData.calculSequence.last == "=" {
                     calculateData.calculSequence.append("÷")
                 } else {
                     
-                    calculateData.result = calculateData.calculate(calculateData.resultSequence[0], calculateData.resultSequence[1], calculateData.calculSequence.last ?? "")
+                    calculateData.result = calculateData.calculate(calculateData.resultSequence[lastIndex-2], calculateData.resultSequence[lastIndex-1], calculateData.calculSequence.last ?? "")
                     calculateData.calculSequence.append("÷")
                     calculateData.resultSequence = [calculateData.result]
 
