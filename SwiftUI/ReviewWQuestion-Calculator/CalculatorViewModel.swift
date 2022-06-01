@@ -73,10 +73,13 @@ class CalculatorViewModel: ObservableObject {
         //  없다면 temp operand에 현재 text만 넣기
         isOperation = true
         switch operation {
-        case "plus" :
+        case "plus", "minus" :
             tempOperation = operation //plus, minus 이전 연산은 무조건 처리
             tempOperand = Double(text)!
             // mul, div 이전 연
+        case "multiply", "divide" :
+            tempOperation = operation
+            tempOperand = Double(text)!
         default : return
         }
     }
@@ -87,8 +90,16 @@ class CalculatorViewModel: ObservableObject {
             tempOperand = operands.popLast()!
             tempOperation = operations.popLast()!
             
-            if tempOperation == "plus" {
-                result += tempOperand
+            switch tempOperation {
+            case "plus":
+                result = tempOperand + result
+            case "minus":
+                result = tempOperand - result
+            case "multiply":
+                result = tempOperand * result
+            case "divide":
+                result = tempOperand / result
+            default: return
             }
         }
         
