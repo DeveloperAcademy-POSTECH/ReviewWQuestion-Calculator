@@ -39,9 +39,6 @@ class calculateData: ObservableObject {
     func isProcessed() -> String {
         let resultString: String = "\(result)"
         
-        if result == 3.1415926535 {
-            resultProcessed = "오류"
-        } else {
             if result == Float(Int(result)) {
                 if let index = resultString.firstIndex(of: ".") {
                     resultProcessed = String(resultString[..<index])
@@ -49,7 +46,6 @@ class calculateData: ObservableObject {
             } else {
                 resultProcessed = String(result)
             }
-        }
         
         return resultProcessed
     }

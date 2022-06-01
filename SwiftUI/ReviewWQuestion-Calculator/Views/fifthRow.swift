@@ -16,9 +16,11 @@ struct fifthRow: View {
     var body: some View {
         HStack(spacing:14) {
             Button(action: {
-                var resultString: String = calculateData.isProcessed()
+                // 색상변화
                 operationData.operationReset()
-                //
+                
+                var resultString: String = calculateData.isProcessed()
+                
                 if calculateData.iscalculated {
                     resultString = "0"
                     calculateData.iscalculated = false

@@ -18,10 +18,10 @@ struct fourthRow: View {
         HStack(spacing:14){
             ForEach(1..<4){ i in
                 Button(action: {
+                    // 색상변화
+                    operationData.operationReset()
                     
                     var resultString: String = calculateData.isProcessed()
-                    
-                    operationData.operationReset()
                     
                     if calculateData.iscalculated {
                         resultString = "\(i)"
@@ -31,7 +31,6 @@ struct fourthRow: View {
                     }
                     
                     calculateData.result = Float(resultString) ?? 0
-                    
                     
                 }) {
                     Text("\(i)")
@@ -48,7 +47,7 @@ struct fourthRow: View {
                 operationData.operationIsActive[3].toggle()
                 // 계산로직
                 calculateData.resultSequence.append(calculateData.result)
-                var lastIndex = calculateData.resultSequence.count
+                let lastIndex = calculateData.resultSequence.count
                 
                 if calculateData.calculSequence.isEmpty || calculateData.calculSequence.last == "=" {
                     calculateData.calculSequence.append("+")

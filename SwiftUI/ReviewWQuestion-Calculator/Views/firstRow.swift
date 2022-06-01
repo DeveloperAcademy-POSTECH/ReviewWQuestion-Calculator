@@ -50,12 +50,13 @@ struct firstRow: View {
                     .clipShape(Circle())
             }
             Button(action: {
+                // 색상변화
                 operationData.operationReset()
                 operationData.operationIsActive[0].toggle()
             
                 // 계산로직
                 calculateData.resultSequence.append(calculateData.result)
-                var lastIndex = calculateData.resultSequence.count
+                let lastIndex = calculateData.resultSequence.count
                 
                 if calculateData.calculSequence.isEmpty || calculateData.calculSequence.last == "=" {
                     calculateData.calculSequence.append("÷")

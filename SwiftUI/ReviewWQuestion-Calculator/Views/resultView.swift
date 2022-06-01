@@ -16,31 +16,31 @@ struct resultView: View {
         HStack {
             Spacer()
             Text(resultCondition())
-//                .lineLimit(1)
+                .lineLimit(1)
+                .minimumScaleFactor(0.6)
                 .foregroundColor(.white)
-                .font(.system(size: 60))
+                .font(.system(size: 80))
                 .padding([.horizontal])
         }
     }
     
     func resultCondition() -> String {
 
-        var resultString: String = "\(calculateData.result)"
+        let resultString: String = "\(calculateData.result)"
         var totalResult: String = ""
         
-        if calculateData.result == 3.1415926535 {
+        if calculateData.result == 3.1415926535 { // 예외처리
             totalResult = "오류"
         } else {
+            // 결과값 소수점 유무 결정
             if calculateData.result == Float(Int(calculateData.result)) {
                 if let index = resultString.firstIndex(of: ".") {
                     totalResult = String(resultString[..<index])
                 }
-                
             } else {
                 totalResult = String(calculateData.result)
             }
         }
-        
         return totalResult
     }
 }
