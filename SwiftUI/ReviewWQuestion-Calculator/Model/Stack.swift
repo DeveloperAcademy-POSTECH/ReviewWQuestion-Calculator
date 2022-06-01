@@ -86,53 +86,73 @@ public struct Stack{
         if temp == "0" {
             
         } else {
-            self.temp += "0"
+            if temp.count < 9 {
+                self.temp += "0"
+            }
         }
     }
 
     mutating func one(){
-//        self.push("1")
-        self.temp += "1"
+//        self.p ush("1")
+        if temp.count < 9 {
+            self.temp += "1"
+        }
     }
     
     mutating func two(){
 //        self.push("2")
-        self.temp += "2"
+        if temp.count < 9 {
+            self.temp += "2"
+        }
     }
     
     mutating func three(){
 //        self.push("3")
-        self.temp += "3"
+        if temp.count < 9 {
+            self.temp += "3"
+        }
     }
     
     mutating func four(){
 //        self.push("4")
-        self.temp += "4"
+        if temp.count < 9 {
+            self.temp += "4"
+        }
     }
     
     mutating func five(){
 //        self.push("5")
-        self.temp += "5"
+        if temp.count < 9 {
+            self.temp += "5"
+        }
     }
     
     mutating func six(){
 //        self.push("6")
-        self.temp += "6"
+        if temp.count < 9 {
+            self.temp += "6"
+        }
     }
     
     mutating func seven(){
 //        self.push("7")
-        self.temp += "7"
+        if temp.count < 9 {
+            self.temp += "7"
+        }
     }
     
     mutating func eight(){
 //        self.push("8")
-        self.temp += "8"
+        if temp.count < 9 {
+            self.temp += "8"
+        }
     }
     
     mutating func nine(){
 //        self.push("9")
-        self.temp += "9"
+        if temp.count < 9 {
+            self.temp += "9"
+        }
     }
     
     mutating func choiceOperator(value: Swift.String){
