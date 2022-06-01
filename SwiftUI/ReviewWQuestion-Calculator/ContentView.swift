@@ -10,8 +10,10 @@ struct ContentView: View {
     let screenWidth = UIScreen.main.bounds.width
     let screenHeight = UIScreen.main.bounds.height
     
-    @State var currentNumber: Int = 0
-    @State var previousNumber: Int = 0
+    let numberFormatter = setNumberFormatter(numberFormatter: NumberFormatter())
+    
+    @State var currentNumber: Double = 0
+    @State var previousNumber: Double = 0
     @State var selectedCurrentOperator: String = ""
     @State var selectedPreviousOperator: String = ""
     @State var divideBy0: Bool = false
@@ -30,7 +32,7 @@ struct ContentView: View {
             
             VStack(alignment: .trailing, spacing: 0) {
                 
-                Text(divideBy0 ? "오류" : String(currentNumber))
+                Text(divideBy0 ? "오류" : String(numberFormatter.string(from: currentNumber as NSNumber)!))
                     .foregroundColor(.white)
                     .font(.system(size: 93, weight: .light))
                     .padding(.horizontal, 17)
@@ -53,7 +55,7 @@ struct ContentView: View {
                                             currentNumber = 0
                                             divideBy0 = false
                                         }
-                                        currentNumber = Int(String(currentNumber) + keypad)!
+                                        currentNumber = Double(String(format: "%.0f", currentNumber) + keypad)!
                                     }
                                 case "%":
                                     currentNumber /= 100
@@ -65,12 +67,38 @@ struct ContentView: View {
                                     }
                                     else {
                                         divideBy0 = false
+                                        selectedPreviousOperator = ""
                                         previousNumber = 0
                                     }
                                 case "÷", "×", "−", "+":
+                                    if selectedPreviousOperator != "" {
+                                        var tmp: Double = currentNumber
+                                        tmp = currentNumber
+                                        if selectedPreviousOperator == "+" {
+                                            currentNumber += previousNumber
+                                        }
+                                        else if selectedPreviousOperator == "−" {
+                                            currentNumber = previousNumber - currentNumber
+                                        }
+                                        else if selectedPreviousOperator == "×" {
+                                            currentNumber *= previousNumber
+                                        }
+                                        else if selectedPreviousOperator == "÷" {
+                                            if currentNumber == 0 {
+                                                divideBy0 = true
+                                            }
+                                            else {
+                                                currentNumber = previousNumber / currentNumber
+                                            }
+                                        }
+                                        previousNumber = tmp
+                                    }
+                                    
                                     previousNumber = currentNumber
                                     selectedCurrentOperator = keypad
                                 case "=":
+                                    var tmp: Double = currentNumber
+                                    tmp = currentNumber
                                     if selectedPreviousOperator == "+" {
                                         currentNumber += previousNumber
                                     }
@@ -88,6 +116,7 @@ struct ContentView: View {
                                             currentNumber = previousNumber / currentNumber
                                         }
                                     }
+                                    previousNumber = tmp
                                 case ".":
                                     print(currentNumber)
                                     print(previousNumber)
@@ -103,7 +132,7 @@ struct ContentView: View {
                                         currentNumber = 0
                                         divideBy0 = false
                                     }
-                                    currentNumber = Int(String(currentNumber) + keypad)!
+                                    currentNumber = Double(String(format: "%.0f", currentNumber) + keypad)!
                                 }
                             }, label: {
                                 switch keypad {
@@ -173,4 +202,9 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
             .previewDevice("iPhone 13")
     }
+}
+
+func setNumberFormatter(numberFormatter: NumberFormatter) -> NumberFormatter {
+    numberFormatter.numberStyle = .decimal
+    return numberFormatter
 }
