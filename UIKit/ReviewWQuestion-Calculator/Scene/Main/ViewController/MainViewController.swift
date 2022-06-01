@@ -83,6 +83,8 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func onTapPlusButton(_ sender: Any) {
+        if self.arithmeticOperation.operation == .plus { return }
+        
         let num = self.output.getOutputAsNum()
         self.arithmeticOperation.inputAndOperateNum(num)
         self.arithmeticOperation.inputOperation(.plus)
@@ -91,6 +93,8 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func onTapMinusButton(_ sender: Any) {
+        if self.arithmeticOperation.operation == .minus { return }
+
         let num = self.output.getOutputAsNum()
         self.arithmeticOperation.inputAndOperateNum(num)
         self.arithmeticOperation.inputOperation(.minus)
@@ -99,6 +103,8 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func onTapMultiplyButton(_ sender: Any) {
+        if self.arithmeticOperation.operation == .multiply { return }
+
         let num = self.output.getOutputAsNum()
         self.arithmeticOperation.inputAndOperateNum(num)
         self.arithmeticOperation.inputOperation(.multiply)
@@ -107,6 +113,8 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func onTapDivideButton(_ sender: Any) {
+        if self.arithmeticOperation.operation == .divide { return }
+
         let num = self.output.getOutputAsNum()
         self.arithmeticOperation.inputAndOperateNum(num)
         self.arithmeticOperation.inputOperation(.divide)
