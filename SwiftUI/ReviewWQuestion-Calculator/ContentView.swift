@@ -105,19 +105,20 @@ struct ContentView: View {
                                         let next = nextValue
                                         switch currentOperation {
                                         case .plus:
-                                            currentValue = "\(Int(current) + next)"
+                                            currentValue = "\(next + current)"
                                         case .minus:
-                                            currentValue = "\(Int(current) - next)"
+                                            currentValue = "\(next - current)"
                                         case .multiply:
-                                            currentValue = "\(Int(current) * next)"
+                                            currentValue = "\(next * current)"
                                         case .divide:
-                                            currentValue = "\(Int(current) / next)"
+                                            currentValue = "\(next / current)"
                                         case .none:
                                             break
                                         }
                                     }
                                     if item != .equal {
-                                        return
+                                        //0이 아닌 이전의 값을 그대로 유지하려면?
+                                        currentValue = "0"
                                     }
                                     
                                 case .AC:
@@ -127,8 +128,6 @@ struct ContentView: View {
                                 default:
                                     let number = item.rawValue
                                     if self.currentValue == "0" {
-                                        currentValue = number
-                                    } else if currentOperation != .none {
                                         currentValue = number
                                     } else {
                                         currentValue = "\(currentValue)\(number)"
@@ -158,18 +157,6 @@ struct ContentView: View {
         }
     }
 }
-
-//
-//func operation(_ operator: String,_ number: Double) -> String {
-//    var outputUpdated = number
-////    if operator == "+" {
-////
-////    }
-////    else if operator == "-" {
-////
-////    }
-//    return String(outputUpdated)
-//}
 
 //
 //private func numberButton(_ number: Int) -> Button<Text>{
