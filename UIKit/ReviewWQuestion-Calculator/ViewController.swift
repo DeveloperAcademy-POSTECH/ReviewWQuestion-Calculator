@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import Foundation
 
 enum Operation {
     case add
@@ -30,7 +31,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        calculatorResultLabel.adjustsFontSizeToFitWidth = true
     }
     
 
@@ -42,15 +43,21 @@ class ViewController: UIViewController {
         // sender.titleLabel?.text로 오류 해결
         
         displayNumber += number
-        calculatorResultLabel.text = numberFormatter(Int(displayNumber)!)
+        
+        calculatorResultLabel.text = numberFormatter(Double(displayNumber)!)
     }
     
     // 이해가 필요한 코드
-    func numberFormatter(_ number: Int) -> String {
+    func numberFormatter(_ number: Double) -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         
         return numberFormatter.string(from: NSNumber(value: number)) ?? displayNumber
+    }
+    
+    func roundDouble(_ number : Double) -> Double {
+        let roundedDouble = String(format: "%.3f", number)
+        return Double(roundedDouble) ?? 0
     }
     
     // 계산할 메서드 (파라미터로 enum의 연산 종류를 받는다)
@@ -90,11 +97,11 @@ class ViewController: UIViewController {
             // 결과값이 정수이면 Int 형으로 출력한다
                 
                 if let result = Double(result), result.truncatingRemainder(dividingBy: 1) == 0 {
-                    self.result = "\(Int(result))"
+                    self.result = "\(Double(result))"
                 }
                 
                 self.firstNumber = self.result
-                calculatorResultLabel.text = numberFormatter(Int(self.result)!)
+                calculatorResultLabel.text = numberFormatter(Double(self.result)!)
             }
             currentOperation = operation
             
@@ -137,15 +144,22 @@ class ViewController: UIViewController {
     @IBAction func pressEqual(_ sender: UIButton) {
         if !secondNumber.isEmpty {
             displayNumber = result
-            calculatorResultLabel.adjustsFontSizeToFitWidth = true
-            calculatorResultLabel.text = numberFormatter(Int(displayNumber)!)
-            
+            let commaResult = numberFormatter(Double(displayNumber)!)
+            if commaResult.contains(".") {
+                calculatorResultLabel.text = String(roundDouble(Double(commaResult)!))
+            } else {
+                calculatorResultLabel.text = commaResult
+            }
         } else {
             let lastOperation = operatorStack.last ?? .unknown
             operation(lastOperation)
             displayNumber = result
-            calculatorResultLabel.adjustsFontSizeToFitWidth = true
-            calculatorResultLabel.text = numberFormatter(Int(displayNumber)!)
+            let commaResult = numberFormatter(Double(displayNumber)!)
+            if commaResult.contains(".") {
+                calculatorResultLabel.text = String(roundDouble(Double(commaResult)!))
+            } else {
+                calculatorResultLabel.text = commaResult
+            }
         }
     }
     
