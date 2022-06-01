@@ -16,8 +16,8 @@ class calculateData: ObservableObject {
     @Published var resultProcessed: String = ""
     // .이 있다고 보여지나(?) 어디서 짤라야하지(?) 닷이 있으면 짜르지말고, 닷이 없으면 짜르자, -> 나눗셈(?)
     
-    func calculate(_ a: Float,_ b: Float) -> Float{
-        switch calculSequence.last {
+    func calculate(_ a: Float,_ b: Float,_ calculation: String) -> Float{
+        switch calculation {
         case "+":
             return a + b
         case "-":

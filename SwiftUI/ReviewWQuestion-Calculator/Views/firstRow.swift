@@ -53,15 +53,17 @@ struct firstRow: View {
                 operationData.operationReset()
                 operationData.operationIsActive[0].toggle()
             
+                // 계산로직
                 calculateData.resultSequence.append(calculateData.result)
                 
                 if calculateData.calculSequence.isEmpty {
                     calculateData.calculSequence.append("÷")
                 } else {
                     
-                    calculateData.result = calculateData.calculate(calculateData.resultSequence[0], calculateData.resultSequence[1])
+                    calculateData.result = calculateData.calculate(calculateData.resultSequence[0], calculateData.resultSequence[1], calculateData.calculSequence.last ?? "")
+                    calculateData.calculSequence.append("÷")
                     calculateData.resultSequence = [calculateData.result]
-                    calculateData.calculSequence = ["÷"]
+
                 }
                 
                 calculateData.iscalculated = true

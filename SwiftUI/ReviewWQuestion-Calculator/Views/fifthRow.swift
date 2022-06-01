@@ -50,11 +50,22 @@ struct fifthRow: View {
                 
                 operationData.operationReset()
                 calculateData.resultSequence.append(calculateData.result)
+                var lastIndex = calculateData.resultSequence.count
                 
-                calculateData.result = calculateData.calculate(calculateData.resultSequence[0], calculateData.resultSequence[1])
-                calculateData.calculSequence = []
-                calculateData.resultSequence = []
-                calculateData.iscalculated = true
+                if calculateData.calculSequence.last == "=" {
+                    calculateData.calculSequence.append("=")
+                    let seqCopy = calculateData.calculSequence.filter { cal in
+                        return cal != "="
+                    }
+                    
+                    calculateData.resultSequence.swapAt(lastIndex-2, lastIndex-1)
+                    calculateData.result = calculateData.calculate(calculateData.resultSequence[lastIndex-2], calculateData.resultSequence[lastIndex-1], seqCopy.last ?? "")
+                    calculateData.iscalculated = true
+                } else {
+                    calculateData.result = calculateData.calculate(calculateData.resultSequence[lastIndex-2], calculateData.resultSequence[lastIndex-1], calculateData.calculSequence.last ?? "")
+                    calculateData.calculSequence.append("=")
+                    calculateData.iscalculated = true
+                }
                 
             }) {
                 Text("=")
