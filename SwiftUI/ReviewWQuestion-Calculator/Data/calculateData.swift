@@ -10,11 +10,13 @@ import Foundation
 class calculateData: ObservableObject {
     
     @Published var calculSequence: [String] = []
-    @Published var resultSequence: [Double] = []
-    @Published var result: Double = 0
+    @Published var resultSequence: [Float] = []
+    @Published var result: Float = 0
     @Published var iscalculated: Bool = false
+    @Published var resultProcessed: String = ""
+    // .이 있다고 보여지나(?) 어디서 짤라야하지(?) 닷이 있으면 짜르지말고, 닷이 없으면 짜르자, -> 나눗셈(?)
     
-    func calculate(_ a: Double,_ b: Double) -> Double{
+    func calculate(_ a: Float,_ b: Float) -> Float{
         switch calculSequence.first {
         case "+":
             return a + b
@@ -29,19 +31,32 @@ class calculateData: ObservableObject {
         }
     }
     
-//    func plus(_ a: Double, _ b: Double) -> Double {
+    func isProcessed() -> String {
+        let resultString: String = "\(result)"
+
+        if result == Float(Int(result)) {
+            if let index = resultString.firstIndex(of: ".") {
+                resultProcessed = String(resultString[..<index])
+            }
+        } else {
+           resultProcessed = String(result)
+        }
+        
+        return resultProcessed
+    }
+//    func plus(_ a: Float, _ b: Float) -> Float {
 //        return a + b
 //    }
 //
-//    func minus(_ a: Double, _ b: Double) -> Double {
+//    func minus(_ a: Float, _ b: Float) -> Float {
 //        return a - b
 //    }
 //
-//    func multiply(_ a: Double, _ b: Double) -> Double {
+//    func multiply(_ a: Float, _ b: Float) -> Float {
 //        return a * b
 //    }
 //
-//    func divide(_ a: Double, _ b: Double) -> Double {
+//    func divide(_ a: Float, _ b: Float) -> Float {
 //        return a / b
 //    }
 }

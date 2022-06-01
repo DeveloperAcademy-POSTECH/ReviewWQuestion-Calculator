@@ -18,14 +18,15 @@ struct secondRow: View {
         HStack(spacing:14) {
             ForEach(7..<10){ i in
                 Button(action: {
+                    var resultString: String = calculateData.isProcessed()
                     operationData.operationReset()
-                    var resultString: String = "\(calculateData.result)"
+                    
                     if resultString == "0" {
                         resultString = "\(i)"
                     } else {
                         resultString += "\(i)"
                     }
-                    calculateData.result = Double(resultString) ?? 0
+                    calculateData.result = Float(resultString) ?? 0
                     
                 }) {
                     Text("\(i)")

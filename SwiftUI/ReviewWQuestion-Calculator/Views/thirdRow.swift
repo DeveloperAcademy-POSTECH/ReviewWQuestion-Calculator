@@ -18,8 +18,8 @@ struct thirdRow: View {
         HStack(spacing:14) {
             ForEach(4..<7){ i in
                 Button(action: {
+                    var resultString: String = calculateData.isProcessed()
                     operationData.operationReset()
-                    var resultString: String = "\(calculateData.result)"
                     //
                     if calculateData.iscalculated {
                         resultString = "\(i)"
@@ -28,7 +28,7 @@ struct thirdRow: View {
                         resultString += "\(i)"
                     }
                     
-                    calculateData.result = Double(resultString) ?? 0
+                    calculateData.result = Float(resultString) ?? 0
                     
                 }) {
                     Text("\(i)")

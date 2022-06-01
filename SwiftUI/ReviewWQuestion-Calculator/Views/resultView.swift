@@ -15,7 +15,7 @@ struct resultView: View {
     var body: some View {
         HStack {
             Spacer()
-            Text("\(calculateData.result)")
+            Text(resultCondition())
                 .lineLimit(1)
                 .foregroundColor(.white)
                 .font(.system(size: 80))
@@ -23,8 +23,24 @@ struct resultView: View {
         }
     }
     
-    func resultCondition() {
-        
+    func resultCondition() -> String {
+        // 어디서 잘라야 하지(?)
+        // 숫자 더해줄 때는 0.0이 아니라 0에서 시작해야함.
+        // 숫자 키패드 누를 때는 무조건
+        var resultString: String = "\(calculateData.result)"
+        var totalResult: String = ""
+
+        if calculateData.result == Float(Int(calculateData.result)) {
+            if let index = resultString.firstIndex(of: ".") {
+                totalResult = String(resultString[..<index])
+            }
+            
+//            print(round(calculateData.result))
+//            return floor(calculateData.result)
+        } else {
+           totalResult = String(calculateData.result)
+        }
+        return totalResult
     }
 }
 

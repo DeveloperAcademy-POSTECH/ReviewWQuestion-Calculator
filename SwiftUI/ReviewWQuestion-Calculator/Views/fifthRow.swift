@@ -26,7 +26,7 @@ struct fifthRow: View {
                     resultString += "0"
                 }
                 
-                calculateData.result = Double(resultString) ?? 0
+                calculateData.result = Float(resultString) ?? 0
                 
             }) {
                 Text("0")
