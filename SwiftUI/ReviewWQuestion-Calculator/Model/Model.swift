@@ -31,6 +31,26 @@ class Expression : ObservableObject {
             right = num
         }
     }
+    
+    func clear() {
+        if output != nil {
+            output = nil
+        }
+        else if right != nil {
+            right = nil
+        }
+        else {
+            left = nil
+        }
+    }
+    
+    func allclear() {
+        left = nil
+        oper = nil
+        right = nil
+        output = nil
+        store = nil
+    }
 }
 
 //class ButtonModel {
