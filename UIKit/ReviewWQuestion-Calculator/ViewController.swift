@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var calculatorResultLabel: UILabel!
     
+    @IBOutlet weak var allClearLabel: UIButton!
     // 프로퍼티
     var displayNumber = ""
     var firstNumber = ""
@@ -32,25 +33,27 @@ class ViewController: UIViewController {
         
     }
     
+
+    
     @IBAction func tapNumberButton(_ sender: UIButton) {
-        //print("sender currentTitle : ", sender.currentTitle)
-        
+        acTransition()
         guard let number = sender.titleLabel?.text else { return }
         // sender.title 로 접근하면 오류가 발생했다
         // sender.titleLabel?.text로 오류 해결
         
         displayNumber += number
-        calculatorResultLabel.text! = numberFormatter(Int(displayNumber)!)
+        calculatorResultLabel.text = numberFormatter(Int(displayNumber)!)
     }
     
+    // 이해가 필요한 코드
     func numberFormatter(_ number: Int) -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         
-        return numberFormatter.string(from: NSNumber(value: number))!
+        return numberFormatter.string(from: NSNumber(value: number)) ?? displayNumber
     }
     
-    // 계산할 메서드
+    // 계산할 메서드 (파라미터로 enum의 연산 종류를 받는다)
     func operation(_ operation: Operation) {
         if self.currentOperation != .unknown {
             if !displayNumber.isEmpty {
@@ -65,27 +68,36 @@ class ViewController: UIViewController {
                     operatorStack.append(.add)
                     result = "\(firstNumber + secondNumber)"
                 case .subtract:
+                    operatorStack.append(.subtract)
                     result = "\(firstNumber - secondNumber)"
                 case .multiply:
+                    operatorStack.append(.multiply)
                     result = "\(firstNumber * secondNumber)"
                 case .divide:
                     if secondNumber == 0 {
                         result = "오류"
                     }
                     else {
+                        operatorStack.append(.divide)
                         result = "\(firstNumber / secondNumber)"
                     }
                 default:
                     break
                 }
+
+            
+            // 연산은 다 했고 이제 출력할거야
+            // 결과값이 정수이면 Int 형으로 출력한다
                 
-                // 결과값이 정수이면 Int 형으로 출력한다
-                if (Double(result) ?? 0).truncatingRemainder(dividingBy: 1) == 0 {
-                    // %를 쓰니 unavailable 하다고 뜬다
-                    result = "\(Int(result))"
-                    calculatorResultLabel.text = result
+                if let result = Double(result), result.truncatingRemainder(dividingBy: 1) == 0 {
+                    self.result = "\(Int(result))"
                 }
+                
+                self.firstNumber = self.result
+                calculatorResultLabel.text = numberFormatter(Int(self.result)!)
             }
+            currentOperation = operation
+            
         }
         else {
             firstNumber = displayNumber
@@ -93,11 +105,18 @@ class ViewController: UIViewController {
             displayNumber = ""
         }
     }
-    
-    
-    
-    
-    
+
+    func acTransition() {
+        // 연산을 시작하면 AC가 C로 바뀐다
+        if !displayNumber.isEmpty {
+            allClearLabel.titleLabel?.text = "C"
+            allClearLabel.titleLabel?.textAlignment = .center
+        } else {
+            allClearLabel.titleLabel?.text = "AC"
+            allClearLabel.titleLabel?.textAlignment = .center
+
+        }
+    }
     
     @IBAction func pressAdd(_ sender: UIButton) {
         operation(.add)
@@ -105,26 +124,29 @@ class ViewController: UIViewController {
     
     @IBAction func pressSub(_ sender: UIButton) {
         operation(.subtract)
-
-        
     }
     
     @IBAction func pressMultiply(_ sender: UIButton) {
         operation(.multiply)
-
     }
     
     @IBAction func pressDiv(_ sender: UIButton) {
         operation(.divide)
-
     }
     
-    
     @IBAction func pressEqual(_ sender: UIButton) {
-        let lastOperation = operatorStack.last ?? currentOperation
-        operation(lastOperation)
-        
-        
+        if !secondNumber.isEmpty {
+            displayNumber = result
+            calculatorResultLabel.adjustsFontSizeToFitWidth = true
+            calculatorResultLabel.text = numberFormatter(Int(displayNumber)!)
+            
+        } else {
+            let lastOperation = operatorStack.last ?? .unknown
+            operation(lastOperation)
+            displayNumber = result
+            calculatorResultLabel.adjustsFontSizeToFitWidth = true
+            calculatorResultLabel.text = numberFormatter(Int(displayNumber)!)
+        }
     }
     
     @IBAction func pressDot(_ sender: UIButton) {
@@ -133,9 +155,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func pressClearButton(_ sender: UIButton) {
-        if !displayNumber.isEmpty {
-            sender.titleLabel?.text = "C"
-        }
+        displayNumber.removeAll()
+        firstNumber.removeAll()
+        secondNumber.removeAll()
+        currentOperation = .unknown
+        calculatorResultLabel.text = "0"
+        acTransition()
     }
     
 }

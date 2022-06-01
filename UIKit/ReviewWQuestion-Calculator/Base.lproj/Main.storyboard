@@ -528,6 +528,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="allClearLabel" destination="CHK-85-jH5" id="JWU-dj-vwx"/>
                         <outlet property="calculatorResultLabel" destination="yUT-2c-pm5" id="NKL-eV-evC"/>
                     </connections>
                 </viewController>
