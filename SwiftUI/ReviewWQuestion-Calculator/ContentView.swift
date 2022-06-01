@@ -40,10 +40,15 @@ enum CalculatorButton: String {
     }
 }
     
+enum Operation {
+    case plus, minus, multiply, divide, none
+}
 
 struct ContentView: View {
     
-    var outputValue: String = "0"
+    @State var currentValue: String = "0"
+    @State var nextValue: Int = 0
+    @State var currentOperation: Operation = .none
     
     let digitButton: [[CalculatorButton]] = [
         [.AC, .changeSign, .persent, .divide],
@@ -58,6 +63,7 @@ struct ContentView: View {
     ]
 
     var body: some View {
+        
         //배경을 어떤 방식으로 할 건지도 고민. overlay와 Zstack 고민해보고 정리
 //        Color.black
 //            .ignoresSafeArea()
@@ -70,7 +76,7 @@ struct ContentView: View {
             VStack{
                 HStack{
                     Spacer()
-                    Text("\(outputValue)")
+                    Text("\(currentValue)")
                         .foregroundColor(.white)
                         .font(.system(size: 90))
                 }
@@ -78,21 +84,68 @@ struct ContentView: View {
                 LazyVGrid(columns: columns, spacing: 15) {
                     //rawvalue 공부할 것
                     ForEach(digitButton, id: \.self) { row in
-                        ForEach(row, id: \.self) { row2 in
+                        ForEach(row, id: \.self) { item in
                             Button(action: {
-                                
+                                switch item {
+                                case .plus, .minus, .multiply, .divide, .equal:
+                                    if item == .plus {
+                                        currentOperation = .plus
+                                        nextValue = Int(currentValue) ?? 0
+                                    } else if item == .minus {
+                                        currentOperation = .minus
+                                        nextValue = Int(currentValue) ?? 0
+                                    } else if item == .multiply {
+                                        currentOperation = .multiply
+                                        nextValue = Int(currentValue) ?? 0
+                                    } else if item == .divide {
+                                        currentOperation = .divide
+                                        nextValue = Int(currentValue) ?? 0
+                                    } else if item == .equal {
+                                        let current = Int(currentValue) ?? 0
+                                        let next = nextValue
+                                        switch currentOperation {
+                                        case .plus:
+                                            currentValue = "\(Int(current) + next)"
+                                        case .minus:
+                                            currentValue = "\(Int(current) - next)"
+                                        case .multiply:
+                                            currentValue = "\(Int(current) * next)"
+                                        case .divide:
+                                            currentValue = "\(Int(current) / next)"
+                                        case .none:
+                                            break
+                                        }
+                                    }
+                                    if item != .equal {
+                                        return
+                                    }
+                                    
+                                case .AC:
+                                    currentValue = "0"
+                                case .dot, .changeSign, .persent:
+                                    break
+                                default:
+                                    let number = item.rawValue
+                                    if self.currentValue == "0" {
+                                        currentValue = number
+                                    } else if currentOperation != .none {
+                                        currentValue = number
+                                    } else {
+                                        currentValue = "\(currentValue)\(number)"
+                                    }
+                                }
                             }, label: {
                                 ZStack{
-                                    if row2.rawValue == "0" {
+                                    if item.rawValue == "0" {
                                         RoundedRectangle(cornerRadius: 90)
-                                            .foregroundColor(row2.buttonColor)
+                                            .foregroundColor(item.buttonColor)
                                             .frame(width: 180, alignment: .trailing)
                                             .padding(.leading, 100)
                                     } else {
                                         Circle()
-                                            .foregroundColor(row2.buttonColor)
+                                            .foregroundColor(item.buttonColor)
                                     }
-                                    Text(row2.rawValue)
+                                    Text(item.rawValue)
                                         .foregroundColor(.white)
                                         .font(.system(size: 35))
                                         .frame(width: 80, height: 80, alignment: .center)
@@ -105,6 +158,18 @@ struct ContentView: View {
         }
     }
 }
+
+//
+//func operation(_ operator: String,_ number: Double) -> String {
+//    var outputUpdated = number
+////    if operator == "+" {
+////
+////    }
+////    else if operator == "-" {
+////
+////    }
+//    return String(outputUpdated)
+//}
 
 //
 //private func numberButton(_ number: Int) -> Button<Text>{
