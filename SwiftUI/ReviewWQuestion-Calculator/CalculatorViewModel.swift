@@ -19,8 +19,8 @@ class CalculatorViewModel: ObservableObject {
     
     func input(button: CalculatorButtonManager) {
         switch button {
-        case .allClear: // delete top
-            text = "0"
+        case .allClear:
+            inputAllClear()
         case .reverse: // no
             return
         case .percent: // no
@@ -28,7 +28,7 @@ class CalculatorViewModel: ObservableObject {
         case .one, .two, .three, .four, .five,
                 .six, .seven, .eight, .nine, .zero, .zero2:
             addToText(number: button.label)
-        case .dot:  // dot
+        case .dot:
             addDot()
         case .minus, .plus, .division, .multiplication:
             operate(operation: button.label)
@@ -107,5 +107,15 @@ class CalculatorViewModel: ObservableObject {
         }
         
         text = String(result)
+    }
+    
+    private func inputAllClear() {
+        
+        if text != "0" {
+            text = "0"
+        } else {
+            operands.removeAll()
+            operations.removeAll()
+        }
     }
 }
