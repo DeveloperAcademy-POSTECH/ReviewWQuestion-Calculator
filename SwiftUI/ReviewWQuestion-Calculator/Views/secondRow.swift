@@ -20,12 +20,14 @@ struct secondRow: View {
                 Button(action: {
                     var resultString: String = calculateData.isProcessed()
                     operationData.operationReset()
-                    
-                    if resultString == "0" {
+                    //
+                    if calculateData.iscalculated {
                         resultString = "\(i)"
+                        calculateData.iscalculated = false
                     } else {
                         resultString += "\(i)"
                     }
+                    
                     calculateData.result = Float(resultString) ?? 0
                     
                 }) {

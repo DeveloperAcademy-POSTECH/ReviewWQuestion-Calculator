@@ -17,7 +17,7 @@ class calculateData: ObservableObject {
     // .이 있다고 보여지나(?) 어디서 짤라야하지(?) 닷이 있으면 짜르지말고, 닷이 없으면 짜르자, -> 나눗셈(?)
     
     func calculate(_ a: Float,_ b: Float) -> Float{
-        switch calculSequence.first {
+        switch calculSequence.last {
         case "+":
             return a + b
         case "-":
@@ -25,7 +25,11 @@ class calculateData: ObservableObject {
         case "×":
             return a * b
         case "÷":
+            if b == 0 {
+                return 3.141592
+            } else {
             return a / b
+            }
         default:
             return a + b
         }

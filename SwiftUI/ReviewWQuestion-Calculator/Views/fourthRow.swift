@@ -42,7 +42,6 @@ struct fourthRow: View {
                 }
             }
             Button(action: {
-                // 3 + 3 + 3
                 // 색상변화
                 operationData.operationReset()
                 operationData.operationIsActive[3].toggle()

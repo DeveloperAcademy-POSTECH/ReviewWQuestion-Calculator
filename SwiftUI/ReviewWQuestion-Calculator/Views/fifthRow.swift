@@ -16,8 +16,8 @@ struct fifthRow: View {
     var body: some View {
         HStack(spacing:14) {
             Button(action: {
+                var resultString: String = calculateData.isProcessed()
                 operationData.operationReset()
-                var resultString: String = "\(calculateData.result)"
                 //
                 if calculateData.iscalculated {
                     resultString = "0"
@@ -47,6 +47,7 @@ struct fifthRow: View {
                     .clipShape(Circle())
             }
             Button(action: {
+                
                 operationData.operationReset()
                 calculateData.resultSequence.append(calculateData.result)
                 

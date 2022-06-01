@@ -29,16 +29,20 @@ struct resultView: View {
         // 숫자 키패드 누를 때는 무조건
         var resultString: String = "\(calculateData.result)"
         var totalResult: String = ""
-
-        if calculateData.result == Float(Int(calculateData.result)) {
-            if let index = resultString.firstIndex(of: ".") {
-                totalResult = String(resultString[..<index])
-            }
-            
-//            print(round(calculateData.result))
-//            return floor(calculateData.result)
+        
+        if calculateData.result == 3.141592 {
+            totalResult = "오류"
         } else {
-           totalResult = String(calculateData.result)
+            if calculateData.result == Float(Int(calculateData.result)) {
+                if let index = resultString.firstIndex(of: ".") {
+                    totalResult = String(resultString[..<index])
+                }
+                
+                //            print(round(calculateData.result))
+                //            return floor(calculateData.result)
+            } else {
+                totalResult = String(calculateData.result)
+            }
         }
         return totalResult
     }
