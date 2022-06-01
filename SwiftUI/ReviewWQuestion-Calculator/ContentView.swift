@@ -31,7 +31,9 @@ enum Buttons : String{
         switch self{
         case .clear,.opposite,.percentage:
             return Color.gray
-        case .divide,.multiple,.minus,.plus,.equal:
+        case .equal:
+            return Color.orange
+        case .divide,.multiple,.minus,.plus:
             return Color.orange
         default:
             return Color("btncolor")       }
@@ -94,7 +96,10 @@ struct ContentView: View {
     @State var outputString  : String = "0"
     @State var isTouched = false
     @State var isDot = false
-    @State var isonDot = false
+    @State var clearToken = false
+    @State var numbervalue = ""
+    @State var operationvalue = ""
+    @State var recentvalue = ""
     let buttons : [[Buttons]] = [[.clear,.opposite,.percentage,.divide],[.seven,.eight,.nine,.multiple],[.four,.five,.six,.minus],[.one,.two,.three,.plus],[.zero,.dot,.equal]]
     
     
@@ -122,9 +127,12 @@ struct ContentView: View {
                 ForEach(buttons,id: \.self){row in
                     HStack{
                         ForEach(row,id:\.self){btn in
+                            var toggle = false
                             Button {
                                 btnAction(button: btn)
+                                toggle.toggle()
                             } label: {
+                                
                                 Text(btn.rawValue)
                                     .font(.system(size: 40, weight: .bold))
                                     .frame(width: btn.btnwidth, height: btn.btnheight, alignment: .leading)
@@ -154,28 +162,33 @@ struct ContentView: View {
         }
     }
     func formatDouble(str: String)->String{
-        let number = Double(str)!
-        
-        if ((abs(number) > 999999999 || abs(number)<0.00000001) && number != 0 ){
-            let formatter = NumberFormatter()
-            formatter.numberStyle = .scientific
-            formatter.positiveFormat = "0.#####E0"
-            formatter.exponentSymbol = "e"
-            
-            return formatter.string(from: number as NSNumber)!
-        }
-        else if(number<1000){
-            let numberFormatter = NumberFormatter()
-            
+        if str == "ERROR"{
             return str
         }
         else{
-            let numberFormatter = NumberFormatter()
-            numberFormatter.numberStyle = .decimal
-            numberFormatter.maximumSignificantDigits = 9
-            //numberFormatter.maximumFractionDigits = 9
-            numberFormatter.maximumIntegerDigits = 9
-            return numberFormatter.string(from: number as NSNumber)!
+            let number = Double(str)!
+            print(number)
+            if ((abs(number) > 999999999 || abs(number)<0.00000001) && number != 0 ){
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .scientific
+                formatter.positiveFormat = "0.#####E0"
+                formatter.exponentSymbol = "e"
+                    
+                return formatter.string(from: number as NSNumber)!
+            }
+            else if(number<1000){
+                let numberFormatter = NumberFormatter()
+                
+                return str
+            }
+            else{
+                let numberFormatter = NumberFormatter()
+                numberFormatter.numberStyle = .decimal
+                numberFormatter.maximumSignificantDigits = 9
+                //numberFormatter.maximumFractionDigits = 9
+                numberFormatter.maximumIntegerDigits = 9
+                return numberFormatter.string(from: number as NSNumber)!
+            }
         }
     }
     
@@ -183,21 +196,36 @@ struct ContentView: View {
     func btnAction(button: Buttons){
         switch button{
         case .divide:
-            break
+            numbervalue = outputString
+            operationvalue = "/"
+            outputString = "0"
+            isDot = false
         case .minus:
-            break
+            numbervalue = outputString
+            operationvalue = "-"
+            outputString = "0"
+            isDot = false
         case .plus:
-            break
+            numbervalue = outputString
+            operationvalue = "+"
+            outputString = "0"
+            isDot = false
         case .equal:
-            break
+            isDot = false
+            equal()
         case .multiple:
-            break
+            numbervalue = outputString
+            operationvalue = "x"
+            outputString = "0"
+            isDot = false
         case .percentage:
             break
         case .opposite:
             break
         case .clear:
             outputString = "0"
+            numbervalue = ""
+            operationvalue = ""
             isDot = false
         case .dot:
             if !isDot{
@@ -206,21 +234,57 @@ struct ContentView: View {
             }
             
         default:
+            if clearToken{
+                outputString = "0"
+                clearToken.toggle()
+            }
             if (outputString == "0") {
-                outputString = button.rawValue
+                if(outputString == "0."){
+                    outputString.append(contentsOf: button.rawValue)
+                }
+                else{
+                    outputString = button.rawValue
+                }
+                
+               
             }
             else {
-                if (((abs(Double(outputString + button.rawValue)!.exponent) > 999999999) || (abs(Double(outputString + button.rawValue)!) < 0.00000001)) && (outputString != "0")){
-                    print(outputString)
+                if (((abs(Double(outputString + button.rawValue)!) > 999999999) || (abs(Double(outputString + button.rawValue)!) < 0.00000001)) && (outputString != "0")){
                     break
                 }
                 else{
                     outputString.append(contentsOf: button.rawValue)
-                   
+                    if numbervalue == ""{
+                        numbervalue = button.rawValue
+                        print(button.rawValue)
+                    }
                 }
                 
             }
         }
+    }
+    
+    func equal(){
+        if (operationvalue == "-"){
+            outputString = numberFormatter1.string(from:Double(numbervalue)!-Double(outputString)! as NSNumber)!
+        }
+        else if(operationvalue == "+"){
+            outputString = numberFormatter1.string(from:Double(numbervalue)!+Double(outputString)! as NSNumber)!
+        }
+        else if(operationvalue == "/"){
+            if(outputString == "0"){
+                outputString = "ERROR"
+            }
+            else{
+                let numberFormatter2 = NumberFormatter()
+                numberFormatter2.maximumFractionDigits=2
+                outputString = numberFormatter2.string(from:Double(numbervalue)!/Double(outputString)! as NSNumber)!
+            }
+        }
+        else if(operationvalue == "x"){
+            outputString = numberFormatter1.string(from:Double(numbervalue)!*Double(outputString)! as NSNumber)!
+        }
+        clearToken = true
     }
 }
 
