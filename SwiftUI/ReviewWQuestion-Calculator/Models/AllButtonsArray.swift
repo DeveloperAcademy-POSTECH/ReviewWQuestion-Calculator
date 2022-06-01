@@ -36,6 +36,6 @@ var allButtonsArray:[ButtonModel] = [
     // 5번째 줄
     ButtonModel(name: "0", function: "number", color: Color(.darkGray)),
     ButtonModel(name: "0", function: "number", color: Color(.darkGray)),
-    ButtonModel(name: ".", function: "operator", color: Color(.darkGray)),
+    ButtonModel(name: ".", function: "number", color: Color(.darkGray)),
     ButtonModel(name: "=", function: "operator", color: Color(.systemOrange))
 ]
