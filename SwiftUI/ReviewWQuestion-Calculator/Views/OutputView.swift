@@ -12,7 +12,7 @@ struct OutputView: View {
     let width = UIScreen.main.bounds.width
     
     var body: some View {
-        Text(expression.left ?? "0")
+        Text(expression.display())
 //        Text(expression.output ?? "0")
             .font(.system(size:width * 0.15))
             .multilineTextAlignment(.trailing)

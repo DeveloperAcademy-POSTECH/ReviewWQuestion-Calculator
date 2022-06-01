@@ -78,6 +78,21 @@ class Expression : ObservableObject {
     func calculate() {
         
     }
+    
+    func display() -> String {
+        if let _output = output {
+            return _output
+        }
+        if let _right = right {
+            return _right
+        }
+        if let _left = left {
+            return _left
+        }
+        else {
+            return "0"
+        }
+    }
 }
 
 //class ButtonModel {
