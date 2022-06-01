@@ -99,7 +99,7 @@ struct ContentView: View {
     @State var numbervalue = ""
     @State var operationvalue = ""
     @State var recentvalue = ""
-    
+    @State var clearToggle = false
     let buttons : [[Buttons]] = [[.clear,.opposite,.percentage,.divide],[.seven,.eight,.nine,.multiple],[.four,.five,.six,.minus],[.one,.two,.three,.plus],[.zero,.dot,.equal]]
     
     
@@ -132,17 +132,36 @@ struct ContentView: View {
                                 btnAction(button: btn)
                                 toggle.toggle()
                             } label: {
+                                switch btn {
+                                case .clear:
+                                    Text(clearToggle ? " C" : btn.rawValue)
+                                        .font(.system(size: 40, weight: .bold))
+                                        .frame(width: btn.btnwidth, height: btn.btnheight, alignment: .leading)
+                                        .foregroundColor(btn.foreColor)
+                                        .padding(.leading,btn.leadingpadding)
+                                        .background(btn.bgColor)
+                                        .cornerRadius(100)
+                                        .padding(.horizontal, btn.zeropadding)
+                                        .padding(.vertical, 3.0)
+                                default:
+                                    Text(btn.rawValue)
+                                        .font(.system(size: 40, weight: .bold))
+                                        .frame(width: btn.btnwidth, height: btn.btnheight, alignment: .leading)
+                                        .foregroundColor(btn.foreColor)
+                                        .padding(.leading,btn.leadingpadding)
+                                        .background(btn.bgColor)
+                                        .cornerRadius(100)
+                                        .padding(.horizontal, btn.zeropadding)
+                                        .padding(.vertical, 3.0)
+                                }
                                 
-                                Text(btn.rawValue)
-                                    .font(.system(size: 40, weight: .bold))
-                                    .frame(width: btn.btnwidth, height: btn.btnheight, alignment: .leading)
+                                
+                                
+                                
+                                
+                                
                             }
-                            .foregroundColor(btn.foreColor)
-                            .padding(.leading,btn.leadingpadding)
-                            .background(btn.bgColor)
-                            .cornerRadius(100)
-                            .padding(.horizontal, btn.zeropadding)
-                            .padding(.vertical, 3.0)
+                            
                             
                         }
                     }
@@ -162,10 +181,11 @@ struct ContentView: View {
         }
     }
     func formatDouble(str: String)->String{
-        if str.hasPrefix("0.0"){
-            return str
-        }
-        else if str == "ERROR"{
+        //        if str.hasPrefix("0.0"){
+        //            print("here")
+        //            return str
+        //        }
+        if str == "ERROR"{
             return str
         }
         else if str == "-0"{
@@ -173,7 +193,7 @@ struct ContentView: View {
         }
         else{
             let number = Double(str)!
-            
+            print(number)
             if ((abs(number) > 999999999 || abs(number)<0.00000001) && number != 0 ){
                 let formatter = NumberFormatter()
                 formatter.numberStyle = .scientific
@@ -186,7 +206,7 @@ struct ContentView: View {
             }
             else{
                 
-                print("here")
+                
                 let numberFormatter = NumberFormatter()
                 numberFormatter.numberStyle = .decimal
                 numberFormatter.maximumSignificantDigits = 9
@@ -233,7 +253,9 @@ struct ContentView: View {
             recentvalue = ""
             isDot = false
         case .percentage:
-            break
+            let numberFormatter2 = NumberFormatter()
+            numberFormatter2.maximumFractionDigits=160
+            outputString = numberFormatter2.string(from: Double(outputString)! * 0.01 as NSNumber)!
         case .opposite:
             if outputString.hasPrefix("-"){
                 outputString.remove(at: outputString.startIndex)
@@ -247,6 +269,7 @@ struct ContentView: View {
             operationvalue = ""
             recentvalue = ""
             isDot = false
+            clearToggle = false
         case .dot:
             if !isDot{
                 isDot = true
@@ -259,8 +282,8 @@ struct ContentView: View {
                 clearToken.toggle()
             }
             if (outputString == "0") {
-                    outputString = button.rawValue
-                    
+                outputString = button.rawValue
+                
             }
             else {
                 if (((abs(Double(outputString + button.rawValue)!) > 999999999)) && (outputString != "0")){
@@ -272,6 +295,7 @@ struct ContentView: View {
                     
                 }
             }
+            clearToggle = true
         }
     }
     
@@ -281,12 +305,12 @@ struct ContentView: View {
                 outputString = "0"
             }
             else{
-            var savestring = outputString
-            outputString = numberFormatter1.string(from:Double(recentvalue == "" ? numbervalue : outputString)!-Double(recentvalue == "" ? outputString : recentvalue)! as NSNumber)!
-            numbervalue = outputString
-            if recentvalue == ""{
-                recentvalue = savestring
-            }
+                var savestring = outputString
+                outputString = numberFormatter1.string(from:Double(recentvalue == "" ? numbervalue : outputString)!-Double(recentvalue == "" ? outputString : recentvalue)! as NSNumber)!
+                numbervalue = outputString
+                if recentvalue == ""{
+                    recentvalue = savestring
+                }
             }
         }
         else if(operationvalue == "+"){
@@ -294,12 +318,12 @@ struct ContentView: View {
                 outputString = "0"
             }
             else{
-            var savestring = outputString
-            outputString = numberFormatter1.string(from:Double(recentvalue == "" ? numbervalue : outputString)!+Double(recentvalue == "" ? outputString : recentvalue)! as NSNumber)!
-            numbervalue = outputString
-            if recentvalue == ""{
-                recentvalue = savestring
-            }
+                var savestring = outputString
+                outputString = numberFormatter1.string(from:Double(recentvalue == "" ? numbervalue : outputString)!+Double(recentvalue == "" ? outputString : recentvalue)! as NSNumber)!
+                numbervalue = outputString
+                if recentvalue == ""{
+                    recentvalue = savestring
+                }
             }
         }
         else if(operationvalue == "/"){
@@ -325,15 +349,15 @@ struct ContentView: View {
                 outputString = "0"
             }
             else{
-            var savestring = outputString
-            outputString = numberFormatter1.string(from:Double(recentvalue == "" ? numbervalue : outputString)!*Double(recentvalue == "" ? outputString : recentvalue)! as NSNumber)!
-            numbervalue = outputString
-            if recentvalue == ""{
-                recentvalue = savestring
-            }
+                var savestring = outputString
+                outputString = numberFormatter1.string(from:Double(recentvalue == "" ? numbervalue : outputString)!*Double(recentvalue == "" ? outputString : recentvalue)! as NSNumber)!
+                numbervalue = outputString
+                if recentvalue == ""{
+                    recentvalue = savestring
+                }
             }}
         clearToken = true
-    
+        
     }
 }
 
