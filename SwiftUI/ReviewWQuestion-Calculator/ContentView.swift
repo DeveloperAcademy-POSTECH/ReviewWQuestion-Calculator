@@ -63,16 +63,9 @@ struct ContentView: View {
     ]
 
     var body: some View {
-        
-        //배경을 어떤 방식으로 할 건지도 고민. overlay와 Zstack 고민해보고 정리
-//        Color.black
-//            .ignoresSafeArea()
         ZStack{
             Color.black
                 .ignoresSafeArea()
-            /*Referencing initializer 'init(_:content:)' on 'ForEach' requires that 'CalculatorButton' conform to 'Identifiable'
-             위 오류와 id를 적어야 하는 이유는 뭘까?
-             */
             VStack{
                 HStack{
                     Spacer()
@@ -83,6 +76,9 @@ struct ContentView: View {
                 .padding(20)
                 LazyVGrid(columns: columns, spacing: 15) {
                     //rawvalue 공부할 것
+                    
+                    // 데이터가 각자를 식별할 수 있는 무언가를 주기 위해 id를 생성
+                    // id를 self로 줌으로써 ForEach 문 내에서 각 item의 id를 정해주도록 함. 이렇게 하면 Array 내부 요소가 가지고 있는 값 자체를 id로 가지게 해줌
                     ForEach(digitButton, id: \.self) { row in
                         ForEach(row, id: \.self) { item in
                             Button(action: {
