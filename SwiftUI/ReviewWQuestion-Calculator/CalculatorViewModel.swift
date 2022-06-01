@@ -44,10 +44,12 @@ class CalculatorViewModel: ObservableObject {
             operations.append(tempOperation)
             text = "0"
         }
-        if text == "0" {
-            text = number
-        } else {
-            text += number
+        if checkMaximum() {
+            if text == "0" {
+                text = number
+            } else {
+                text += number
+            }
         }
     }
     
@@ -58,10 +60,12 @@ class CalculatorViewModel: ObservableObject {
             operations.append(tempOperation)
             text = "0."
         }
-        if text.contains(".") {
-            
-        } else {
-            text += "."
+        if checkMaximum() {
+            if text.contains(".") {
+                
+            } else {
+                text += "."
+            }
         }
     }
     
@@ -121,5 +125,17 @@ class CalculatorViewModel: ObservableObject {
             operands.removeAll()
             operations.removeAll()
         }
+    }
+    
+    private func checkMaximum() -> Bool {
+        var count = 0
+        
+        for index in text {
+            if index >= "0" && index <= "9" {
+                count += 1
+            }
+        }
+        
+        return count != 9
     }
 }
