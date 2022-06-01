@@ -18,10 +18,12 @@ struct ContentView: View {
                 
                 HStack{
                     Spacer()
-                    Text("\(resultNumberClass.resultNumber)")
+//                    Text(String(format:"%.f", Double(resultNumberClass.calculatedNumber)!))
+                    Text(resultNumberClass.calculatedNumber)
                         .foregroundColor(.white)
+                        .minimumScaleFactor(0.5)
                         .lineLimit(1)
-                        .font(resultNumberClass.resultNumber/1000 < 5 ? .system(size: 90) : .system(size: 50))
+                        .font(.system(size: 90))
                         .padding()
                 }
                 
