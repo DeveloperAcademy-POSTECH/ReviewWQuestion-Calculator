@@ -27,14 +27,14 @@ class ViewController: UIViewController {
     var currentOperation: Operation = .unknown
     // 아무 연산도 하지 않는 상태
     
+    // 연산자를 저장하는 배열
     var operatorStack: [Operation] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         calculatorResultLabel.adjustsFontSizeToFitWidth = true
+        acTransition()
     }
-    
-
     
     @IBAction func tapNumberButton(_ sender: UIButton) {
         acTransition()
@@ -47,9 +47,10 @@ class ViewController: UIViewController {
         calculatorResultLabel.text = numberFormatter(displayNumber)
     }
     
-    // 이해가 필요한 코드
+    // 세 자리 수마다 콤마를 찍어준다
     func numberFormatter(_ number: String) -> String? {
         guard let newNumber = Double(number) else {return nil}
+        // 반환 타입이 옵셔널이어야 오류가 뜨지 않는다.
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         
@@ -126,6 +127,8 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    // 연산자를 탭 하는 경우
     @IBAction func pressAdd(_ sender: UIButton) {
         operation(.add)
     }
@@ -143,17 +146,22 @@ class ViewController: UIViewController {
     }
     
     @IBAction func pressEqual(_ sender: UIButton) {
-        if !secondNumber.isEmpty {
-            operatorStack.append(currentOperation)
+        if !secondNumber.isEmpty { // 두번째 피연산자가 있는 경우
+            // operatorStack.append(currentOperation)
             operation(currentOperation)
             
             displayNumber = result
-            guard let commaResult = numberFormatter(displayNumber) else {return}
-            if commaResult.contains(".") {
-                //guard let roundedDouble = roundDouble(commaResult) else {return}
-                calculatorResultLabel.text = roundDouble(commaResult)
+            
+            if displayNumber == "오류" {
+                calculatorResultLabel.text = "오류"
             } else {
-                calculatorResultLabel.text = commaResult
+                guard let commaResult = numberFormatter(displayNumber) else {return}
+                if commaResult.contains(".") {
+                    //guard let roundedDouble = roundDouble(commaResult) else {return}
+                    calculatorResultLabel.text = roundDouble(commaResult)
+                } else {
+                    calculatorResultLabel.text = commaResult
+                }
             }
             
         } else {
@@ -163,7 +171,7 @@ class ViewController: UIViewController {
     
     @IBAction func pressDot(_ sender: UIButton) {
         displayNumber += displayNumber.isEmpty ? "0." : "."
-        calculatorResultLabel.text = displayNumber
+        calculatorResultLabel.text = numberFormatter(displayNumber)
     }
     
     @IBAction func pressClearButton(_ sender: UIButton) {
@@ -172,8 +180,8 @@ class ViewController: UIViewController {
         secondNumber.removeAll()
         currentOperation = .unknown
         calculatorResultLabel.text = "0"
-        acTransition()
     }
     
 }
+
 
