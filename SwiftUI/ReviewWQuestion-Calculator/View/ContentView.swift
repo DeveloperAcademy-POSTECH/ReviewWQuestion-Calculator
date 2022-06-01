@@ -25,10 +25,17 @@ struct ContentView: View {
 //                    .font(.system(size: 90))
 //                    .minimumScaleFactor(0.5) // 폰트 크기가 절반까지 자동으로 줄어듬
 //                    .lineLimit(1) // 한줄로 출력
-                Text(result(value: calcResult))
-                    .font(.system(size: 90))
-                    .minimumScaleFactor(0.5) // 폰트 크기가 절반까지 자동으로 줄어듬
-                    .lineLimit(1) // 한줄로 출력
+                if calcResult != "오류" {
+                    Text(result(value: calcResult))
+                        .font(.system(size: 90))
+                        .minimumScaleFactor(0.5) // 폰트 크기가 절반까지 자동으로 줄어듬
+                        .lineLimit(1) // 한줄로 출력
+                } else {
+                    Text("오류")
+                        .font(.system(size: 90))
+                        .minimumScaleFactor(0.5) // 폰트 크기가 절반까지 자동으로 줄어듬
+                        .lineLimit(1) // 한줄로 출력
+                }
 
             }
             .padding(.init(top: 0, leading: 20, bottom: 0, trailing: 20 ))
@@ -111,6 +118,9 @@ func postfix(arr: [String]) -> String{
                         case "×":
                             numStack.push(String(Double(first)! * Double(second)!))
                         case "÷":
+                            if second == "0" {
+                                return "오류"
+                            }
                             numStack.push(String(Double(first)! / Double(second)!))
                         default:
                             print("default")
@@ -125,7 +135,7 @@ func postfix(arr: [String]) -> String{
                     }
                 }
             }
-        case "1"..."999999999":
+        case "0"..."999999999":
             numStack.push(arr[i])
             print("push : \(arr[i])")
         default:
@@ -144,6 +154,9 @@ func postfix(arr: [String]) -> String{
         case "×":
             numStack.push(String(Double(first)! * Double(second)!))
         case "÷":
+            if second == "0" {
+                return "오류"
+            }
             numStack.push(String(Double(first)! / Double(second)!))
         default:
             print("default")
