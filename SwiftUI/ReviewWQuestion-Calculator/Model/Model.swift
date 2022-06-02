@@ -16,7 +16,15 @@ class Expression : ObservableObject {
     
     func append_left(_ num: String) {
         if left != nil {
-            left? += num
+            if left == "0" {
+                left = num
+            }
+            else {
+                left? += num
+            }
+        }
+        else if num == "." {
+            left = ".0"
         }
         else {
             left = num
@@ -25,26 +33,30 @@ class Expression : ObservableObject {
     
     func append_right(_ num: String) {
         if right != nil {
-            right? += num
+            if right == "0" {
+                right = num
+            }
+            else {
+                right? += num
+            }
+        }
+        else if num == "." {
+            right = ".0"
         }
         else {
             right = num
         }
     }
     
-    func update_left(_ _oper: String) {
-        doOperate(_oper)
-    }
-    
     func clear() {
         if output != nil {
-            output = nil
+            output = "0"
         }
         else if right != nil {
-            right = nil
+            right = "0"
         }
         else {
-            left = nil
+            left = "0"
         }
     }
     
@@ -56,27 +68,22 @@ class Expression : ObservableObject {
         store = nil
     }
     
-    func doOperate(_ _oper: String) {
+    func doOperate(_ _oper: String) -> String {
+        let _str: String
+        
         switch _oper {
         case "+":
-            left = String(Double(left!)! + Double(right!)!)
+            _str = String(Double(left!)! + Double(right!)!)
         case "÷":
-            left = String(Double(left!)! / Double(right!)!)
+            _str = String(Double(left!)! / Double(right!)!)
         case "×":
-            left = String(Double(left!)! * Double(right!)!)
+            _str = String(Double(left!)! * Double(right!)!)
         case "−":
-            left = String(Double(left!)! - Double(right!)!)
-        case "=":
-            doOperate(oper!)
+            _str = String(Double(left!)! - Double(right!)!)
         default:
-            ()
+            _str = ""
         }
-        right = nil
-        
-    }
-    
-    func calculate() {
-        
+        return _str
     }
     
     func display() -> String {
