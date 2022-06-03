@@ -41,7 +41,7 @@ import UIKit
 
 
 extension String {
-    // <,> 기호 찍는 함수
+// MARK: <,> 기호 찍는 함수
     func comma() -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal

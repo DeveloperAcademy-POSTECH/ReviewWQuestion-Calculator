@@ -27,8 +27,8 @@ class MainViewController: UIViewController {
     @IBOutlet var num9Button: UIButton!
     @IBOutlet var resultLabel: UILabel!
     
-    var arithmeticOperation = ArithmeticOperation()
-    var output = Output()
+    private var arithmeticOperation = ArithmeticOperation()
+    private var output = Output()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,25 +39,27 @@ class MainViewController: UIViewController {
         setButtonCornerRadius()
         
         func setButtonCornerRadius() {
-            ACButton.cornerRadius = ACButton.layer.frame.width * 0.5
-            plusMinusButton.cornerRadius = plusMinusButton.layer.frame.width * 0.5
-            percentButton.cornerRadius = percentButton.layer.frame.width * 0.5
-            divideButton.cornerRadius = divideButton.layer.frame.width * 0.5
-            multiplyButton.cornerRadius = multiplyButton.layer.frame.width * 0.5
-            minusButton.cornerRadius = minusButton.layer.frame.width * 0.5
-            plusButton.cornerRadius = plusButton.layer.frame.width * 0.5
-            equalButton.cornerRadius = equalButton.layer.frame.width * 0.5
-            dotButton.cornerRadius = dotButton.layer.frame.width * 0.5
-            num0Button.cornerRadius = num0Button.layer.frame.width * 0.25
-            num1Button.cornerRadius = num1Button.layer.frame.width * 0.5
-            num2Button.cornerRadius = num2Button.layer.frame.width * 0.5
-            num3Button.cornerRadius = num3Button.layer.frame.width * 0.5
-            num4Button.cornerRadius = num4Button.layer.frame.width * 0.5
-            num5Button.cornerRadius = num5Button.layer.frame.width * 0.5
-            num6Button.cornerRadius = num6Button.layer.frame.width * 0.5
-            num7Button.cornerRadius = num7Button.layer.frame.width * 0.5
-            num8Button.cornerRadius = num8Button.layer.frame.width * 0.5
-            num9Button.cornerRadius = num9Button.layer.frame.width * 0.5
+            DispatchQueue.main.async {
+                self.ACButton.cornerRadius = self.ACButton.layer.frame.width * 0.5
+                self.plusMinusButton.cornerRadius = self.plusMinusButton.layer.frame.width * 0.5
+                self.percentButton.cornerRadius = self.percentButton.layer.frame.width * 0.5
+                self.divideButton.cornerRadius = self.divideButton.layer.frame.width * 0.5
+                self.multiplyButton.cornerRadius = self.multiplyButton.layer.frame.width * 0.5
+                self.minusButton.cornerRadius = self.minusButton.layer.frame.width * 0.5
+                self.plusButton.cornerRadius = self.plusButton.layer.frame.width * 0.5
+                self.equalButton.cornerRadius = self.equalButton.layer.frame.width * 0.5
+                self.dotButton.cornerRadius = self.dotButton.layer.frame.width * 0.5
+                self.num0Button.cornerRadius = self.num0Button.layer.frame.width * 0.25
+                self.num1Button.cornerRadius = self.num1Button.layer.frame.width * 0.5
+                self.num2Button.cornerRadius = self.num2Button.layer.frame.width * 0.5
+                self.num3Button.cornerRadius = self.num3Button.layer.frame.width * 0.5
+                self.num4Button.cornerRadius = self.num4Button.layer.frame.width * 0.5
+                self.num5Button.cornerRadius = self.num5Button.layer.frame.width * 0.5
+                self.num6Button.cornerRadius = self.num6Button.layer.frame.width * 0.5
+                self.num7Button.cornerRadius = self.num7Button.layer.frame.width * 0.5
+                self.num8Button.cornerRadius = self.num8Button.layer.frame.width * 0.5
+                self.num9Button.cornerRadius = self.num9Button.layer.frame.width * 0.5
+            }
         }
     }
     
@@ -75,7 +77,7 @@ class MainViewController: UIViewController {
             return
         }
         
-        let num = self.output.getOutputAsNum()
+        let num = self.output.getOutputAsNumber()
         self.arithmeticOperation.inputAndOperateNum(num)
         updateLabel()
 
@@ -83,9 +85,9 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func onTapPlusButton(_ sender: Any) {
-        if self.arithmeticOperation.operation == .plus { return }
+        guard self.arithmeticOperation.operation != .plus else { return }
         
-        let num = self.output.getOutputAsNum()
+        let num = self.output.getOutputAsNumber()
         self.arithmeticOperation.inputAndOperateNum(num)
         self.arithmeticOperation.inputOperation(.plus)
 
@@ -93,9 +95,9 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func onTapMinusButton(_ sender: Any) {
-        if self.arithmeticOperation.operation == .minus { return }
+        guard self.arithmeticOperation.operation != .minus else { return }
 
-        let num = self.output.getOutputAsNum()
+        let num = self.output.getOutputAsNumber()
         self.arithmeticOperation.inputAndOperateNum(num)
         self.arithmeticOperation.inputOperation(.minus)
 
@@ -103,9 +105,9 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func onTapMultiplyButton(_ sender: Any) {
-        if self.arithmeticOperation.operation == .multiply { return }
+        guard self.arithmeticOperation.operation != .multiply else { return }
 
-        let num = self.output.getOutputAsNum()
+        let num = self.output.getOutputAsNumber()
         self.arithmeticOperation.inputAndOperateNum(num)
         self.arithmeticOperation.inputOperation(.multiply)
 
@@ -113,9 +115,9 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func onTapDivideButton(_ sender: Any) {
-        if self.arithmeticOperation.operation == .divide { return }
+        guard self.arithmeticOperation.operation != .divide else { return }
 
-        let num = self.output.getOutputAsNum()
+        let num = self.output.getOutputAsNumber()
         self.arithmeticOperation.inputAndOperateNum(num)
         self.arithmeticOperation.inputOperation(.divide)
 
@@ -159,7 +161,6 @@ class MainViewController: UIViewController {
         }
         self.output.textInput("2")
         resultLabel.text = self.output.getOutputAsText()
-
     }
     
     @IBAction func onTapNum3Button(_ sender: Any) {
@@ -169,7 +170,6 @@ class MainViewController: UIViewController {
         }
         self.output.textInput("3")
         resultLabel.text = self.output.getOutputAsText()
-
     }
     
     @IBAction func onTapNum4Button(_ sender: Any) {
@@ -179,7 +179,6 @@ class MainViewController: UIViewController {
         }
         self.output.textInput("4")
         resultLabel.text = self.output.getOutputAsText()
-
     }
     
     @IBAction func onTapNum5Button(_ sender: Any) {
@@ -189,7 +188,6 @@ class MainViewController: UIViewController {
         }
         self.output.textInput("5")
         resultLabel.text = self.output.getOutputAsText()
-
     }
     
     @IBAction func onTapNum6Button(_ sender: Any) {
@@ -199,7 +197,6 @@ class MainViewController: UIViewController {
         }
         self.output.textInput("6")
         resultLabel.text = self.output.getOutputAsText()
-
     }
     
     @IBAction func onTapNum7Button(_ sender: Any) {
@@ -209,7 +206,6 @@ class MainViewController: UIViewController {
         }
         self.output.textInput("7")
         resultLabel.text = self.output.getOutputAsText()
-
     }
     
     @IBAction func onTapNum8Button(_ sender: Any) {
@@ -219,7 +215,6 @@ class MainViewController: UIViewController {
         }
         self.output.textInput("8")
         resultLabel.text = self.output.getOutputAsText()
-
     }
     
     @IBAction func onTapNum9Button(_ sender: Any) {
@@ -229,7 +224,6 @@ class MainViewController: UIViewController {
         }
         self.output.textInput("9")
         resultLabel.text = self.output.getOutputAsText()
-
     }
     
     @IBAction func onTapDotButton(_ sender: Any) {
@@ -240,10 +234,10 @@ class MainViewController: UIViewController {
         resultLabel.text = self.output.getOutputAsText()
     }
     
-    // 결과값 출력
+// MARK: 결과값 출력
     func updateLabel() {
         let resultNum = self.arithmeticOperation.leftPort
-        self.output.updateWithNum(resultNum)
+        self.output.updateOutputWithNumber(resultNum)
         resultLabel.text = self.output.getOutputAsText()
 
         self.output = Output()

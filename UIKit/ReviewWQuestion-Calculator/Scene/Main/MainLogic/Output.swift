@@ -12,8 +12,9 @@ struct Output {
     var decimalPart: String?
     var dot: Bool = false
     
-    // class를 특정 숫자로 초기화
-    mutating func updateWithNum(_ num: Double) {
+   
+// MARK: class를 특정 숫자로 초기화
+    mutating func updateOutputWithNumber(_ num: Double) {
         guard num > floor(num) else {
             self.integerPart = Int(num).description
             return
@@ -27,24 +28,9 @@ struct Output {
         dot = true
         let startIndex: String.Index = decimalText.index(decimalText.startIndex, offsetBy: 2)
         self.decimalPart = String(decimalText[startIndex...])
-        
-//        if num > floor(num) {
-//            let integerNum = floor(num)
-//            let integerText = Int(integerNum).description
-//            let decimalNum = round( (num - integerNum) * 100) / 100 // 반올림 + 소수점 아래 2자리
-//            let decimalText = decimalNum.description
-//
-//            self.integerPart = integerText
-//            dot = true
-//            let startIndex: String.Index = decimalText.index(decimalText.startIndex, offsetBy: 2)
-//            self.decimalPart = String(decimalText[startIndex...])
-//
-//        } else {
-//            self.integerPart = Int(num).description
-//        }
     }
     
-    mutating func getOutputAsNum() -> Double {
+    mutating func getOutputAsNumber() -> Double {
         guard dot == true else {
             return Double(integerPart) ?? 0
         }
@@ -55,19 +41,6 @@ struct Output {
         guard let decimalPart = self.decimalPart else { return Double(integerPart) ?? 0}
         let outputText = integerPart + "." + decimalPart
         return Double(outputText) ?? 0
-        
-//        if dot == true {
-//            // 아무것도 입력안된 상태에 "." 누를경우 소수로 전환
-//            if self.integerPart == "" {
-//                self.integerPart = "0"
-//            }
-//            guard let decimalPart = self.decimalPart else { return Double(integerPart) ?? 0}
-//            let outputText = integerPart + "." + decimalPart
-//            return Double(outputText) ?? 0
-//
-//        } else {
-//            return Double(integerPart) ?? 0
-//        }
     }
 
     mutating func getOutputAsText() -> String {
@@ -85,26 +58,9 @@ struct Output {
         guard let decimalPart = self.decimalPart else { return outputText }
         outputText += decimalPart
         return outputText
-        
-//        if dot == true {
-//            // 아무것도 입력안된 상태에 "." 누를경우 소수로 전환
-//            if self.integerPart == "" {
-//                self.integerPart = "0"
-//            }
-//
-//            let resultIntegerPart = integerPart.comma()
-//            var outputText = resultIntegerPart + "."
-//            guard let decimalPart = self.decimalPart else { return outputText }
-//            outputText += decimalPart
-//            return outputText
-//
-//        } else {
-//            let resultIntegerPart = integerPart.comma()
-//            return resultIntegerPart
-//        }
     }
     
-    // Text 입력
+// MARK: Text 입력 처리
     mutating func textInput(_ input: String) {
         guard dot == true else {
             integerPart += input
@@ -115,15 +71,5 @@ struct Output {
             return
         }
         self.decimalPart! += input
-        
-//        if dot == true {
-//            guard var _ = self.decimalPart else {
-//                self.decimalPart = input
-//                return
-//            }
-//            self.decimalPart! += input
-//        } else {
-//            integerPart += input
-//        }
     }
 }
