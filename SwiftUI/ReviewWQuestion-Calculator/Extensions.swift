@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 extension Color {
-    //Todo : enum으로 변경
+    // Todo : enum으로 변경
     static let digitButton = Color(red: 51/255, green: 51/255, blue: 51/255)
     static let operatorButton = Color(red: 254/255, green: 159/255, blue: 10/255)
     static let funcButton = Color(red: 165/255, green: 165/255, blue: 165/255)

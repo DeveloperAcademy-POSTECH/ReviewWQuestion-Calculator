@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct InputView: View {
-   
+    @EnvironmentObject var expression: Expression
+
     var body: some View {
         VStack {
             HStack {
-                ButtonView(color: Color.funcButton, button: "C")
+                expression.left == "0" || expression.left == nil && expression.right == "0" || expression.left == nil
+                ? ButtonView(color: Color.funcButton, button: "AC")
+                : ButtonView(color: Color.funcButton, button: "C")
                 ButtonView(color: Color.funcButton, button: "±")
                 ButtonView(color: Color.funcButton, button: "%")
                 ButtonView(color: Color.operatorButton, button: "÷")
@@ -44,9 +47,3 @@ struct InputView: View {
         }
     }
 }
-
-//struct InputView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        InputView().background(.black)
-//    }
-//}

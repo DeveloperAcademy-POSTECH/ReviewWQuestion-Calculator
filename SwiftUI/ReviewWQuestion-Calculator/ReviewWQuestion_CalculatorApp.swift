@@ -6,7 +6,7 @@
 import SwiftUI
 
 @main
-struct ReviewWQuestion_CalculatorApp: App {
+struct CalculatorApp: App {
     var body: some Scene {
         WindowGroup {
             MainView().background(.black)
