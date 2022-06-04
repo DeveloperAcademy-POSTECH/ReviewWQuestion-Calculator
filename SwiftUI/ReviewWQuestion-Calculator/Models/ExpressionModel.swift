@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class Expression: ObservableObject {
+class ExpressionModel: ObservableObject {
     @Published var left: String?
     @Published var oper: String?
     @Published var right: String?

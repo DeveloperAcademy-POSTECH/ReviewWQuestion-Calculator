@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ButtonView: View {
-    @EnvironmentObject var expression: Expression
+    @EnvironmentObject var expression: ExpressionModel
     var color: Color
     var button: String
 

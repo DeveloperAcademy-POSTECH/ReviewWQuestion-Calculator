@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OutputView: View {
-    @EnvironmentObject var expression: Expression
+    @EnvironmentObject var expression: ExpressionModel
     let width = UIScreen.main.bounds.width
 
     var body: some View {

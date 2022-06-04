@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject var expression = Expression()
+    @StateObject var expression = ExpressionModel()
 
     var body: some View {
         GeometryReader { geo in

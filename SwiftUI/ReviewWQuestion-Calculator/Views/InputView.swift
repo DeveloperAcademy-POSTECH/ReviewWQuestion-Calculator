@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct InputView: View {
-    @EnvironmentObject var expression: Expression
+    @EnvironmentObject var expression: ExpressionModel
 
     var body: some View {
         VStack {
