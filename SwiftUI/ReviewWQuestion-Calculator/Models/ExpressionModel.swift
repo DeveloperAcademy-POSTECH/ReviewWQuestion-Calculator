@@ -12,6 +12,7 @@ class ExpressionModel: ObservableObject {
     @Published var oper: String?
     @Published var right: String?
     @Published var output: String?
+    let error: String = "오류"
 
     func append_left(_ num: String) {
         if left != nil {
@@ -77,16 +78,23 @@ class ExpressionModel: ObservableObject {
     }
 
     func display() -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 2
+        var result: Double = 0
+
         if let output = output {
-            return output
-        }
-        if let right = right {
-            return right
-        }
-        if let left = left {
-            return left
+            result = Double(output)!
+        } else if let right = right {
+            result = Double(right)!
+        } else if let left = left {
+            result = Double(left)!
         } else {
-            return "0"
+            result = 0
         }
+        guard let result = numberFormatter.string(for: result) else {
+            return error
+        }
+        return result
     }
 }
