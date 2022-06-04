@@ -66,6 +66,9 @@ class ExpressionModel: ObservableObject {
         case "+":
             str = String(Double(left!)! + Double(right!)!)
         case "÷":
+            guard right != "0" else {
+                return error
+            }
             str = String(Double(left!)! / Double(right!)!)
         case "×":
             str = String(Double(left!)! * Double(right!)!)
@@ -84,10 +87,19 @@ class ExpressionModel: ObservableObject {
         var result: Double = 0
 
         if let output = output {
+            guard output != error else {
+                return error
+            }
             result = Double(output)!
         } else if let right = right {
+            guard right != error else {
+                return error
+            }
             result = Double(right)!
         } else if let left = left {
+            guard left != error else {
+                return error
+            }
             result = Double(left)!
         } else {
             result = 0
