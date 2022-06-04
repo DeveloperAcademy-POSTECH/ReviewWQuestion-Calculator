@@ -87,20 +87,20 @@ class ExpressionModel: ObservableObject {
         var result: Double = 0
 
         if let output = output {
-            guard output != error else {
+            guard let output = Double(output) else {
                 return error
             }
-            result = Double(output)!
+            result = output
         } else if let right = right {
-            guard right != error else {
+            guard let right = Double(right) else {
                 return error
             }
-            result = Double(right)!
+            result = right
         } else if let left = left {
-            guard left != error else {
+            guard let left = Double(left) else {
                 return error
             }
-            result = Double(left)!
+            result = left
         } else {
             result = 0
         }
