@@ -85,18 +85,28 @@ class ExpressionModel: ObservableObject {
         numberFormatter.numberStyle = .decimal
         numberFormatter.maximumFractionDigits = 2
         var result: Double = 0
+        var endWithDot = false
 
         if let output = output {
+            if output.description.last == "." {
+                endWithDot = true
+            }
             guard let output = Double(output) else {
                 return error
             }
             result = output
         } else if let right = right {
+            if right.description.last == "." {
+                endWithDot = true
+            }
             guard let right = Double(right) else {
                 return error
             }
             result = right
         } else if let left = left {
+            if left.description.last == "." {
+                endWithDot = true
+            }
             guard let left = Double(left) else {
                 return error
             }
@@ -107,6 +117,6 @@ class ExpressionModel: ObservableObject {
         guard let result = numberFormatter.string(for: result) else {
             return error
         }
-        return result
+        return result + (endWithDot ? "." : "")
     }
 }
