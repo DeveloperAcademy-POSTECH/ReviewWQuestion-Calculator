@@ -10,14 +10,15 @@ import SwiftUI
 class CalculatorViewModel: ObservableObject {
     @Published var text: String = "0"
     
+    let zero: String = "0"
     var operands: [Double] = []
     var tempOperand: Double = 0
     var operations: [String] = []
     var tempOperation = ""
     var isOperation = false
-    // display Flag
+    var isEqual = false
     
-    func input(button: CalculatorButtonManager) {
+    func input(button: CalculatorButtonType) {
         switch button {
         case .allClear:
             inputAllClear()
@@ -27,7 +28,7 @@ class CalculatorViewModel: ObservableObject {
             return
         case .one, .two, .three, .four, .five,
                 .six, .seven, .eight, .nine, .zero, .zero2:
-            addToText(number: button.label)
+            addNumberText(button.label)
         case .dot:
             addDot()
         case .minus, .plus, .division, .multiplication:
@@ -37,30 +38,38 @@ class CalculatorViewModel: ObservableObject {
         }
     }
     
-    private func addToText(number: String) {
+    private func addNumberText(_ numberText: String) {
+        if isEqual {
+            isEqual = false
+            text = zero
+        }
         if isOperation {
             isOperation = false
             operands.append(tempOperand)
             operations.append(tempOperation)
-            text = "0"
+            text = zero
         }
-        if checkMaximum() {
-            if text == "0" {
-                text = number
+        if checkNumberCount() {
+            if text == zero {
+                text = numberText
             } else {
-                text += number
+                text += numberText
             }
         }
     }
     
     private func addDot() {
+        if isEqual {
+            isEqual = false
+            text = "0."
+        }
         if isOperation {
             isOperation = false
             operands.append(tempOperand)
             operations.append(tempOperation)
             text = "0."
         }
-        if checkMaximum() {
+        if checkNumberCount() {
             if text.contains(".") {
                 
             } else {
@@ -70,33 +79,27 @@ class CalculatorViewModel: ObservableObject {
     }
     
     private func operate(operation: String) {
-        
-        /*************** 나중에 업데이트할 내용
-            연산 버튼 눌렀을 때 이전에 대한 처리(처리할 것이 있는가)
-          --> 있다면(operands에 숫자가 있고 operations에 연산기호가 있다)
-               현재 text를 temp operand에 넣고 operands 팝한거랑 오퍼레이션 팝한거 연산
-          --> 없다면 temp operand에 현재 text만 넣기
-         */
-        
         isOperation = true
         switch operation {
         case "plus", "minus" :
             tempOperation = operation //plus, minus 이전 연산은 무조건 처리
-            tempOperand = Double(text)!
+            guard let temp = Double(text) else { return }
+            tempOperand = temp
             // mul, div 이전 연
         case "multiply", "divide" :
             tempOperation = operation
-            tempOperand = Double(text)!
+            guard let temp = Double(text) else { return }
+            tempOperand = temp
         default : return
         }
     }
     
     private func inputEqual() -> String {
-        isOperation = true
         var result = Double(text)!
         if result == 0 && tempOperation == "divide" {
             return "Error"
         }
+        isEqual = true
         while !operations.isEmpty {
             tempOperand = operands.popLast()!
             tempOperation = operations.popLast()!
@@ -113,21 +116,21 @@ class CalculatorViewModel: ObservableObject {
             default: return "Error"
             }
         }
-        
-        return result != Double(Int(result)) ? String(result) : String(Int(result))
+        return result != Double(Int(result)) ? "\(result)" : "\(Int(result))"
     }
     
     private func inputAllClear() {
         
-        if text != "0" {
-            text = "0"
+        isOperation = false
+        if text != zero {
+            text = zero
         } else {
             operands.removeAll()
             operations.removeAll()
         }
     }
     
-    private func checkMaximum() -> Bool {
+    private func checkNumberCount() -> Bool {
         var count = 0
         
         for index in text {
@@ -135,7 +138,6 @@ class CalculatorViewModel: ObservableObject {
                 count += 1
             }
         }
-        
         return count != 9
     }
 }

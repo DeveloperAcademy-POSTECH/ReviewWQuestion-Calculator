@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum CalculatorButtonManager: CaseIterable {
+enum CalculatorButtonType: CaseIterable {
     
     case allClear, reverse, percent, division
     case seven,eight, nine, multiplication

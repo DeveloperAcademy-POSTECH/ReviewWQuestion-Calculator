@@ -10,12 +10,12 @@ import SwiftUI
 struct CalculatorButtonView: View {
    
     var columns: [GridItem] = .init(repeating: GridItem(.flexible()), count: 4)
-    @ObservedObject var vm: CalculatorViewModel
+    @ObservedObject var calculatorViewModel: CalculatorViewModel
     
     var body: some View {
         LazyVGrid(columns: columns, spacing: 15) {
-            ForEach(CalculatorButtonManager.allCases, id: \.self) { item in
-                CustomButton(buttonInfo: item, vm: vm)
+            ForEach(CalculatorButtonType.allCases, id: \.self) { buttonType in
+                CalculatorCustomButton(calculatorButtonType: buttonType, calculatorViewModel: calculatorViewModel)
             }
         }
         .padding()
