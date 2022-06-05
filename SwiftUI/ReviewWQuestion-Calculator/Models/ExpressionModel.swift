@@ -83,6 +83,7 @@ class ExpressionModel: ObservableObject {
     func display() -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumSignificantDigits = 9
         numberFormatter.maximumFractionDigits = 2
         var result: Double = 0
         var endWithDot = false
@@ -119,4 +120,46 @@ class ExpressionModel: ObservableObject {
         }
         return result + (endWithDot ? "." : "")
     }
+
+    func execute(_ button: String) {
+        switch button {
+        case "0"..."9":
+            if output != nil {
+                left = button
+            } else if oper != nil {
+                append_right(button)
+            } else {
+                append_left(button)
+            }
+        case "÷", "×", "−", "+":
+            if right != nil {
+                left = doOperate(button)
+            }
+            oper = button
+        case "=":
+            if output != nil {
+                left = output
+            }
+            output = doOperate(oper!)
+        case ".":
+            if right != nil {
+                if right?.contains(".") == false {
+                    append_right(".")
+                }
+            } else if oper != nil {
+                right = ".0"
+            } else if left != nil {
+                if left?.contains(".") == false {
+                    append_left(".")
+                }
+            }
+        case "C":
+            clear()
+        case "AC":
+            allclear()
+        default:
+            ()
+        }
+    }
+
 }
