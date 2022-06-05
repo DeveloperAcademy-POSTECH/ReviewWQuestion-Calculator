@@ -13,7 +13,9 @@ struct OutputView: View {
 
     var body: some View {
         Text(expression.display())
-            .font(.system(size: width * 0.15))
+            .font(.system(size: width * 0.285))
+            .frame(height: width * 0.285)
+            .minimumScaleFactor(0.5)
             .multilineTextAlignment(.trailing)
             .lineLimit(1)
             .foregroundColor(.white)
