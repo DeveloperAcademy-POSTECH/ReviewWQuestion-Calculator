@@ -11,18 +11,23 @@ struct MainView: View {
     @StateObject var expression = ExpressionModel()
 
     var body: some View {
-        GeometryReader { geo in
+        GeometryReader { geometry in
             VStack(alignment: .trailing) {
-                Spacer(minLength: geo.size.height * 0.28)
+                Spacer(minLength: geometry.size.height * 0.2)
                 OutputView()
                 InputView()
             }.environmentObject(expression)
+        }.onAppear {
+            UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+        }.onDisappear {
+            AppDelegate.orientationLock = .portrait
+            AppDelegate.orientationLock = .all
         }
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView().background(.black)
+        MainView().background(.black).previewInterfaceOrientation(.portrait)
     }
 }
