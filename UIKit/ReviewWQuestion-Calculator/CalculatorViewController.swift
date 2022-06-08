@@ -4,7 +4,6 @@
 //
 
 import UIKit
-import Foundation
 
 enum Operation {
     case add
@@ -14,21 +13,21 @@ enum Operation {
     case unknown
 }
 
-class ViewController: UIViewController {
+class CalculatorViewController: UIViewController {
     
     @IBOutlet weak var calculatorResultLabel: UILabel!
     
     @IBOutlet weak var allClearLabel: UIButton!
     // 프로퍼티
-    var displayNumber = ""
-    var firstNumber = ""
-    var secondNumber = ""
-    var result = ""
+    var displayNumber: String = ""
+    var firstNumber: String = ""
+    var secondNumber: String = ""
+    var result: String = ""
     var currentOperation: Operation = .unknown
     // 아무 연산도 하지 않는 상태
-    
+    let errorMessage: String = "오류"
     // 연산자를 저장하는 배열
-    var operatorStack: [Operation] = []
+    var operatorArray: [Operation] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +58,6 @@ class ViewController: UIViewController {
     
     func roundDouble(_ number : String) -> String {
         return String(format: "%.3f", number)
-        
     }
     
     // 계산할 메서드 (파라미터로 enum의 연산 종류를 받는다)
@@ -74,20 +72,20 @@ class ViewController: UIViewController {
                 
                 switch currentOperation {
                 case .add:
-                    operatorStack.append(.add)
+                    operatorArray.append(.add)
                     result = "\(firstNumber + secondNumber)"
                 case .subtract:
-                    operatorStack.append(.subtract)
+                    operatorArray.append(.subtract)
                     result = "\(firstNumber - secondNumber)"
                 case .multiply:
-                    operatorStack.append(.multiply)
+                    operatorArray.append(.multiply)
                     result = "\(firstNumber * secondNumber)"
                 case .divide:
                     if secondNumber == 0 {
                         result = "오류"
                     }
                     else {
-                        operatorStack.append(.divide)
+                        operatorArray.append(.divide)
                         result = "\(firstNumber / secondNumber)"
                     }
                 default:
@@ -127,7 +125,6 @@ class ViewController: UIViewController {
         }
     }
     
-    
     // 연산자를 탭 하는 경우
     @IBAction func pressAdd(_ sender: UIButton) {
         operation(.add)
@@ -152,12 +149,11 @@ class ViewController: UIViewController {
             
             displayNumber = result
             
-            if displayNumber == "오류" {
-                calculatorResultLabel.text = "오류"
+            if displayNumber == errorMessage {
+                calculatorResultLabel.text = errorMessage
             } else {
                 guard let commaResult = numberFormatter(displayNumber) else {return}
                 if commaResult.contains(".") {
-                    //guard let roundedDouble = roundDouble(commaResult) else {return}
                     calculatorResultLabel.text = roundDouble(commaResult)
                 } else {
                     calculatorResultLabel.text = commaResult
@@ -181,7 +177,6 @@ class ViewController: UIViewController {
         currentOperation = .unknown
         calculatorResultLabel.text = "0"
     }
-    
 }
 
 
