@@ -1,0 +1,75 @@
+//
+//  Output.swift
+//  ReviewWQuestion-Calculator
+//
+//  Created by 김상현 on 2022/05/31.
+//
+
+import Foundation
+
+struct Output {
+    var integerPart: String = ""
+    var decimalPart: String?
+    var dot: Bool = false
+    
+   
+// MARK: class를 특정 숫자로 초기화
+    mutating func updateOutputWithNumber(_ num: Double) {
+        guard num > floor(num) else {
+            self.integerPart = Int(num).description
+            return
+        }
+        let integerNum = floor(num)
+        let integerText = Int(integerNum).description
+        let decimalNum = round( (num - integerNum) * 100) / 100 // 반올림 + 소수점 아래 2자리
+        let decimalText = decimalNum.description
+        
+        self.integerPart = integerText
+        dot = true
+        let startIndex: String.Index = decimalText.index(decimalText.startIndex, offsetBy: 2)
+        self.decimalPart = String(decimalText[startIndex...])
+    }
+    
+    mutating func getOutputAsNumber() -> Double {
+        guard dot == true else {
+            return Double(integerPart) ?? 0
+        }
+        // 아무것도 입력안된 상태에 "." 누를경우 소수로 전환
+        if self.integerPart == "" {
+            self.integerPart = "0"
+        }
+        guard let decimalPart = self.decimalPart else { return Double(integerPart) ?? 0}
+        let outputText = integerPart + "." + decimalPart
+        return Double(outputText) ?? 0
+    }
+
+    mutating func getOutputAsText() -> String {
+        guard dot == true else {
+            let resultIntegerPart = integerPart.comma()
+            return resultIntegerPart
+        }
+        // 아무것도 입력안된 상태에 "." 누를경우 소수로 전환
+        if self.integerPart == "" {
+            self.integerPart = "0"
+        }
+        
+        let resultIntegerPart = integerPart.comma()
+        var outputText = resultIntegerPart + "."
+        guard let decimalPart = self.decimalPart else { return outputText }
+        outputText += decimalPart
+        return outputText
+    }
+    
+// MARK: Text 입력 처리
+    mutating func textInput(_ input: String) {
+        guard dot == true else {
+            integerPart += input
+            return
+        }
+        guard var _ = self.decimalPart else {
+            self.decimalPart = input
+            return
+        }
+        self.decimalPart! += input
+    }
+}
