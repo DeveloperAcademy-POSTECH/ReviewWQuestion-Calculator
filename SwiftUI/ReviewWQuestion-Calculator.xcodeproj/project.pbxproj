@@ -11,6 +11,14 @@
 		44A52592283E540B00F39B89 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A52591283E540B00F39B89 /* ContentView.swift */; };
 		44A52594283E540C00F39B89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44A52593283E540C00F39B89 /* Assets.xcassets */; };
 		44A52597283E540C00F39B89 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44A52596283E540C00F39B89 /* Preview Assets.xcassets */; };
+		4A146DF92845FC6100808ABA /* calculateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A146DF82845FC6100808ABA /* calculateData.swift */; };
+		4A8E07432844F82C008EEEAC /* secondRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E07422844F82C008EEEAC /* secondRow.swift */; };
+		4A8E07452844F962008EEEAC /* thirdRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E07442844F962008EEEAC /* thirdRow.swift */; };
+		4A8E07472844F9FB008EEEAC /* fourthRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E07462844F9FB008EEEAC /* fourthRow.swift */; };
+		4A8E07492844FA94008EEEAC /* fifthRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E07482844FA94008EEEAC /* fifthRow.swift */; };
+		4A8E074D2844FC94008EEEAC /* resultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E074C2844FC94008EEEAC /* resultView.swift */; };
+		4AA4C2582844F130007EB140 /* firstRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4C2572844F130007EB140 /* firstRow.swift */; };
+		4AA4C25A2844F45F007EB140 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4C2592844F45F007EB140 /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +27,14 @@
 		44A52591283E540B00F39B89 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		44A52593283E540C00F39B89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44A52596283E540C00F39B89 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4A146DF82845FC6100808ABA /* calculateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calculateData.swift; sourceTree = "<group>"; };
+		4A8E07422844F82C008EEEAC /* secondRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secondRow.swift; sourceTree = "<group>"; };
+		4A8E07442844F962008EEEAC /* thirdRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = thirdRow.swift; sourceTree = "<group>"; };
+		4A8E07462844F9FB008EEEAC /* fourthRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fourthRow.swift; sourceTree = "<group>"; };
+		4A8E07482844FA94008EEEAC /* fifthRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fifthRow.swift; sourceTree = "<group>"; };
+		4A8E074C2844FC94008EEEAC /* resultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resultView.swift; sourceTree = "<group>"; };
+		4AA4C2572844F130007EB140 /* firstRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firstRow.swift; sourceTree = "<group>"; };
+		4AA4C2592844F45F007EB140 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +67,8 @@
 		44A5258E283E540B00F39B89 /* ReviewWQuestion-Calculator */ = {
 			isa = PBXGroup;
 			children = (
-				44A5258F283E540B00F39B89 /* ReviewWQuestion_CalculatorApp.swift */,
-				44A52591283E540B00F39B89 /* ContentView.swift */,
+				4A8E074B2844FC25008EEEAC /* Data */,
+				4A8E074A2844FC1B008EEEAC /* Views */,
 				44A52593283E540C00F39B89 /* Assets.xcassets */,
 				44A52595283E540C00F39B89 /* Preview Content */,
 			);
@@ -65,6 +81,30 @@
 				44A52596283E540C00F39B89 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4A8E074A2844FC1B008EEEAC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				44A52591283E540B00F39B89 /* ContentView.swift */,
+				4AA4C2572844F130007EB140 /* firstRow.swift */,
+				4A8E07422844F82C008EEEAC /* secondRow.swift */,
+				4A8E07442844F962008EEEAC /* thirdRow.swift */,
+				4A8E07462844F9FB008EEEAC /* fourthRow.swift */,
+				4A8E07482844FA94008EEEAC /* fifthRow.swift */,
+				4A8E074C2844FC94008EEEAC /* resultView.swift */,
+				44A5258F283E540B00F39B89 /* ReviewWQuestion_CalculatorApp.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4A8E074B2844FC25008EEEAC /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				4AA4C2592844F45F007EB140 /* Color.swift */,
+				4A146DF82845FC6100808ABA /* calculateData.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +178,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				44A52592283E540B00F39B89 /* ContentView.swift in Sources */,
+				4AA4C25A2844F45F007EB140 /* Color.swift in Sources */,
+				4A8E07492844FA94008EEEAC /* fifthRow.swift in Sources */,
+				4A8E07452844F962008EEEAC /* thirdRow.swift in Sources */,
+				4AA4C2582844F130007EB140 /* firstRow.swift in Sources */,
+				4A8E07432844F82C008EEEAC /* secondRow.swift in Sources */,
+				4A146DF92845FC6100808ABA /* calculateData.swift in Sources */,
+				4A8E074D2844FC94008EEEAC /* resultView.swift in Sources */,
+				4A8E07472844F9FB008EEEAC /* fourthRow.swift in Sources */,
 				44A52590283E540B00F39B89 /* ReviewWQuestion_CalculatorApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,11 +315,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ReviewWQuestion-Calculator/Preview Content\"";
+				DEVELOPMENT_TEAM = JP5BCXZWJP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -283,7 +333,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -295,11 +345,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ReviewWQuestion-Calculator/Preview Content\"";
+				DEVELOPMENT_TEAM = JP5BCXZWJP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -311,7 +363,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
