@@ -11,6 +11,7 @@ final class CalculationData : ObservableObject {
     @Published var isReceived : Bool = false
     @Published var buttonIndex : String = ""
     let error : LocalizedStringKey = "error"
+    
 }
 
 func calculations(sign : String, a: Double, b: Double) -> Double {

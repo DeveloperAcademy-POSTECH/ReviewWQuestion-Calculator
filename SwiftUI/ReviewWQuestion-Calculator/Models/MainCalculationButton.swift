@@ -4,12 +4,12 @@ import SwiftUI
 struct MainCalculationButton: View {
     @EnvironmentObject var result: CalculationData
     var isTapped: Bool = false
-    var sign: String
+    var calculationSign: String
     
     var body: some View {
         Button(action: {
-            result.buttonIndex = sign
-            if sign == "﹦" {
+            result.buttonIndex = calculationSign
+            if calculationSign == "﹦" {
                 result.buttonIndex = ""
                 result.temporaryData = Double(result.displayData) ?? 0
                 
@@ -25,17 +25,17 @@ struct MainCalculationButton: View {
                 
                 
             } else {
-                result.operation = sign
+                result.operation = calculationSign
                 result.isReceived = true
                 result.firstData = Double(result.displayData) ?? 0
             }
             
         }){
-            Text(sign)
+            Text(calculationSign)
                 .font(.system(size: 30).bold())
-                .foregroundColor(result.buttonIndex == sign ? .mainCalButtonColor : .white)
+                .foregroundColor(result.buttonIndex == calculationSign ? .mainCalButtonColor : .white)
                 .frame(width: 80, height: 80, alignment: .center)
-                .background(Circle().fill(result.buttonIndex == sign ? .white : .mainCalButtonColor))
+                .background(Circle().fill(result.buttonIndex == calculationSign ? .white : .mainCalButtonColor))
         }
     }
 }

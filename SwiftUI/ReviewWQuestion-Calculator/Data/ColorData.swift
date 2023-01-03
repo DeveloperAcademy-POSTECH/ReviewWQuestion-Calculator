@@ -20,7 +20,7 @@ extension Color {
     }
 }
 
-// localized string key를 string으로 바꿔주는 함수 
+//MARK: localized string key를 string으로 바꿔주는 함수 
 extension LocalizedStringKey {
     
     public func toString() -> String {
