@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  ReviewWQuestion-Calculator
+
+  Created by Jisu Jang on 2022/06/01.
+  
+*/
+
+// 기기에서 언어 설정에 따라 국가별 에러 메시지를 띄울 수 있도록 의도함.
+
+"error" = "error";
